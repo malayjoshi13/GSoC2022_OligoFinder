@@ -27,22 +27,6 @@ def get_paper_sentences_with_TE(wbpids, settings):
     stop_words = [w for w in stop_words if len(w) > 1]
 
 
-    # Creates a list "all_special_chars" having special charaters
-    # like -, +, = 
-    # The list got it by checking which words of "train_dev.json" 
-    # file has neither alphabets nor numeric characters, i.e it's
-    # a special chracter like -, + or = 
-    # Also avoids again appending of characters in the list
-    all_special_chars = []
-    with open("data/nala/train_dev.json") as f:
-        for jsonObj in f:
-            nala_json = json.loads(jsonObj)["tokens"]
-            for word in nala_json:
-                if not word.isalnum() and word not in all_special_chars:
-                    all_special_chars.append(word)
-    all_special_chars = list(set(all_special_chars))
-
-
     # Gets text from wb paper(s) using "textpresso_paper_text" and 
     # stores it in "txt" variable
     textpresso_token = settings["db_config"]["textpresso"]["token"]
@@ -89,12 +73,6 @@ def get_paper_sentences_with_TE(wbpids, settings):
                 or re.search("http.?://", clean_row)
             ):
                 continue
-
-            # Remove special characters like "@", except those present in "all_special_chars" list
-            for c in clean_row:
-                if (not c.isalnum() and not c == " ") and c not in all_special_chars:
-                    clean_row = clean_row.replace(c, "")
-                    clean_row = re.sub(' +', ' ', clean_row)
 
             paperid_sentence_list.append((id, clean_row))
     return paperid_sentence_list 
