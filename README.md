@@ -19,8 +19,6 @@ Extract genomic information from papers. Made during GSoC 2022 for @Genome Assem
 
 Go to `utils` folder and there create `all_config.cfg` file as per the instructions mentioned in the README.md of `utils` folder.
 
-With wbtools access credentials
-
 ## Execution
 
 Extract oligos from research papers:
