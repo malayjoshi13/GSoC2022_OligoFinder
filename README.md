@@ -24,4 +24,5 @@ With wbtools access credentials
 ## Execution
 
 Extract oligos from research papers:
- `python oligos_extract.py`
+
+`python oligos_extract.py`
