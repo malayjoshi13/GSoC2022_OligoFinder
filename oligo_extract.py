@@ -1,9 +1,7 @@
 import numpy as np
 import pandas as pd
 from settings import setSettings
-from regex_wrapper import regex_block
 from textpresso import textpresso_paper_text
-import json
 import re
 import time
 import nltk
@@ -83,4 +81,5 @@ if __name__ == "__main__":
     settings = setSettings()
     paper_ids = ["WBPaper00050743"]
     paperid_sentence_list = get_paper_sentences_with_TE(paper_ids, settings)
+    print(paperid_sentence_list)
 
