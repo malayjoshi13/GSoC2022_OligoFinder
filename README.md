@@ -23,4 +23,4 @@ Go to `utils` folder and there create `all_config.cfg` file as per the instructi
 
 Extract oligos from research papers:
 
-`python oligos_extract.py`
+`python oligo_extract.py`
