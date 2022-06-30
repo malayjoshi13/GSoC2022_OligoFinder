@@ -75,7 +75,7 @@ def get_paper_sentences_with_TE(wbpids, settings):
 
 #................................................................
 
-def fn1(word, final_output, part, output = None, last_output = None):
+def check_alpha_num(word, final_output, part, output = None, last_output = None):
     """
     Functionality:
     Takes each word of each sentence.
@@ -102,12 +102,12 @@ def fn1(word, final_output, part, output = None, last_output = None):
     Arg:
     word - each word of each sentence one at a time
     final_output - list where all "output" are present
-    part - discussed completly in "fn1()"
+    part - discussed completly in "pick_from_brackets"
 
     Returns:
-    output - gets value from "fn1". For "word" which is oligo like "word" = TTCGA, the "output" = TTCGA.
+    output - gets value from "pick_from_brackets". For "word" which is oligo like "word" = TTCGA, the "output" = TTCGA.
              For "word" which is not an oligo like "word" = Apple, the "output" = None.
-    last_output - gets value from "fn1" by storing "output" corresponding to "word" which is previous to the current "word"
+    last_output - gets value from "pick_from_brackets" by storing "output" corresponding to "word" which is previous to the current "word"
     """
 
     if re.search("[a-z]+", word, re.IGNORECASE):
@@ -157,7 +157,7 @@ def fn1(word, final_output, part, output = None, last_output = None):
 
 #................................................................
 
-def fn2(word, final_output, part, output = None, last_output = None):
+def pick_from_brackets(word, final_output, part, output = None, last_output = None):
     """
     Functionality:
     Takes each word of each sentence, then checks if that words has ().
@@ -176,12 +176,12 @@ def fn2(word, final_output, part, output = None, last_output = None):
                 and "part" = True, then TTCGA and GCCAT are single word, i.e TTCGAGCCAT
            ex2: if previous "word" = TTCGA and "word" = GCCAT
                 and "part" = False, then TTCGA and GCCAT are two different word, i.e TTCGA and GCCAT 
-    output and last_output - currently None, just to make them initialized, real use happens in "fn1"
+    output and last_output - currently None, just to make them initialized, real use happens in "check_alpha_num"
 
     Returns:
-    output - gets value from "fn1". For "word" which is oligo like "word" = TTCGA, the "output" = TTCGA.
+    output - gets value from "check_alpha_num". For "word" which is oligo like "word" = TTCGA, the "output" = TTCGA.
              For "word" which is not an oligo like "word" = Apple, the "output" = None.
-    last_output - gets value from "fn1" by storing "output" corresponding to "word" which is previous to the current "word"
+    last_output - gets value from "check_alpha_num" by storing "output" corresponding to "word" which is previous to the current "word"
     """
 
     left_curl = re.search("\(", word, re.IGNORECASE)
@@ -196,11 +196,11 @@ def fn2(word, final_output, part, output = None, last_output = None):
         elif not left_curl and right_curl:   
             in_between_word = word[0:right_curl.span()[0]]
 
-        output, last_output = fn1(in_between_word, final_output, part, output = None, last_output = None)
+        output, last_output = check_alpha_num(in_between_word, final_output, part, output = None, last_output = None)
 
     # Words with no (). Like TGAGACGTCAACAATATGG
     else:
-        output, last_output = fn1(word, final_output, part, output = None, last_output = None)
+        output, last_output = check_alpha_num(word, final_output, part, output = None, last_output = None)
 
     return(output, last_output)
 
@@ -234,11 +234,11 @@ def regex_Oligos(row):
 
         # It would be simple oligo "ATCGGT", with no other part at its back
         if last_output==None:
-            output, last_output = fn2(word, final_output, part = False, output = None, last_output = None)
+            output, last_output = pick_from_brackets(word, final_output, part = False, output = None, last_output = None)
 
         # It would be "CGGT" which is part of "AT"
         elif last_output!=None:
-            output, last_output = fn2(word, final_output, part = True, output = None, last_output = None)
+            output, last_output = pick_from_brackets(word, final_output, part = True, output = None, last_output = None)
             # Working ==>
             # Case 1) "TGAGACGTCAACAATATGG cloned"
                 # As "cloned" is not an obligo thus fn1 and fn2 returns it as
