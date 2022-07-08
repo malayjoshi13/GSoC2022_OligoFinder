@@ -5,13 +5,15 @@ Extract genomic information from papers. Made during GSoC 2022 for @Genome Assem
 
 - Create a virtual environment named "extractor" (only once):
 
-  `python3 -m venv extractor`
+  `conda create -n extractor`
 
 - Activate the virtual environment each time:
 
-  `source extractor/bin/activate`
+  `conda activate extractor`
 
 - Install dependencies (only once):
+  
+  `conda install pip`
 
   `pip install -r requirements.txt`
   
