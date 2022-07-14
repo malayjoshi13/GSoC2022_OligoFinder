@@ -9,8 +9,8 @@ logger = logging.getLogger(__name__)
 
 
 def textpresso_paper_text(wbpid, token):
-    ''' Takes a wbpid eg WBPaper00056731 and returns the fulltext paper
-        in sentences
+    ''' 
+    Takes a wbpid (like:- WBPaper00056731) and returns its fulltext 
     '''
     tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
     url = 'https://textpressocentral.org:18080/v1/textpresso/api/search_documents'
