@@ -101,3 +101,16 @@ def is_part(int_result):
                     int_result[index] = None
 
     return (int_result)
+
+
+def only_regex(int_result):
+    """
+    Functionality: "is_part" returns a list which is combination of None and extracted oligo names. 
+    This function filter out and outputs a list just having oligos
+    """
+    oligo_list = list()
+    for oligo in int_result:
+        if oligo:
+            oligo_list.append(oligo)
+    
+    return oligo_list
