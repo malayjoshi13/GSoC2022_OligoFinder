@@ -95,32 +95,42 @@ def tf_idf(sentences, sentences_words, sentence):
         idf = inverse_doc_freq(word, document_len, word_count)
         value = tf*idf
 
-        if word not in tf_idf_vec:
-            tf_idf_vec[word] = [value]
-        else:
-            tf_idf_vec[word].append(value)
+        if value>0.2:
+            if word not in tf_idf_vec:
+                tf_idf_vec[word] = [value]
+            else:
+                tf_idf_vec[word].append(value)
 
     return tf_idf_vec
 
+def threshold_tfidf_words(sentences, sentences_words):
+    tf_idf_vec_final = {}
+    for sentence in sentences:
+        tf_idf_vec = tf_idf(sentences, sentences_words, sentence)
+        tf_idf_vec_final.update(tf_idf_vec)
+
+
+    for i in tf_idf_vec_final:
+        sum = 0
+        # print(str(i)+": "+str(tf_idf_vec_final[i])) #before
+
+        for j in tf_idf_vec_final[i]:
+            sum += j
+        tf_idf_vec_final[i] = sum/len(tf_idf_vec_final[i]) #if three tfidf are added then divide by 3
+        
+        # print(str(i)+": "+str(tf_idf_vec_final[i])) #after
+
+    return tf_idf_vec_final
 
 # main code
 filename = "oligos.csv"
 non_oligo_sentences, oligo_sentences, non_oligo_sentences_words, oligo_sentences_words = create_vocab(filename)
 
 
-tf_idf_vec_oligo_final = {}
-for oligo_sentence in oligo_sentences:
-    tf_idf_vec_oligo = tf_idf(oligo_sentences, oligo_sentences_words, oligo_sentence)
-    tf_idf_vec_oligo_final.update(tf_idf_vec_oligo)
+tf_idf_vec_oligo_final = threshold_tfidf_words(oligo_sentences, oligo_sentences_words)
+oligo_words = tf_idf_vec_oligo_final.keys()
+# print(oligo_words)
 
-
-# print(tf_idf_vec_oligo_final)
-for i in tf_idf_vec_oligo_final:
-    sum = 0
-    # print(str(i)+": "+str(tf_idf_vec_oligo_final[i])) #before
-
-    for j in tf_idf_vec_oligo_final[i]:
-        sum += j
-    tf_idf_vec_oligo_final[i] = sum/len(tf_idf_vec_oligo_final[i]) #if three tfidf are added then divide by 3
-    
-    print(str(i)+": "+str(tf_idf_vec_oligo_final[i])) #after
+tf_idf_vec_non_oligo_final = threshold_tfidf_words(non_oligo_sentences, non_oligo_sentences_words)
+non_oligo_words = tf_idf_vec_non_oligo_final.keys()
+print(non_oligo_words)
