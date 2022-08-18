@@ -126,7 +126,6 @@ def threshold_tfidf_words(sentences, sentences_words):
 filename = "oligos.csv"
 non_oligo_sentences, oligo_sentences, non_oligo_sentences_words, oligo_sentences_words = create_vocab(filename)
 
-
 tf_idf_vec_oligo_final = threshold_tfidf_words(oligo_sentences, oligo_sentences_words)
 oligo_words = tf_idf_vec_oligo_final.keys()
 # print(oligo_words)
