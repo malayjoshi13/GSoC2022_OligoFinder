@@ -1,7 +1,7 @@
 import csv
 import numpy as np
 
-#Create vocab
+# Create vocab
 def create_vocab(filename):
     # open the file in read mode
     read_file = open(filename, 'r')
@@ -21,30 +21,28 @@ def create_vocab(filename):
 
     non_oligo_sentences = list()
     oligo_sentences = list()
-    non_oligo_sentences_words = list()
-    oligo_sentences_words = list()
+    non_oligo_vocab = list()
+    oligo_vocab = list()
 
     for i in range(len(current_sentence)):
         if is_oligo[i]=="Oligo" and current_sentence[i] not in oligo_sentences: #appends unique sentences only
             oligo_sentences.append(current_sentence[i])
             for word in current_sentence[i].split():
-
-                if word not in oligo_sentences_words:
-
-                    oligo_sentences_words.append(word)           
+                if word not in oligo_vocab:
+                    oligo_vocab.append(word)           
 
         elif is_oligo[i]!="Oligo" and current_sentence[i] not in non_oligo_sentences:
             non_oligo_sentences.append(current_sentence[i])
             for word in current_sentence[i].split():
-                if word not in non_oligo_sentences_words:
-                    non_oligo_sentences_words.append(word) 
+                if word not in non_oligo_vocab:
+                    non_oligo_vocab.append(word) 
 
-    return non_oligo_sentences, oligo_sentences, non_oligo_sentences_words, oligo_sentences_words
+    return non_oligo_sentences, oligo_sentences, non_oligo_vocab, oligo_vocab
 
 
-#Creating an index for each word in our vocab.
+# Creating an index for each word in our vocab.
 def vocab_elements(vocab):
-    index_dict = {} #Dictionary to store index for each word
+    index_dict = {} 
     i = 0
     for word in vocab:
         index_dict[word] = i
@@ -52,7 +50,7 @@ def vocab_elements(vocab):
     return index_dict
 
 
-#Create a count dictionary to keep the count of the number of documents containing the given word
+# Create a count dictionary to keep the count of the number of documents containing the given word
 def count_dict(sentences, vocab):
     word_count = {}
     for word in vocab:
@@ -63,10 +61,9 @@ def count_dict(sentences, vocab):
     return word_count
 
 
-#Term Frequency
+# Term Frequency
 def termfreq(sentence, word):
     N = len(sentence.split())
-
     occurance = 0
     for token in sentence.split():
         if token == word:
@@ -103,12 +100,12 @@ def tf_idf(sentences, sentences_words, sentence):
 
     return tf_idf_vec
 
-def threshold_tfidf_words(sentences, sentences_words):
+
+def above_threshold_tfidf_words(sentences, sentences_words):
     tf_idf_vec_final = {}
     for sentence in sentences:
         tf_idf_vec = tf_idf(sentences, sentences_words, sentence)
         tf_idf_vec_final.update(tf_idf_vec)
-
 
     for i in tf_idf_vec_final:
         sum = 0
@@ -122,14 +119,21 @@ def threshold_tfidf_words(sentences, sentences_words):
 
     return tf_idf_vec_final
 
+
+
+
+
 # main code
 filename = "oligos.csv"
-non_oligo_sentences, oligo_sentences, non_oligo_sentences_words, oligo_sentences_words = create_vocab(filename)
+non_oligo_sentences, oligo_sentences, non_oligo_vocab, oligo_vocab = create_vocab(filename)
 
-tf_idf_vec_oligo_final = threshold_tfidf_words(oligo_sentences, oligo_sentences_words)
-oligo_words = tf_idf_vec_oligo_final.keys()
-# print(oligo_words)
 
-tf_idf_vec_non_oligo_final = threshold_tfidf_words(non_oligo_sentences, non_oligo_sentences_words)
-non_oligo_words = tf_idf_vec_non_oligo_final.keys()
-print(non_oligo_words)
+above_threshold_tfidf_oligo_words = above_threshold_tfidf_words(oligo_sentences, oligo_vocab)
+oligo_words = above_threshold_tfidf_oligo_words.keys()
+with open('oligo_words.txt', 'w') as f1:
+    f1.write(str(oligo_words))
+
+above_threshold_tfidf_nonoligo_words = above_threshold_tfidf_words(non_oligo_sentences, non_oligo_vocab)
+non_oligo_words = above_threshold_tfidf_nonoligo_words.keys()
+with open('non_oligo_words.txt', 'w') as f2:
+    f2.write(str(non_oligo_words))
