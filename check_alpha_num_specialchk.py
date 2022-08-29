@@ -84,5 +84,5 @@ def remove_special_characters(word):
 
     if word: # to avoid case where "word" is None  
 
-        fn_output = re.sub('[^A-Za-z0-9\'\s]', '', word)                  
+        fn_output = re.sub('[^A-Za-z]', '', word)                  
     return(fn_output)
