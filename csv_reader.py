@@ -155,4 +155,3 @@ non_oligo_words = above_threshold_tfidf_nonoligo_words_var.keys()
 with open('non_oligo_words.txt', 'w') as f2:
     f2.write(str(non_oligo_words))
 
-
