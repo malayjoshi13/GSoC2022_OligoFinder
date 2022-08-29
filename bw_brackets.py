@@ -6,14 +6,14 @@ def pick_from_brackets(word):
     Extracts name of oligo if present inside brackets in "word" variable.
     Like for example in words insert(TGAGACGTCAACAATATGG), insert(TGAGACGTCAACAATATGG, 
     insert(TGAGACGTCAACAATATGG)hg, (TGAGACGTCAACAATATGG)hg and TGAGACGTCAACAATATGG)hg, 
-    oligo name "TGAGACGTCAACAATATGG" is enclosed within ()
-    If "word" don't has (), then "word" itself is possibly a name of oligo
+    oligo seq "TGAGACGTCAACAATATGG" is enclosed within ()
+    If "word" don't has (), then "word" itself is possibly an oligo sequence
 
     Arg:
     word - each word of each sentence one at a time
 
     Returns:
-    fn_output - name of oligo extracted from in between brackets ()
+    fn_output - oligo sequence extracted from in between brackets ()
     """
 
     fn_output = None
