@@ -1,6 +1,26 @@
 import csv
 import numpy as np
 from regex_extraction import word_processor
+import re 
+import enchant
+dict = enchant.Dict("en_US")
+from nltk.stem import PorterStemmer
+ps = PorterStemmer()
+
+def sentence_processor(sentence):
+    processed_sentence  = ""
+    list_string = sentence.split(' ')
+    for word in list_string:
+        word = word.lower()
+        word = re.sub(r'[^a-z\s]','',word)
+        word = ps.stem(word)
+        if len(word)>2 and dict.check(word):
+            processed_word = word
+        else:
+            processed_word = ""
+
+        processed_sentence+=" "+processed_word
+    return processed_sentence
 
 # Create vocab
 def create_vocab(filename):
@@ -24,30 +44,37 @@ def create_vocab(filename):
     oligo_sentences = list()
     non_oligo_vocab = list()
     oligo_vocab = list()
-    oligo_vocab_sent_map = dict()
-    nonoligo_vocab_sent_map = dict()
 
     for i in range(len(current_sentence)):
         if is_oligo[i]=="Oligo" and current_sentence[i] not in oligo_sentences: #appends unique sentences only
-            oligo_sentences.append(current_sentence[i])
-            for word in current_sentence[i].split():
+            processed_sentence = sentence_processor(current_sentence[i])
+            # oligo_sentences.append(current_sentence[i])
+            oligo_sentences.append(processed_sentence)
+
+            for word in processed_sentence.split():
                 if word not in oligo_vocab:
                     processed_word = word_processor(word)
-                    if not processed_word: #if not oligo then append that in vocab
-                        oligo_vocab_sent_map[word] = current_sentence[i]
-                        oligo_vocab.append(word) 
+                    if not processed_word: #if not oligo then append that in vocab coz we want that are linked
+                        # with oligo in a sentence, but are themselves not an oligo
+                        oligo_vocab.append(word)
+                        # processed_bow_word = bow_processor(word)
+                        # if not processed_bow_word:
+                        #     oligo_vocab.append(processed_bow_word) 
 
 
         elif is_oligo[i]!="Oligo" and current_sentence[i] not in non_oligo_sentences:
-            non_oligo_sentences.append(current_sentence[i])
-            for word in current_sentence[i].split():
+            processed_sentence = sentence_processor(current_sentence[i])
+            # oligo_sentences.append(current_sentence[i])
+            oligo_sentences.append(processed_sentence)
+
+            for word in processed_sentence.split():
                 if word not in non_oligo_vocab:
                     processed_word = word_processor(word)
-                    if not processed_word: #if not oligo looking sequence then append that in vocab
-                        nonoligo_vocab_sent_map[word] = current_sentence[i]
-                        non_oligo_vocab.append(word) 
+                    if not processed_word: #if not oligo looking sequence then append that in vocab coz 
+                        # we want that are linked with oligo in a sentence, but are themselves not an oligo
+                        non_oligo_vocab.append(word)
 
-    return non_oligo_sentences, oligo_sentences, non_oligo_vocab, oligo_vocab, oligo_vocab_sent_map, nonoligo_vocab_sent_map
+    return non_oligo_sentences, oligo_sentences, non_oligo_vocab, oligo_vocab
 
 
 # Creating an index for each word in our vocab.
@@ -136,8 +163,7 @@ def above_threshold_tfidf_words(sentences, vocab):
 
 # main code
 filename = "oligos.csv"
-non_oligo_sentences, oligo_sentences, non_oligo_vocab, oligo_vocab, oligo_vocab_sent_map, nonoligo_vocab_sent_map = create_vocab(filename)
-print(oligo_vocab)
+non_oligo_sentences, oligo_sentences, non_oligo_vocab, oligo_vocab = create_vocab(filename)
 
 above_threshold_tfidf_oligo_words_var = above_threshold_tfidf_words(oligo_sentences, oligo_vocab)
 with open('oligo_words_with_tfidf.txt', 'w') as f3:
