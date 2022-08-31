@@ -1,120 +1,97 @@
-def is_part(int_result):
+from bw_brackets import pick_from_brackets
+from combine_oligo_parts import is_part, only_regex
+from check_alpha_num_specialchk import has_acgt, has_35, remove_special_characters
+import re
+
+
+def word_processor(word):
+    processed_word = pick_from_brackets(word)
+    processed_word = has_acgt(processed_word)
+    processed_word = has_35(processed_word)
+    processed_word = remove_special_characters(processed_word)
+    return processed_word
+
+
+def oligo_seq_regex(row):
     """
     Functionality:
-    Combines back name of oligos which are actually part of single oligo name but due to 
-    spaces, newline, - ; is treated like individual oligo names
-
+    Pick each "word" of a sentence/"row", extracts oligo if present inside brackets,
+    then check if "word" is an oligo by checking if it has only characters of
+    a,c,g,t,p,A,C,G,T,P,3, 5 and ' .     
+    If "word" is an oligo, then "oligo_name" stores that oligo in "oligo_name" variable, 
+    else stores "None" in "oligo_name" variable
     Then append the extracted and processed "oligo_name" into "int_result" list.
     This list is then passed to "is_part" function which clubs oligo names which are part of 
     each other and returns list of final names of oligos present in a "row"
-
     Arg:
-    int_result - it's a list consisting of prediction for current sentence. It comprises of
-                 oligo name, if word of sentence is an oligo, 
-                 and None, if word of sentence is not an oligo
-                 E.g. [None, TTGCA, None, None, GCAATGA, None, CAGGTAC,...]
-
+    row - sentence out of a big set of sentences extracted from research paper(s)
     Returns:
-    int_result - after editing inputted "int_result" list (by combining oligos parts together),
-                 it outputs same list
+    Oligo_List - list of oligo sequences (referred as "oligo_name") extracted from each "row" 
     """
 
-    fn_output = None
+    int_result = list()
+    for word in row.split():
+        oligo_seq = word_processor(word)
+        int_result.append(oligo_seq)  
 
-    for index, word in enumerate(int_result):
+    None_Oligo_List = is_part(int_result)
+    Oligo_List = only_regex(None_Oligo_List)
 
-        # checks which index is in the range, then accordingly assigns values to 
-        # "past", "present" and "future" variables corresponding to a picked "word" of
-        # "int_result" list
-        if index == 0:
-            past = None
-        else:
-            past = int_result[index-1]
-
-        present = int_result[index]
-
-        if index == len(int_result)-1:
-            future = None
-        else:
-            future = int_result[index+1]
-
-        # checks if picked word (i.e "present") is itself not None 
-        # e.g. None 'None' None or 'None' None None or None None 'None' or ATTCG 'None' None, etc
-        if present: 
-            # if picked word (i.e "present") is not None and has length more than 5 and less than 95, 
-            if len(present)>5 and len(present)<95:
-
-                # and its "past" also exists 
-                # e.g. None CTGTGA 'GCTAGAT'
-                if past: 
-                    # then without thinking anything, that picked word (i.e "present") will be part of "past"
-                    # so simply combine them
-                    fn_output = str(past)+str(present)
-                    # place them at place of "present"
-                    int_result[index] = fn_output
-                    # and write "None" at place of "past", as we have brought "past"
-                    # to location of "present" and there combined both
-                    int_result[index-1] = None
-
-                # but if "past" of "present" term dont exist
-                # e.g. None 'CTGTGACCGGA' None or None 'CTGTGACCGGA' GCTAGAT or None 'CTGTGACCGGA' GCT
-                # then just move ahead (don't modify or delete) as
-                # firstly for case like None 'CTGTGACCGGA' None; "CTGTGACCGGA" is an independent oligo, 
-                #         exisiting between non-oligo sequences (marked as None) and not part of some
-                #         longer sequence
-                #
-                # and secondly for case like None 'CTGTGA' GCTAGAT or None 'CTGTGA' GCT; "CTGTGA" will wait for
-                #                 GCTAGAT and GCT to come in their turn and combine with it 
-                elif not past:
-                    pass
+    return Oligo_List
 
 
 
+def oligo_name_regex(oligo_seq_list, row):
 
-            # if picked word (i.e "present") is not None and has length less than 5,
-            # then 50-50 chances that it can be either realy an oligo or falsely predicted as 
-            # oligo becoz of its appearance but actually not an oligo
-            # so go carefully for this case
-            elif len(present)<=5:
+    oligo_name_list = dict()
+    final_prev_word = None
+    #print(oligo_seq_list)
 
-                # length less than 5 and its "past" also exists 
-                # e.g. None CTGTGA 'GC'
-                if past: 
-                    # then without thinking anything, that picked word (i.e "present") will be part of "past"
-                    # so simply combine them
-                    fn_output = str(past)+str(present)
-                    # place them at place of "present"
-                    int_result[index] = fn_output
-                    # and write "None" at place of "past", as we have brought "past"
-                    # to location of "present" and there combined both
-                    int_result[index-1] = None   
+    word_list = row.split()
+    for i in range(len(word_list)):
+        processed_word = word_processor(word_list[i])
 
-                # length less than 5 and its "future" exists but its "past" dont exists
-                # e.g. None 'CA' GCTAGAT, then simply wait for GCTAGAT to come in its turn and 
-                # combine with CA
-                elif not past and future: 
-                    # passes: None 'CA' GCTAGAT as oligo name
-                    # but stops: None 'CA' None and place "None" 
-                    pass
+        # Will check if word picked from sentence is oligo or not. 
+        # If not oligo, so no name needs to be find.
+        # Move ahead. 
+        if processed_word:
 
-                # length less than 5 but its "future" and "past" dont exist
-                # e.g. None 'CA' None, then it means CA is wrongly predicted oligo
-                # in actual its not oligo. Thus place "None" in its place
-                elif not past and not future:
-                    int_result[index] = None
+            # Picking oligo sequence
+            for oligo in oligo_seq_list:
 
-    return (int_result)
+                # Checking out of which oligo seq picked from "oligo_seq_list",
+                # do currently picked word from sentence is present
+                if re.findall(processed_word, oligo, re.IGNORECASE):
 
+                    # If word picked from sentence is first, then no previous word.
+                    # Thus there will be no name for this picked word,
+                    # even if this first word is an oligo.
+                    # Move ahead.
+                    if i>0:
 
-def only_regex(int_result):
-    """
-    Functionality: "is_part" returns a list which is combination of None and extracted oligo names. 
-    This function filter out and outputs a list just having oligos
-    """
-    oligo_list = list()
-    for oligo in int_result:
-        if oligo:
-            oligo_list.append(oligo)
-    
-    return oligo_list
+                        prev_word = word_list[i-1]
+                        processed_prev_word = word_processor(prev_word)
 
+                        # "processed_prev_word" being true means "prev_word"
+                        # is oligo; thus prev word can't be oligo-name.
+                        # Move ahead as pre-word must be oligo-name and 
+                        # current word must be an oligo sequence
+                        if processed_prev_word: 
+                            oligo_name_list[oligo] = final_prev_word
+                            break
+
+                        # No "processed_prev_word" means that prev word is not 
+                        # an oligo.
+                        # Thus u can directly that non-oligo prev word 
+                        # will be name and oligo will the sequence.
+                        else:
+                                final_prev_word = re.sub("," , '', word_list[i-1])
+                                #print(final_prev_word, oligo)
+                                oligo_name_list[oligo] = final_prev_word
+                                break
+
+                    else:
+                        oligo_name_list[oligo] = final_prev_word
+                        break
+
+    return oligo_name_list
