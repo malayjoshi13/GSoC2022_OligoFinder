@@ -1,13 +1,14 @@
 import pandas as pd
+import nltk
+import sys
 from configure import setConfiguration
 from get_paper_content import get_paper_sentences_with_TE
 from regex_extraction import oligo_seq_regex, oligo_name_regex
-from TfIdf_BOW_TpFp import check_true_positive_oligo_sentence
-import nltk
-nltk.download("stopwords")
-nltk.download("punkt")  
+from TfIdf_BOW_TpFp import check_true_positive_oligo_sentence  
 from os.path import exists
 
+nltk.download("stopwords")
+nltk.download("punkt")
 
 def find_Oligos(config, paper_ids):
     """
@@ -78,7 +79,6 @@ def find_Oligos(config, paper_ids):
 
 if __name__ == "__main__":
     config = setConfiguration()
-    # paper_ids = ["WBPaper00001366"]
     paper_ids = ["WBPaper00003663", "WBPaper00003632", "WBPaper00003021", "WBPaper00005504", "WBPaper00030754", "WBPaper00005177", "WBPaper00004282", "WBPaper00003566", "WBPaper00001366", "WBPaper00004943", "WBPaper00002207", "WBPaper00001691", "WBPaper00003989", "WBPaper00003632", "WBPaper00044537", "WBPaper00050743", "WBPaper00001872", "WBPaper00005135", "WBPaper00000779", "WBPaper00025193", "WBPaper00005533", "WBPaper00001366", "WBPaper00002207", "WBPaper00001691",
 "WBPaper00050123",
 "WBPaper00002034",
@@ -107,13 +107,9 @@ if __name__ == "__main__":
 
     df = find_Oligos(config, paper_ids)
 
-    filename = None
-    file_name_options = ['oligos_V1.csv', 'oligos_V2.csv', 'oligos_V3.csv', 'oligos_V4.csv', 'oligos_V5.csv', 'oligos_V6.csv']
-    for file in file_name_options:
-        if exists(file):
-            continue
-        else:
-            filename = file
-            break
+    try:
+        output_filename = sys.argv[1] # ex: oligos.csv
+    except:
+        output_filename = "oligos.csv"
 
-    df.to_csv(filename, index=False)
+    df.to_csv(output_filename, index=False)
