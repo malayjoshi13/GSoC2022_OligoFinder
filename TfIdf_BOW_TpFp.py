@@ -1,25 +1,23 @@
 import re
 from TfIdf_BOW_creator import sentence_processor
 
+def read_file(path_to_file):
+    file = open(path_to_file, "r")
+    content = file.read()
+    content = re.sub(r'[\[\]\(\)\'\s]','',content)
+    content = re.sub(r'dict_keys','',content)
+    content = content.split(",")
+    content = set(content)
+    return content
+
 def check_true_positive_oligo_sentence(sentence):
     threshold = 2
     count = 0
     countt = 0
     result = " "
 
-    file1 = open("oligo_words.txt", "r")
-    oligo_content = file1.read()
-    oligo_content = re.sub(r'[\[\]\(\)\'\s]','',oligo_content)
-    oligo_content = re.sub(r'dict_keys','',oligo_content)
-    oligo_content = oligo_content.split(",")
-    oligo_content = set(oligo_content)
-
-    file2 = open("non_oligo_words.txt", "r")
-    non_oligo_content = file2.read()
-    non_oligo_content = re.sub(r'[\[\]\(\)\'\s]','',non_oligo_content)
-    non_oligo_content = re.sub(r'dict_keys','',non_oligo_content)
-    non_oligo_content = non_oligo_content.split(",")
-    non_oligo_content = set(non_oligo_content)
+    oligo_content = read_file("oligo_words.txt")
+    non_oligo_content = read_file("non_oligo_words.txt")
 
     sentence = sentence_processor(sentence)
     sentence_words = sentence.split(" ")
@@ -40,7 +38,6 @@ def check_true_positive_oligo_sentence(sentence):
 
     return result
 
-
-if __name__ == "__main__":
-    sentence = "mutation followed genetic crosses PCR using primers rabx5-F (5 -ATTCCCCCAGATTGTGTATG-3) rabx5- R (5 -CCGGTGACGTGGAAGTTGGT-3 )."
-    print(check_true_positive_oligo_sentence(sentence))
+# if __name__ == "__main__":
+#     sentence = "mutation followed genetic crosses PCR using primers rabx5-F (5 -ATTCCCCCAGATTGTGTATG-3) rabx5- R (5 -CCGGTGACGTGGAAGTTGGT-3 )."
+#     print(check_true_positive_oligo_sentence(sentence))
