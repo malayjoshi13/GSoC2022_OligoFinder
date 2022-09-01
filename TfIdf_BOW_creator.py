@@ -1,11 +1,13 @@
 import csv
 import numpy as np
-from regex_extraction import word_processor
 import re 
 import enchant
-dict = enchant.Dict("en_US")
 from nltk.stem import PorterStemmer
+from regex_extraction import word_processor
+
+dict = enchant.Dict("en_US")
 ps = PorterStemmer()
+
 
 # this part generate tf-idf BOW
 
