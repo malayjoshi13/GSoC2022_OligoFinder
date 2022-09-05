@@ -15,12 +15,12 @@ The problem of counting the linear extensions of a given partial order consists 
 ## Work overview
 #### Implementation of classes for representing Order Polytopes and Posets
   - Link to the PR: [#165](https://github.com/GeomScale/volume_approximation/pull/165)
-  - Status: **merged :tada:**
   - Overview: 
     - Created a class for representing a poset.
     - Created a class for representing an order polytope.
     - Implemented membership, boundary and reflection oracles. Also implemented their optimized versions for accelerated billiard walks which rely on preprocessing to speed up the oracles.
     - Added unit tests and examples for both the classes.
+  - add pictures and ss
 
 ## Install
 
@@ -50,3 +50,11 @@ Go to `models` folder and follow instructions in README.md .
 Extract oligos from research papers:
 
 `python oligo_extract.py`
+
+## Next Steps
+The TFLite model for BertNLClassifier API is not available yet (TFLite team is working on it), when it becomes available it will be integrated into the Text Classification Android Example, and we may also re
+
+## Acknowledgements
+My Google Summer of Code Experience was awesome ❤️ and a large part of this great experience was the good mentoring of Meghna Natraj, George Soloupis, Margaret Maynard-Reid, Lu Wang, Le Viet Gia Khanh, Tian Tian and TensorFlow Team.
+
+I thank them for their constant guidance, code reviews, timely feedback, help and most importantly, for their dedicated advice and encouragement throughout GSoC. I would definitely love to contribute more in the future to the TensorFlow.
