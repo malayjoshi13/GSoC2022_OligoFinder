@@ -5,6 +5,7 @@
 
 Designing and Recreating Tensorflow Lite example NLP apps
 Extract genomic information from papers. Made during GSoC 2022 for @Genome Assembly And Annotation @WormBase
+![GitHub License](https://img.shields.io/github/license/malayjoshi13/GSoC2022_OligoFinder)
 
 ## Install
 
