@@ -1,4 +1,5 @@
-![image](https://user-images.githubusercontent.com/71775151/188505048-90243899-f39d-4816-90ac-e9ab02ed4453.png)
+![pic](https://user-images.githubusercontent.com/71775151/188505676-b48bbcb4-ef1f-42bf-be05-fcd3223370aa.jpg)
+
 
 # GSoC2022_genomic_info_extract
 Extract genomic information from papers. Made during GSoC 2022 for @Genome Assembly And Annotation @WormBase
