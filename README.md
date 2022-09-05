@@ -3,6 +3,11 @@
 > ## Made during Google Summer of Code 2022 @The Genome Assembly and Annotation section of EMBL-EBI
 
 ![pic](https://user-images.githubusercontent.com/71775151/188505676-b48bbcb4-ef1f-42bf-be05-fcd3223370aa.jpg)
+ 
+- **Mentor**: [Magdalena Zarowiecki](https://github.com/MagdalenaZZ)
+- **Project Guides**: [Andrés Becerra Sandoval](https://github.com/abecerra), [Valerio Arnaboldi
+](https://github.com/valearna) 
+- **Project Category**: [Extract important information from scientific papers](https://summerofcode.withgoogle.com/programs/2022/projects/5b96vIqa)
 
 ## Install
 
