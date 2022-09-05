@@ -3,9 +3,8 @@
 ![pic](https://user-images.githubusercontent.com/71775151/188505676-b48bbcb4-ef1f-42bf-be05-fcd3223370aa.jpg)
 
 
-Designing and Recreating Tensorflow Lite example NLP apps
-Extract genomic information from papers. Made during GSoC 2022 for @Genome Assembly And Annotation @WormBase
-![GitHub License](https://img.shields.io/github/license/malayjoshi13/GSoC2022_OligoFinder)
+## OligoFinder: RegEx and Machine Learning based system for finding and extracting Oligonucleotides mentions from biomedical research papers
+Extract genomic information from papers. 
 
 ## Install
 
