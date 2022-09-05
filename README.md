@@ -1,8 +1,4 @@
-![1200px-GSoC_logo svg](https://user-images.githubusercontent.com/71775151/188504149-fa9ddcf1-6de0-4b7a-bd98-4eb3170de296.png)
-
-![600x600logos_hackathon_sponsors_logos2](https://user-images.githubusercontent.com/71775151/188504166-8272a4ed-a502-4b0f-a8fb-a11964212187.jpg)
-
-![fbu2s36u7uatdgev-360](https://user-images.githubusercontent.com/71775151/188504178-b052d003-5ac1-4f74-b1bb-e944660970b6.png)
+![image](https://user-images.githubusercontent.com/71775151/188505048-90243899-f39d-4816-90ac-e9ab02ed4453.png)
 
 # GSoC2022_genomic_info_extract
 Extract genomic information from papers. Made during GSoC 2022 for @Genome Assembly And Annotation @WormBase
