@@ -9,6 +9,19 @@
 ](https://github.com/valearna) 
 - **Project Category**: [Extract important information from scientific papers](https://summerofcode.withgoogle.com/programs/2022/projects/5b96vIqa)
 
+## Objective
+The problem of counting the linear extensions of a given partial order consists in counting all the possible ways that we can extend the partial order to a total order that preserve..........
+
+## Work overview
+#### Implementation of classes for representing Order Polytopes and Posets
+  - Link to the PR: [#165](https://github.com/GeomScale/volume_approximation/pull/165)
+  - Status: **merged :tada:**
+  - Overview: 
+    - Created a class for representing a poset.
+    - Created a class for representing an order polytope.
+    - Implemented membership, boundary and reflection oracles. Also implemented their optimized versions for accelerated billiard walks which rely on preprocessing to speed up the oracles.
+    - Added unit tests and examples for both the classes.
+
 ## Install
 
 - Create a virtual environment named "extractor" (only once):
