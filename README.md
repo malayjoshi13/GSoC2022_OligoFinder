@@ -24,12 +24,15 @@ The problem of counting the linear extensions of a given partial order consists 
 
 ## Work overview
 #### Implementation of classes for representing Order Polytopes and Posets
-  - Link to the PR: [#165](https://github.com/GeomScale/volume_approximation/pull/165)
+  - Link to the PR: [#165 - describe in short](https://github.com/GeomScale/volume_approximation/pull/165)
   - Overview: 
     - Created a class for representing a poset.
     - Created a class for representing an order polytope.
     - Implemented membership, boundary and reflection oracles. Also implemented their optimized versions for accelerated billiard walks which rely on preprocessing to speed up the oracles.
     - Added unit tests and examples for both the classes.
+. . - add pictures and ss
+
+More examples for overview
 
 Input pipeline
 
@@ -46,8 +49,6 @@ Training
 Training and evaluation of the model was the most interesting part of the project. It included finding the perfect setup which suited the model and gave the best accuracy. During the training, we fixated on the hyperparameters which resulted in the best performance and started improving from there. Iteratively and progressively, we were able to get substantial gains. It was common to go back to the model implementation and input pipeline to check their correctness and improve them. We left no stone unturned. However, I was unable to obtain the accuracies mentioned by the authors, even after rigourous debugging. The following accuracies were obtained after substantial experimentation. I finally fixed upon using AdamW as the optimizer and keeping rest the same as the paper. This gave good performance boosts. I will continue to explore and try to improve the accuracy as far as possible.
 Validation accuracies of models:
 
-
-  - add pictures and ss
 
 ## Install
 
