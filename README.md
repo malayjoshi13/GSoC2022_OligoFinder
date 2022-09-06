@@ -8,7 +8,7 @@
 ](https://github.com/valearna) 
 - **Project Category**: [Extract important information from scientific papers](https://summerofcode.withgoogle.com/programs/2022/projects/5b96vIqa)
 
-## Motivation: What is an FDIR algorithm and why is it usefull?
+## (1) Motivation: What is an FDIR algorithm and why is it usefull?
 
 Tell about the project, what are oligonucleotides, tell about recent work by EMBL-EBI, limitations of existing works that raise need for such product
 
@@ -22,11 +22,11 @@ For these reason, providing the spacecraft on board software with a way of detec
 
 Traditionally, these types of algorithms where simple, as they where based mainly on hardware redundancy , i.e., having many sensors that measure the same thing so that if one fails, you could detect the failure by looking at the rest and seeing that the signal is not consistent, isolate the failure by ignoring the reading from that sensor, and recover from the failure simply by continue to listen to the rest non-faulty sensors. 
 
-## Objective
+## (2) Objective
 The problem of counting the linear extensions of a given partial order consists in counting all the possible ways that we can extend the partial order to a total order that preserve..........
 
-## Work overview
-#### Implementation of classes for representing Order Polytopes and Posets
+## (3) Work overview
+#### (3.1) Implementation of classes for representing Order Polytopes and Posets
   - Link to the PR - [#165 - describe in short](https://github.com/GeomScale/volume_approximation/pull/165)
   - Overview -
     - Created a class for representing a poset.
@@ -53,8 +53,8 @@ Training and evaluation of the model was the most interesting part of the projec
 Validation accuracies of models:
 
 
-## Usage
-### Install
+## (4) Usage
+### (4.1) Install
 
 - Create a virtual environment named "extractor" (only once):
 
@@ -69,21 +69,21 @@ Validation accuracies of models:
 
   `pip install -r requirements.txt`
   
-### Configure credentials
+### (4.2) Configure credentials
 
 Go to `utils` folder and there create `all_config.cfg` file as per the instructions mentioned in the README.md of `utils` folder.
 
-### Adding model
+### (4.3) Adding model
 
 Go to `models` folder and follow instructions in README.md .
 
-### Execution
+### (4.4) Execution
 
 Extract oligos from research papers:
 
 `python oligo_extract.py`
 
-## Results
+## (5) Results
 
 In 100 papers tested (93 were in the manually curated ground truth file), gene-mutation matches were found in 53 papers.
 Total 2433 matches were present in those 53 papers. And 977 matches were found using this developed pipeline.
@@ -94,14 +94,14 @@ TP: 807, FP: 170
 Precision: 82.59%
 Not all FP are FP. After manual verification of the final output, some were noticed to be true positive which were originally missed during the manual curation.
 
-## Future work
+## (6) Future work
 
 A lot has been achieved during this GSoC period, yet there is still plenty of work ahead in this ambitious project. Among the features that are still to be implemented and tasks to be performed there are:
 
 - Continue to improve the neural networks to achieve better results at higher computational efficiencies.
 Improve the simulator to generate better failure scenarios for thrusters.
 
-## Acknowledgements
+## (7) Acknowledgements
 
 I thank Google Summer of Code and the Genome Assembly and Annotation section of EMBL-EBI for granting me this opportunity. I am grateful to my mentors Magdalena Zarowiecki, Andrés Becerra Sandoval and Valerio Arnaboldi for their continuous guidance and encouragement. 
 
