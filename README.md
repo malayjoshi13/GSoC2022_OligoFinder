@@ -8,6 +8,21 @@
 ](https://github.com/valearna) 
 - **Project Category**: [Extract important information from scientific papers](https://summerofcode.withgoogle.com/programs/2022/projects/5b96vIqa)
 
+## Table of Contents
+
+- [Motivation](#motivation)
+- [Objective](#objective)
+- [Work overview](#work-overview)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Dataset](#dataset)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
+* [Special Thanks](#special-thanks)
+
+
 ## 1) Motivation: What is an FDIR algorithm and why is it usefull?
 
 Tell about the project, what are oligonucleotides, tell about recent work by EMBL-EBI, limitations of existing works that raise need for such product
