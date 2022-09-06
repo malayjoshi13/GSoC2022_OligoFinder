@@ -19,7 +19,7 @@ def has_acgt(word):
 
         if re.findall("[a-z]", word, re.IGNORECASE):
             alpha = re.findall("[a-z]", word, re.IGNORECASE)
-            if len(alpha)>1:
+            if len(alpha)>0:
                 for chr in alpha:
                     if re.search("[^atcgp]", chr, re.IGNORECASE) == None:
                         count += 1
