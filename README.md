@@ -56,6 +56,7 @@ extracts sequences
 tells if TP or FP
 ![WhatsApp Image 2022-09-05 at 11 44 24 AM](https://user-images.githubusercontent.com/71775151/188707581-ee70f829-d1b1-43b4-9ca9-e788a9d82302.jpeg)
 
+"A pre-training and self-training approach for biomedical named entity recognition" --> Future work....first pretrain biobert and then self train on oligos dataset created right now. DL will be also used to find oligo nanes which cant be found using regex 
 ![WhatsApp Image 2022-09-05 at 11 45 26 AM](https://user-images.githubusercontent.com/71775151/188708306-c7e426af-fe4b-4ac4-af2a-c4e85fc7fe67.jpeg)
 
 ![WhatsApp Image 2022-09-05 at 11 45 53 AM](https://user-images.githubusercontent.com/71775151/188708135-ae4ce587-f049-417b-bbd2-fdc1a1c50d70.jpeg)
@@ -165,6 +166,8 @@ Extract oligos from research papers:
 `python oligo_extract.py`
 
 ## 6) Results
+
+![WhatsApp Image 2022-09-05 at 11 46 47 AM](https://user-images.githubusercontent.com/71775151/188710228-77a5f4e2-5533-4904-b7a6-dc356b399065.jpeg)
 
 In 100 papers tested (93 were in the manually curated ground truth file), gene-mutation matches were found in 53 papers.
 Total 2433 matches were present in those 53 papers. And 977 matches were found using this developed pipeline.
