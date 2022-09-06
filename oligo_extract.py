@@ -2,7 +2,7 @@ import pandas as pd
 import nltk
 import sys
 from configure import setConfiguration
-from get_paper_content import get_paper_sentences_with_TE
+from RawText.get_paper_content import get_paper_sentences_with_TE
 from regex_extraction import oligo_seq_regex, oligo_name_regex
 from TfIdf_BOW_TpFp import check_true_positive_oligo_sentence  
 from os.path import exists
