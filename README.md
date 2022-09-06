@@ -9,6 +9,9 @@
 - **Project Category**: [Extract important information from scientific papers](https://summerofcode.withgoogle.com/programs/2022/projects/5b96vIqa)
 
 ## Motivation: What is an FDIR algorithm and why is it usefull?
+
+Tell about the project, what are oligonucleotides, tell about recent work by EMBL-EBI, limitations of existing works that raise need for such product
+
 One of the most challenging parts of space missions is knowing and controlling where your spacecraft is, what is its relative orientation with respect to earth and how it is moving. Being aware of these three things is crucial to know if your spacecraft is flying too high or too low, too close to other spacecrafts, or simply if its oriented in a way that will allow it expose its solar panels to the sun to produce power or to point its antenna down to earth for calling home.
 
 To perform this crucial task of computing and controlling its position and orientation spacecraft are designed with a variety of sensors and actuators that, together with proper control algorithms, ensure that your satellite remains where you want it and pointing in the right direction. This is often referred to as Attitude and Orbit control subsystem or AOCS.
