@@ -1,7 +1,7 @@
 import pandas as pd
 import nltk
 import sys
-from configure import setConfiguration
+from Setup.configure import setConfiguration
 from RawText.get_paper_content import get_paper_sentences_with_TE
 from regex_extraction import oligo_seq_regex, oligo_name_regex
 from TP_FP_oligo.TfIdf_BOW_TpFp import check_true_positive_oligo_sentence  
