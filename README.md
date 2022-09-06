@@ -24,8 +24,8 @@ The problem of counting the linear extensions of a given partial order consists 
 
 ## Work overview
 #### Implementation of classes for representing Order Polytopes and Posets
-  - Link to the PR: [#165 - describe in short](https://github.com/GeomScale/volume_approximation/pull/165)
-  - Overview: 
+  - Link to the PR - [#165 - describe in short](https://github.com/GeomScale/volume_approximation/pull/165)
+  - Overview -
     - Created a class for representing a poset.
     - Created a class for representing an order polytope.
     - Implemented membership, boundary and reflection oracles. Also implemented their optimized versions for accelerated billiard walks which rely on preprocessing to speed up the oracles.
