@@ -41,6 +41,10 @@ Traditionally, these types of algorithms where simple, as they where based mainl
 ## 2) Objective
 The problem of counting the linear extensions of a given partial order consists in counting all the possible ways that we can extend the partial order to a total order that preserve..........
 
+Flow diagram
+
+Explain this flow diagram which is basically an overview of this project's working
+
 ## 3) Work overview
 #### 3.1) Implementation of classes for representing Order Polytopes and Posets
   - Link to the PR - [#165 - describe in short](https://github.com/GeomScale/volume_approximation/pull/165)
