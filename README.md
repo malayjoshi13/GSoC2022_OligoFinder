@@ -23,7 +23,8 @@
 * [Special Thanks](#special-thanks)
 
 
-## 1) Motivation: What is an FDIR algorithm and why is it usefull?
+## 1) Motivation
+## What is an FDIR algorithm and why is it usefull?
 
 Tell about the project, what are oligonucleotides, tell about recent work by EMBL-EBI, limitations of existing works that raise need for such product
 
