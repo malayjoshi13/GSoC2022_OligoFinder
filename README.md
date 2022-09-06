@@ -47,6 +47,7 @@ A potential source of false positives for mutation extraction systems is mention
 
 The primary objective of the project was achieved within the specified time of GSoC, namely to establish that deep learning is capable of inferring the homology relationship of gene pairs with high accuracy. This was done using a set of convolutional neural networks, as detailed below, which were implemented using TensorFlow2.
 
+extract seq that use TP-FP differentiator, corpus generated using this pipeline, system to score 
 Flow diagram
 
 Explain this flow diagram which is basically an overview of this project's working
