@@ -1,5 +1,5 @@
 import nltk
-from textpresso import textpresso_paper_text
+from RawText.textpresso import textpresso_paper_text
 import re
 
 def get_paper_sentences_with_TE(config, paper_ids):
