@@ -8,6 +8,17 @@
 ](https://github.com/valearna) 
 - **Project Category**: [Extract important information from scientific papers](https://summerofcode.withgoogle.com/programs/2022/projects/5b96vIqa)
 
+## Motivation: What is an FDIR algorithm and why is it usefull?
+One of the most challenging parts of space missions is knowing and controlling where your spacecraft is, what is its relative orientation with respect to earth and how it is moving. Being aware of these three things is crucial to know if your spacecraft is flying too high or too low, too close to other spacecrafts, or simply if its oriented in a way that will allow it expose its solar panels to the sun to produce power or to point its antenna down to earth for calling home.
+
+To perform this crucial task of computing and controlling its position and orientation spacecraft are designed with a variety of sensors and actuators that, together with proper control algorithms, ensure that your satellite remains where you want it and pointing in the right direction. This is often referred to as Attitude and Orbit control subsystem or AOCS.
+
+Since this subsystem is critical for the spacecraft, it is needless to say that a failure in one of these sensors or actuators could easily kill your spacecraft and put and end to your mission. A faulty reading of a gyroscope that says that your spacecraft is rotating when it is not, a dead gyroscope that gives no signal and can’t tell if it is, or just a faulty thruster that provided more thrust than it should could leave your spacecraft spinning uncontrolled.
+
+For these reason, providing the spacecraft on board software with a way of detecting these kind of failures as well as guidelines on how to proceed if one of these failures is detected is crucial for any space mission. This is done by means of the so called Failure Detection, Isolation and Recovery algorithms (FDIR).
+
+Traditionally, these types of algorithms where simple, as they where based mainly on hardware redundancy , i.e., having many sensors that measure the same thing so that if one fails, you could detect the failure by looking at the rest and seeing that the signal is not consistent, isolate the failure by ignoring the reading from that sensor, and recover from the failure simply by continue to listen to the rest non-faulty sensors. 
+
 ## Objective
 The problem of counting the linear extensions of a given partial order consists in counting all the possible ways that we can extend the partial order to a total order that preserve..........
 
