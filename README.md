@@ -1,11 +1,10 @@
 # OligoFinder: RegEx and Machine Learning based system for finding and extracting Oligonucleotides mentions from biomedical research papers
 
-> ## Made during Google Summer of Code 2022 @The Genome Assembly and Annotation section of EMBL-EBI
+> ## Made during Google Summer of Code 2022 @Genome Assembly and Annotation section of EMBL-EBI
 
 ![pic](https://user-images.githubusercontent.com/71775151/188505676-b48bbcb4-ef1f-42bf-be05-fcd3223370aa.jpg)
  
-- **Mentor**: [Magdalena Zarowiecki](https://github.com/MagdalenaZZ)
-- **Project Guides**: [Andrés Becerra Sandoval](https://github.com/abecerra), [Valerio Arnaboldi
+- **Mentors**: [Magdalena Zarowiecki](https://github.com/MagdalenaZZ), [Andrés Becerra Sandoval](https://github.com/abecerra), [Valerio Arnaboldi
 ](https://github.com/valearna) 
 - **Project Category**: [Extract important information from scientific papers](https://summerofcode.withgoogle.com/programs/2022/projects/5b96vIqa)
 
@@ -55,6 +54,5 @@ Extract oligos from research papers:
 The TFLite model for BertNLClassifier API is not available yet (TFLite team is working on it), when it becomes available it will be integrated into the Text Classification Android Example, and we may also re
 
 ## Acknowledgements
-My Google Summer of Code Experience was awesome ❤️ and a large part of this great experience was the good mentoring of Meghna Natraj, George Soloupis, Margaret Maynard-Reid, Lu Wang, Le Viet Gia Khanh, Tian Tian and TensorFlow Team.
 
-I thank them for their constant guidance, code reviews, timely feedback, help and most importantly, for their dedicated advice and encouragement throughout GSoC. I would definitely love to contribute more in the future to the TensorFlow.
+I thank Google Summer of Code and the Genome Assembly and Annotation section of EMBL-EBI for granting me this opportunity. I am grateful to my mentors Magdalena Zarowiecki, Andrés Becerra Sandoval and Valerio Arnaboldi for their continuous guidance and encouragement. Without them this project would not have been possible. I thank them for their constant guidance, code reviews, timely feedback, help and most importantly, for their dedicated advice and encouragement throughout GSoC. I would definitely love to contribute more in the future to the EMBL-EBI.
