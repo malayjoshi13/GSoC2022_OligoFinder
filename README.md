@@ -10,9 +10,9 @@
 
 ## Table of Contents
 
-- [Motivation](##motivation)
-- [Objective](##objective)
-- [Work overview](##work-overview)
+- [Motivation](#1-motivation)
+- [Objective](#2-objective)
+- [Work overview](#3-work-overview) 
   * [Prerequisites](##prerequisites)
   * [Installation](#installation)
 * [Dataset](#dataset)
