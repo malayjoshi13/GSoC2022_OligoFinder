@@ -30,7 +30,7 @@ The problem of counting the linear extensions of a given partial order consists 
     - Created a class for representing an order polytope.
     - Implemented membership, boundary and reflection oracles. Also implemented their optimized versions for accelerated billiard walks which rely on preprocessing to speed up the oracles.
     - Added unit tests and examples for both the classes.
-. . - add pictures and ss
+- add pictures and ss
 
 More examples for overview
 
