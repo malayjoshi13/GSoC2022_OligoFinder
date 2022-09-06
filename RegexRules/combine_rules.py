@@ -1,6 +1,6 @@
-from bw_brackets import pick_from_brackets
-from combine_oligo_parts import is_part, only_regex
-from check_alpha_num_specialchk import has_acgt, has_35, remove_special_characters
+from RegexRules.bw_brackets import pick_from_brackets
+from RegexRules.combine_oligo_parts import is_part, only_regex
+from RegexRules.check_alpha_num_specialchk import has_acgt, has_35, remove_special_characters
 import re
 
 
