@@ -89,8 +89,12 @@ TP: 807, FP: 170
 Precision: 82.59%
 Not all FP are FP. After manual verification of the final output, some were noticed to be true positive which were originally missed during the manual curation.
 
-## Next Steps
-The TFLite model for BertNLClassifier API is not available yet (TFLite team is working on it), when it becomes available it will be integrated into the Text Classification Android Example, and we may also re
+## Future work
+
+A lot has been achieved during this GSoC period, yet there is still plenty of work ahead in this ambitious project. Among the features that are still to be implemented and tasks to be performed there are:
+
+Continue to improve the neural networks to achieve better results at higher computational efficiencies.
+Improve the simulator to generate better failure scenarios for thrusters.
 
 ## Acknowledgements
 
