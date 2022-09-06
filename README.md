@@ -53,7 +53,8 @@ Training and evaluation of the model was the most interesting part of the projec
 Validation accuracies of models:
 
 
-## Install
+## Usage
+### Install
 
 - Create a virtual environment named "extractor" (only once):
 
@@ -68,15 +69,15 @@ Validation accuracies of models:
 
   `pip install -r requirements.txt`
   
-## Configure credentials
+### Configure credentials
 
 Go to `utils` folder and there create `all_config.cfg` file as per the instructions mentioned in the README.md of `utils` folder.
 
-## Adding model
+### Adding model
 
 Go to `models` folder and follow instructions in README.md .
 
-## Execution
+### Execution
 
 Extract oligos from research papers:
 
