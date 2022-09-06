@@ -104,7 +104,7 @@ lh-radiology-nn-vr-detection/
 │   └── ProjectSettings
 └── README.md
 ```
-
+folder->file->rule
 ``` Classification ``` stores files for classification model
 
 ``` Model-Store ``` common model store for all three types Object detection, classification and segmentation
