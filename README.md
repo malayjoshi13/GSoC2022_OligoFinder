@@ -93,7 +93,7 @@ Not all FP are FP. After manual verification of the final output, some were noti
 
 A lot has been achieved during this GSoC period, yet there is still plenty of work ahead in this ambitious project. Among the features that are still to be implemented and tasks to be performed there are:
 
-Continue to improve the neural networks to achieve better results at higher computational efficiencies.
+- Continue to improve the neural networks to achieve better results at higher computational efficiencies.
 Improve the simulator to generate better failure scenarios for thrusters.
 
 ## Acknowledgements
