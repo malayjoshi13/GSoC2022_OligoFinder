@@ -69,8 +69,49 @@ Training and evaluation of the model was the most interesting part of the projec
 Validation accuracies of models:
 
 
-## 4) Usage
-### 4.1) Install
+## 4) Folder Directory Structure
+
+```
+lh-radiology-nn-vr-detection/
+├── Classification/
+│   ├── SampleInference.ipynb
+│   ├── app.py
+│   ├── model.py
+│   ├── modelConvert.py
+│   ├── model_utils.py
+│   ├── pretrained.py
+│   ├── requirements.txt
+│   ├── train.py
+│   └── utils.py
+├── Model-Store/
+│   ├── ClassificationModel
+│   ├── MobileNetSSD
+│   ├── WebPOPO
+│   ├── README.md
+│   └── import_pb_to_tensorboard.py
+├── ObjectDetection/
+│   └── MobileNetSSD/
+│       └── MainNotebook/
+│      
+├── videoPlay/
+│   ├── Assets
+│   ├── Library
+│   ├── Packages
+│   └── ProjectSettings
+└── README.md
+```
+
+``` Classification ``` stores files for classification model
+
+``` Model-Store ``` common model store for all three types Object detection, classification and segmentation
+
+``` ObjectDetection ``` contains files for developement and testing of object detection network
+
+``` SemanticSegmentation ``` contains files for developement and testing of Semantic Segmentation networ
+
+
+## 5) Usage
+### 5.1) Install
 
 - Create a virtual environment named "extractor" (only once):
 
@@ -85,21 +126,21 @@ Validation accuracies of models:
 
   `pip install -r requirements.txt`
   
-### 4.2) Configure credentials
+### 5.2) Configure credentials
 
 Go to `utils` folder and there create `all_config.cfg` file as per the instructions mentioned in the README.md of `utils` folder.
 
-### 4.3) Adding model
+### 5.3) Adding model
 
 Go to `models` folder and follow instructions in README.md .
 
-### 4.4) Execution
+### 5.4) Execution
 
 Extract oligos from research papers:
 
 `python oligo_extract.py`
 
-## 5) Results
+## 6) Results
 
 In 100 papers tested (93 were in the manually curated ground truth file), gene-mutation matches were found in 53 papers.
 Total 2433 matches were present in those 53 papers. And 977 matches were found using this developed pipeline.
@@ -110,14 +151,14 @@ TP: 807, FP: 170
 Precision: 82.59%
 Not all FP are FP. After manual verification of the final output, some were noticed to be true positive which were originally missed during the manual curation.
 
-## 6) Future work
+## 7) Future work
 
 A lot has been achieved during this GSoC period, yet there is still plenty of work ahead in this ambitious project. Among the features that are still to be implemented and tasks to be performed there are:
 
 - Continue to improve the neural networks to achieve better results at higher computational efficiencies.
 Improve the simulator to generate better failure scenarios for thrusters.
 
-## 7) Contributing
+## 8) Contributing
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 - Fork the Project
@@ -126,10 +167,10 @@ Contributions are what make the open source community such an amazing place to b
 - Push to the Branch (git push origin feature/AmazingFeature)
 - Open a Pull Request
 
-## 8) License
+## 9) License
 Distributed under the MIT License. See ```LICENSE``` for more information.
 
-## 9) Acknowledgements
+## 10) Acknowledgements
 
 I thank Google Summer of Code and the Genome Assembly and Annotation section of EMBL-EBI for granting me this opportunity. I am grateful to my mentors Magdalena Zarowiecki, Andrés Becerra Sandoval and Valerio Arnaboldi for their continuous guidance and encouragement. 
 
