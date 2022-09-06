@@ -24,9 +24,12 @@
 
 
 ## 1) Motivation
-## What is an FDIR algorithm and why is it usefull?
 
 Tell about the project, what are oligonucleotides, tell about recent work by EMBL-EBI, limitations of existing works that raise need for such product
+
+As the cost of DNA sequencing continues to fall, an increasing amount of information on human genetic variation is being produced that could help progress precision medicine. Increasingly, improved understanding of an individual’s genetic mutations is being used to identify individuals at high risk for a given disease, make better predictions about disease prognosis and tailor treatments so that they best suit the given patient. New findings about genetic mutations typically first appear in the scientific literature. This novel information is then later manually curated into genomic databases, such as COSMIC (Catalogue of Somatic Mutations in Cancer) where the information is presented in a standardized, queryable format. While such databases are invaluable resources, the process of manual curation by identification and extraction of oligos from constantly expanding corpus of literature is expensive, time-consuming, captures a small part of the relevant literature and therefore is a significant challenge in the advancement of precision medicine. 
+
+Automated information extraction procedures can assist in the acquisition and management of this knowledge but it is found that previous efforts in biomedical automated text mining have focused primarily upon named entity recognition of well-defined molecular objects such as genes, but less work has been performed to identify entities like oligonucleotide sequences and other related objects. Also exisiting text-mining approches have inability to efficiently scale so as to minimize manual efforts and still perform with high accuracy as the corpus of literature is constantly expanding.  
 
 One of the most challenging parts of space missions is knowing and controlling where your spacecraft is, what is its relative orientation with respect to earth and how it is moving. Being aware of these three things is crucial to know if your spacecraft is flying too high or too low, too close to other spacecrafts, or simply if its oriented in a way that will allow it expose its solar panels to the sun to produce power or to point its antenna down to earth for calling home.
 
@@ -39,14 +42,17 @@ For these reason, providing the spacecraft on board software with a way of detec
 Traditionally, these types of algorithms where simple, as they where based mainly on hardware redundancy , i.e., having many sensors that measure the same thing so that if one fails, you could detect the failure by looking at the rest and seeing that the signal is not consistent, isolate the failure by ignoring the reading from that sensor, and recover from the failure simply by continue to listen to the rest non-faulty sensors. 
 
 ## 2) Objective
-The problem of counting the linear extensions of a given partial order consists in counting all the possible ways that we can extend the partial order to a total order that preserve..........
+
+The primary objective of the project was achieved within the specified time of GSoC, namely to establish that deep learning is capable of inferring the homology relationship of gene pairs with high accuracy. This was done using a set of convolutional neural networks, as detailed below, which were implemented using TensorFlow2.
 
 Flow diagram
 
 Explain this flow diagram which is basically an overview of this project's working
 
 ## 3) Work overview
+
 #### 3.1) Implementation of classes for representing Order Polytopes and Posets
+
   - Link to the PR - [#165 - describe in short](https://github.com/GeomScale/volume_approximation/pull/165)
   - Overview -
     - Created a class for representing a poset.
@@ -115,6 +121,7 @@ folder->file->rule
 
 
 ## 5) Usage
+
 ### 5.1) Install
 
 - Create a virtual environment named "extractor" (only once):
@@ -163,6 +170,7 @@ A lot has been achieved during this GSoC period, yet there is still plenty of wo
 Improve the simulator to generate better failure scenarios for thrusters.
 
 ## 8) Contributing
+
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 - Fork the Project
@@ -172,6 +180,7 @@ Contributions are what make the open source community such an amazing place to b
 - Open a Pull Request
 
 ## 9) License
+
 Distributed under the MIT License. See ```LICENSE``` for more information.
 
 ## 10) Acknowledgements
