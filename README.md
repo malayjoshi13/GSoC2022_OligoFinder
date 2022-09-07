@@ -132,7 +132,6 @@ GSoC2022_OligoFinder/
 │
 └── README.md
 ```
-folder->file->rule (explain each regex rule)
 
 ### Part 1 - Initiating project setup
 
