@@ -134,7 +134,7 @@ GSoC2022_OligoFinder/
 ```
 folder->file->rule (explain each regex rule)
 
-## Part 1 - Initiating project setup
+### Part 1 - Initiating project setup
 
 - `Setup` - stores `config_readme.md` file that contains credentials to access research papers from Wormbase database via Textpresso and `requirements.txt` file for setting up of development environment.
 
@@ -146,7 +146,7 @@ folder->file->rule (explain each regex rule)
   
   - `oligo_BOW_filename` and `non_oligo_BOW_filename` - from this parameter user can change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` and input for `TfIdf_BOW_TpFp.py` file
 
-## Part 2 - Getting text from research paper(s)
+### Part 2 - Getting text from research paper(s)
 
 - `RawText` - stores `textpresso.py` and `get_paper_content.py` files that extract content from research papers present in Wormbase database corresponding to their id mentioned in `paper_ids` parameter of `configure.py` file and returns a pair of paperid-sentence.
 
