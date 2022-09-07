@@ -156,11 +156,7 @@ folder->file->rule (explain each regex rule)
 
 Go to `utils` folder and there create `all_config.cfg` file as per the instructions mentioned in the README.md of `utils` folder.
 
-### 5.3) Adding model
-
-Go to `models` folder and follow instructions in README.md .
-
-### 5.4) Execution
+### 5.3) Execution
 
 Extract oligos from research papers:
 
