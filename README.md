@@ -115,15 +115,16 @@ GSoC2022_OligoFinder/
 │   ├── check_alpha_num_specialchk.py
 │   ├── combine_oligo_parts.py
 │   └── combine_rules.py
-│ 
-│ 
+├── oligo_extract.py 
+│
+│
 ├── TP_FP_oligo/
 │   ├── TfIdf_BOW_TpFp.py
 │   ├── TfIdf_BOW_creator.py
 │   └── sentence_processor.py
 │ 
 │
-├── oligo_extract.py
+├── extract&BOW.py
 │ 
 │
 ├── LICENSE
@@ -165,8 +166,17 @@ folder->file->rule (explain each regex rule)
 - `combine_rules.py` - contain two RegEx rules:
   - `word_processor` - pass input word through four RegEx rules namely `pick_from_brackets`, `has_acgt`, `has_35`and `remove_special_characters` (all four mentioned above), and returns the ouput processed word.
   - `oligo_seq_regex` - output of `word_processor` rule becomes input for this which is passed to two RegEx rules namely `is_part` and `only_regex`. The output from this is a sequence which follow structural composition of an Oligonucleotide.
- 
-### Part 4 - RegEx rules to extract sequences that follow structure of Oligonucleotides
+
+- `oligo_extract.py` - compiles extracted oligos (from research paper(s)), alongwith paper id, auto & manual true positive/false positive tags, previous, current (from which oligo sequence is extracted) & future sentences into a Pandas dataframe which is saved as a CSV file.
+
+### Part 4 - Creator and user of BOWs 
+- `TfIdf_BOW_creator.py` - uses 'TP or FP Oligo (manual)' column of CSV generated above (which has manual curations + auto curations which curator felt to be right) to generate two Bag of Words (BOW) having higher TF-IDF scores. 
+
+  - First BOW has words related to sentences that have tag of containing "oligo" in the 'TP or FP Oligo (manual)' column. Second BOW has words related to sentences that have tag of containing "non-oligo", "other", "mutation", etc in the 'TP or FP Oligo (manual)' column of CSV genertaed.
+
+- `TfIdf_BOW_TpFp.py` - uses BOWs generated above to auto-curate sentences in the upcoming output CSV to be a TP oligo or FP oligo.
+
+- `sentence_processor.py` - process the words and adds only english dictionary words in the BOWs.  
 
 ## 5) Usage
 
