@@ -273,6 +273,8 @@ A lot has been achieved during this GSoC period, yet there is still plenty of wo
 - remove extra 'a' from end
 - find oligo names
 - over joint sequences issue
+- try automatic REgEX writing methods
+- to train BioBERT on corpus we will make in future using self learning
 
 ## 8) Contributing
 
