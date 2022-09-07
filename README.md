@@ -98,6 +98,7 @@ Validation accuracies of models:
 
 ```
 GSoC2022_OligoFinder/
+│
 ├── Setup/
 │   ├── config_readme.md
 │   └── requirements.txt    
