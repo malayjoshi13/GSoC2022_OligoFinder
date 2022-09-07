@@ -227,14 +227,24 @@ These BOWs are then used in next/upcoming cycle/chance to auto-label oligo seque
 
 Therefore, oligo extraction script runs on more and more research papers, find more sequences which for the first time needs to be fully manually curated and then later on auto-curation by use of BOW reduce this manual curation to semi-manual curation work. These curated sentences and oligo sentences improvise the existing BOWs by adding more words, thus widening scope to include every possible word that could be related to an oligo/non-oligo sequence. Again this improvised BOW will more reduce need of manual curation and will be able to differentiate better between oligo and non-oligo sequences, thus increasing True Positive and reducing False Positive oligo sequences.
 
-Thus, at the end oligo extraction script and BOWs will become so much smart that they will generate high True positives out of any given research paper. 
+Thus, at the end oligo extraction script and BOWs will become so much smart and we will have a large corpus of True positive oligos, that in future BOW along with RegEx (what we are currently using) and BioBERT (trained on large oligo corpus mentioned above) based oligo extraction script will generate high True positives out of any given research paper. 
 
 ### Scenario 1 (User for first time is using this project i.e. there is no CSV and BOWs with him/her as of now) 
 - When user runs command `python extract&BOW.py`, then as no CSV (containing extracted oligo sequences and curations) is present, then it means BOWs (corresponding to oligos and non-oligos sequences) cannot be created as of now (because BOWs are created using the manual curations by the curator in the CSV). 
 - Absence of BOWs further indicates that auto labelling of sequences (to be True positive oligo or False positive oligo) also needs to be skipped as of now. 
 - Therefore, as a result only `find_Oligos` function pf `oligo_extract.py` file will be used to extract oligonucleotides and return them in a CSV format along with other informations like paper id, empty auto & manual true positive/false positive tags' columns, previous, current (from which oligo sequence is extracted) & future sentences.
 
-### Scenario 2 (User has already once used this project i.e. there is a CSV with him/her and BOWs if that CSV has been curated else no BOWs [because BOW is created using manual curation in the CSV, which is empty right now])
+### Scenario 2 (User has already once used this project over few papers i.e. there is a CSV with him/her and BOWs if that CSV has been curated else no BOWs [because BOW is created using manual curation in the CSV, which is empty right now] and now again using it on new research papers)
+- For sub-scenario where BOWs are empty (as CSV is still not curated), there will be no TP-FP auto curation available, thus even after first time, the curator has to manually curate everytime). So, lets ignore this case as curator anyhow at some point of time has to curate the CSV if he/she wants auto-curation.
+- Focusing on second sub-scenario where BOWs are not empty (as curator did the initial manual curation and in the second cycle using these manual curations BOWs are created). So, these BOWs will auto-curate the CSV output in the second round (as in second round only non-empty BOW has came into existence). Although, this auto-curation in starting stages will not be that efficient but a good help for reducing even some manual curation work and with a scope to be improvised in near future.
+  - Curator uses the above generated auto-curation (auto-curation which he/she feels to be correct) alongwith his/her manual curation to curate and label newly generated oligo sequences as true positive or false positive. In addition to this, he/she uses old tags for already present sequenes (from previous old papers).
+  - These manual curations + old verified tag + new curator verified auto-tags (all present in 'TP or FP Oligo (manual)' column of CSV), will improvise the existing BOWs. 
+  - The process continues and again new oligo sequences will be extracted, auto-tagged by improvised BOWs (from previous cycle), manually curated by curator + auto-tags verified by curator and again these tags will again improvise BOWs. 
+
+- Thus, in short 
+  - manual curation + curator verified auto-tags improvise BOWs to be used in next cycle, 
+  - comparison between auto-tags and manual-tags ineach cycle tells how smart BOW has become because larger number of auto-taggings BOW can do shows its higher performance, 
+  - analysis of manual-tags of each cycle tells how many True positive have increased due to better BOWs and better oligo extraction script. It also tells where oligo extraction script can be further improvised.
 
 ## 6) Results
 
@@ -253,8 +263,8 @@ Not all FP are FP. After manual verification of the final output, some were noti
 
 A lot has been achieved during this GSoC period, yet there is still plenty of work ahead in this ambitious project. Among the features that are still to be implemented and tasks to be performed there are:
 
-- Continue to improve the neural networks to achieve better results at higher computational efficiencies.
-Improve the simulator to generate better failure scenarios for thrusters.
+- Instead of using "present sentence" column of CSV to create BOW, use all three sentences. This will increase words in BOWs of a particular category, thus reduce cases where BOW cannot decide to tag as oligo or non-oligo.
+- 
 
 ## 8) Contributing
 
