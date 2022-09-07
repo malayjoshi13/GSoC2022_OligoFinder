@@ -1,5 +1,6 @@
 from configure import setConfiguration
 from TP_FP_oligo.TfIdf_BOW_creator import create_BOW
+from oligo_extract import find_Oligos
 
 config, paper_ids, output_CSVname, _, _ = setConfiguration()
 
