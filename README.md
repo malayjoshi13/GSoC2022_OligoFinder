@@ -250,6 +250,6 @@ Distributed under the MIT License. See ```LICENSE``` for more information.
 
 ## 10) Acknowledgements
 
-I thank Google Summer of Code and the Genome Assembly and Annotation section of EMBL-EBI for granting me this opportunity. I am grateful to my mentors Magdalena Zarowiecki, Andrés Becerra Sandoval and Valerio Arnaboldi for their continuous guidance and encouragement. 
+I thank Google Summer of Code and the Genome Assembly and Annotation section of EMBL-EBI for granting me this opportunity. I am grateful to my mentors Magdalena Zarowiecki, Andrés Becerra Sandoval and Valerio Arnaboldi for their continuous guidance and encouragement. Without them this project would not have been possible. I thank them for their constant guidance, code reviews, timely feedback, and most importantly, for their encouragement throughout GSoC. 
 
-Without them this project would not have been possible. I thank them for their constant guidance, code reviews, timely feedback, and most importantly, for their encouragement throughout GSoC. It was great summer working on this project and I would definitely love to contribute more in the future to the EMBL-EBI.
+A big thanks and lots of love to my dearest mama/maternal uncle Dr Nikhil Joshi for always believing in me and helping bring out the best of me right from the day of writing the proposal to this significant day of final submission. I would also like to thank my parents and my sister for supporting and encouraging me this summer. It was great summer working on this project and I would definitely love to contribute more in the future to the EMBL-EBI.
