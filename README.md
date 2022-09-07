@@ -97,32 +97,38 @@ Validation accuracies of models:
 ## 4) Folder Directory Structure
 
 ```
-lh-radiology-nn-vr-detection/
-├── Classification/
-│   ├── SampleInference.ipynb
-│   ├── app.py
-│   ├── model.py
-│   ├── modelConvert.py
-│   ├── model_utils.py
-│   ├── pretrained.py
-│   ├── requirements.txt
-│   ├── train.py
-│   └── utils.py
-├── Model-Store/
-│   ├── ClassificationModel
-│   ├── MobileNetSSD
-│   ├── WebPOPO
-│   ├── README.md
-│   └── import_pb_to_tensorboard.py
-├── ObjectDetection/
-│   └── MobileNetSSD/
-│       └── MainNotebook/
-│      
-├── videoPlay/
-│   ├── Assets
-│   ├── Library
-│   ├── Packages
+GSoC2022_OligoFinder/
+├── Setup/
+│   ├── config_readme.md
+│   └── requirements.txt    
+├── configure.py
+│
+│
+├── RawText/
+│   ├── get_paper_content.py
+│   └── textpresso.py.py
+│
+│
+├── RegexRules/
+│   ├── bw_brackets.py
+│   ├── check_alpha_num_specialchk.py
+│   ├── combine_oligo_parts.py
+│   └── combine_rules.py
+│ 
+│ 
+├── TP_FP_oligo/
+│   ├── TfIdf_BOW_TpFp.py
+│   ├── TfIdf_BOW_creator.py
+│   ├── sentence_processor.py
 │   └── ProjectSettings
+│ 
+│
+├── oligo_extract.py
+│ 
+│
+├── LICENSE
+│ 
+│
 └── README.md
 ```
 folder->file->rule (explain each regex rule)
