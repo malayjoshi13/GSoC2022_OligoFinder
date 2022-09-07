@@ -66,6 +66,10 @@ tells if TP or FP
 
 ## 3) Work overview
 
+passing arguments in configure file (made changes in configure.py, oligo_extract.py, tfidfbowcreator.py, tfidfbowTpFp.py, added sentenceprocessor.py)
+
+pipeline for BOW to update continously (changes oligo_extract.py, Tfidfcreator)
+
 #### 3.1) Implementation of classes for representing Order Polytopes and Posets
 
   - Link to the PR - [#165 - describe in short](https://github.com/GeomScale/volume_approximation/pull/165)
