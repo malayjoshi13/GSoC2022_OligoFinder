@@ -243,7 +243,7 @@ Thus, at the end oligo extraction script and BOWs will become so much smart and 
 
 - Thus, in short 
   - manual curation + curator verified auto-tags improvise BOWs to be used in next cycle, 
-  - comparison between auto-tags and manual-tags ineach cycle tells how smart BOW has become because larger number of auto-taggings BOW can do shows its higher performance, 
+  - comparison between auto-tags and manual-tags in each cycle tells how smart BOW has become because larger number of auto-taggings BOW can do, shows its higher performance, 
   - analysis of manual-tags of each cycle tells how many True positive have increased due to better BOWs and better oligo extraction script. It also tells where oligo extraction script can be further improvised.
 
 ## 6) Results
