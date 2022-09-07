@@ -1,5 +1,9 @@
 import re
-from TP_FP_oligo.TfIdf_BOW_creator import sentence_processor
+import sentence_processor
+from Setup.configure import setConfiguration
+
+
+_, _, _, oligo_BOW_filename, non_oligo_BOW_filename = setConfiguration()
 
 def read_file(path_to_file):
     file = open(path_to_file, "r")
@@ -16,8 +20,8 @@ def check_true_positive_oligo_sentence(sentence):
     countt = 0
     result = " "
 
-    oligo_content = read_file("oligo_words.txt")
-    non_oligo_content = read_file("non_oligo_words.txt")
+    oligo_content = read_file(oligo_BOW_filename)
+    non_oligo_content = read_file(non_oligo_BOW_filename)
 
     sentence = sentence_processor(sentence)
     sentence_words = sentence.split(" ")
