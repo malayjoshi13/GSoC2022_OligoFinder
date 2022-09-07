@@ -177,7 +177,7 @@ GSoC2022_OligoFinder/
 
 - `sentence_processor.py` - process the words and adds only english dictionary words in the BOWs.  
 
-### Part 5 - A cyclic pipeline between Oligo extraction script and BOWs creation&usage script
+### Part 5 - A cyclic pipeline between Oligo extraction script and BOWs creation & usage script
 - `extract&BOW.py` - script that will run BOW creator script, Oligo extraction script and True positive/False positive auto marking script one after another in a continous manner till the time Oligo extraction script and BOW becomes so smart that number of True positive oligo sequences is high as a pre-defined number.
 
 ## 5) Usage
