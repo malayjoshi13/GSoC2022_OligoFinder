@@ -225,8 +225,16 @@ Currently this system is divided into majorly two halves. First half, finds and 
 
 These BOWs are then used in next/upcoming cycle/chance to auto-label oligo sequences to be true positive or false positive (idea behind using BOWs to auto-curate is that the pattern/words which are actually present in sentences with oligos or non-oligos will be first taken out and then used in future for auto-labelling as presence of unique words from BOWs directly points towards an sequence to be an oligo or not).  
 
-### Scenario 1 (User is for first time using this project i.e. there is no CSV and BOWs with him/her as of now) 
-- When user runs command `python extract&BOW.py`, then as CSV (containing extracted oligo sequences and curations) is not present, then it means BOWs (corresponding to oligos and non-oligos sequences) cannot be created as of now (because BOWs are created using the manual curations by the curator). Absence of BOWs also indicates that auto labelling of sequences to be True positive oligo or False positive oligo also needs to be skipped. Therefore, as a result only `find_Oligos` function pf `oligo_extract.py` file will be used to extract oligonucleotides and return them in a CSV format along with other informations like paper id, empty auto & manual true positive/false positive tags' columns, previous, current (from which oligo sequence is extracted) & future sentences.
+Therefore, oligo extraction script runs on more and more research papers, find more sequences which for the first time needs to be fully manually curated and then later on auto-curation by use of BOW reduce this manual curation to semi-manual curation work. These curated sentences and oligo sentences improvise the existing BOWs by adding more words, thus widening scope to include every possible word that could be related to an oligo/non-oligo sequence. Again this improvised BOW will more reduce need of manual curation and will be able to differentiate better between oligo and non-oligo sequences, thus increasing True Positive and reducing False Positive oligo sequences.
+
+Thus, at the end oligo extraction script and BOWs will become so much smart that they will generate high True positives out of any given research paper. 
+
+### Scenario 1 (User for first time is using this project i.e. there is no CSV and BOWs with him/her as of now) 
+- When user runs command `python extract&BOW.py`, then as no CSV (containing extracted oligo sequences and curations) is present, then it means BOWs (corresponding to oligos and non-oligos sequences) cannot be created as of now (because BOWs are created using the manual curations by the curator in the CSV). 
+- Absence of BOWs further indicates that auto labelling of sequences (to be True positive oligo or False positive oligo) also needs to be skipped as of now. 
+- Therefore, as a result only `find_Oligos` function pf `oligo_extract.py` file will be used to extract oligonucleotides and return them in a CSV format along with other informations like paper id, empty auto & manual true positive/false positive tags' columns, previous, current (from which oligo sequence is extracted) & future sentences.
+
+### Scenario 2 (User has already once used this project i.e. there is a CSV with him/her and BOWs if that CSV has been curated else no BOWs [because BOW is created using manual curation in the CSV, which is empty right now])
 
 ## 6) Results
 
