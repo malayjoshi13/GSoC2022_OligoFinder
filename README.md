@@ -268,7 +268,7 @@ Not all FP are FP. After manual verification of the final output, some were noti
 A lot has been achieved during this GSoC period, yet there is still plenty of work ahead in this ambitious project. Among the features that are still to be implemented and tasks to be performed there are:
 
 - Instead of using "present sentence" column of CSV to create BOW, use all three sentences. This will increase words in BOWs of a particular category, thus reduce cases where BOW cannot decide to tag as oligo or non-oligo.
-- 
+- Using scoring table see how close auto labeling is becoming to manual curation (bow, and will help to automatic differentiation).........also use it to see how many TF are increasing (happening as oligo extraction becoming modified to ignore seq that don't match even basic criteria to be oligo + auto lebeling of bow is becoming smarter to remove FP)
 
 ## 8) Contributing
 
