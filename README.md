@@ -149,17 +149,23 @@ folder->file->rule (explain each regex rule)
 
 - Install dependencies (only once):
   
-
+  `cd Setup`
   `pip install -r requirements.txt`
   
-### 5.2) Configure credentials
+### 5.2) Configure credentials and set parameters
 
-Go to `utils` folder and there create `all_config.cfg` file as per the instructions mentioned in the README.md of `utils` folder.
+Go to `Setup` folder (in your cloned GitHub repository) and there create `all_config.cfg` file as per the instructions mentioned in the README.md of `utils` folder. 
+
+Now within `Setup` folder, go to `configure.py` and there change paramaters like:
+a) `paper_ids`: add research paper ids present in Wormbase from which you wanr to extract oligonuclotide mentions
+b) `output_CSVname`: change location of CSV containing extracted oligonucleotide mention along with other related objects. This file is output by `oligo_extract.py` and is input for `TfIdf_BOW_creator.py`
+c) `oligo_BOW_filename` and `non_oligo_BOW_filename`: change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` and input for `TfIdf_BOW_TpFp.py` file  
 
 ### 5.3) Execution
 
 Extract oligos from research papers:
 
+`cd ..`
 `python oligo_extract.py`
 
 ## 6) Results
