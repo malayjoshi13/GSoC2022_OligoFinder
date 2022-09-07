@@ -120,8 +120,7 @@ GSoC2022_OligoFinder/
 ├── TP_FP_oligo/
 │   ├── TfIdf_BOW_TpFp.py
 │   ├── TfIdf_BOW_creator.py
-│   ├── sentence_processor.py
-│   └── ProjectSettings
+│   └── sentence_processor.py
 │ 
 │
 ├── oligo_extract.py
@@ -152,17 +151,23 @@ folder->file->rule (explain each regex rule)
 
 ### Part 3 - RegEx rules to extract sequences that follow structure of Oligonucleotides
 
-- `bw_brackets.py` - contain RegEx rule that extracts Oligonucleotide sequence if present inside brackets. Input: insert(TGAGACGTCAACAATATGG)hg, Output: TGAGACGTCAACAATATGG.
+- `bw_brackets.py` - contain RegEx rule `pick_from_brackets` that extracts Oligonucleotide sequence if present inside brackets. Input: insert(TGAGACGTCAACAATATGG)hg, Output: TGAGACGTCAACAATATGG.
 
 - `check_alpha_num_specialchk.py` - contain three RegEx rules: 
   - `has_acgt` - this RegEx rule checks if input word follows structure of an Oligonucleotide or not. If input word contains only alphabetic characters like A,a,C,c,G,g,T and T, then that word follows structure of an Oligonucleotide, otherwise not. Input1: TGAGACGTCAACAATATGG, Output1: TGAGACGTCAACAATATGG and Input2: TXxvFDECAAOpJHTGG, Outpu2: None.
   -  `has_35` - this RegEx rule checks if input word follows structure of an Oligonucleotide or not. If input word contains only numeric characters like 3 and 5, or don't has any numeric characters at all, then that word follows structure of an Oligonucleotide, otherwise not. Input1: 3'-TGAGACGTCAACAATATGG-5', Output1: 3'-TGAGACGTCAACAATATGG-5' and Input2: TGAGACGTCAACAATATGG, Outpu2: TGAGACGTCAACAATATGG and Input3: 3'-TGAGA2CGT3CAACAATATG675G-5', Output3: None. 
   -  `remove_special_characters` - except alphabetic characters ranging from A to Z and a to z, remove every other character from the input word like numeric values (3,5,etc), special characters (,./?"':}{][, etc) and extra spacings.
 
-- `combine_oligo_parts.py` - contain two RegEx rule:
+- `combine_oligo_parts.py` - contain two RegEx rules:
   - `is_part` - this RegEx rule combines back Oligonucleotide sequences which are actually part of a single oligo sequence but due to spaces, newline, etc are treated like individual oligo sequences. Input: TT GCA ATG CGAAAATAC, Output: TTGCAATGCGAAAATAC.
   - `only_regex` - outputs list of words which satisfies all structural rules of an Oligonucleotide and thus are called as 'sequences' from now onwards.
   
+- `combine_rules.py` - contain two RegEx rules:
+  - `word_processor` - pass input word through four RegEx rules namely `pick_from_brackets`, `has_acgt`, `has_35`and `remove_special_characters` (all four mentioned above), and returns the ouput processed word.
+  - `oligo_seq_regex` - output of `word_processor` rule becomes input for this which is passed to two RegEx rules namely `is_part` and `only_regex`. The output from this is a sequence which follow structural composition of an Oligonucleotide.
+ 
+### Part 4 - RegEx rules to extract sequences that follow structure of Oligonucleotides
+
 ## 5) Usage
 
 ### 5.1) Install
