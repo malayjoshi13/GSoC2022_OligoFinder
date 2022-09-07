@@ -1,5 +1,5 @@
 import csv
-import sentence_processor
+from TP_FP_oligo.sentence_processor import sentence_processor
 import numpy as np
 from RegexRules.combine_rules import word_processor
 from Setup.configure import setConfiguration
