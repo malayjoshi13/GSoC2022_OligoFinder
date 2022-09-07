@@ -1,9 +1,10 @@
+
 import configparser
 
 def setConfiguration():
     
     db_config = configparser.ConfigParser()
-    db_config.read('all_config.cfg')
+    db_config.read('Setup/all_config.cfg')
     
     paper_ids = ["WBPaper00003663",
                 "WBPaper00003632", 
