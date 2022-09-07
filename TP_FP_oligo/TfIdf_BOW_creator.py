@@ -1,30 +1,11 @@
 import csv
+import sentence_processor
 import numpy as np
-import re 
-import enchant
-from nltk.stem import PorterStemmer
 from RegexRules.combine_rules import word_processor
-
-dict = enchant.Dict("en_US")
-ps = PorterStemmer()
+from Setup.configure import setConfiguration
 
 
 # this part generate tf-idf BOW
-
-def sentence_processor(sentence):
-    processed_sentence  = ""
-    list_string = sentence.split(' ')
-    for word in list_string:
-        word = word.lower()
-        word = re.sub(r'[^a-z\s]','',word)
-        word = ps.stem(word)
-        if len(word)>2 and dict.check(word):
-            processed_word = word
-        else:
-            processed_word = ""
-
-        processed_sentence+=" "+processed_word
-    return processed_sentence
 
 # Create vocab
 def create_vocab(filename):
@@ -163,26 +144,29 @@ def above_threshold_tfidf_words(sentences, vocab):
 
 
 
+if __name__ == "__main__":
+
+    _, _, output_CSVname, oligo_BOW_filename, non_oligo_BOW_filename = setConfiguration()
+
+    non_oligo_sentences, oligo_sentences, non_oligo_vocab, oligo_vocab = create_vocab(output_CSVname)
 
 
-# main code
-# filename = "oligos.csv"
-# non_oligo_sentences, oligo_sentences, non_oligo_vocab, oligo_vocab = create_vocab(filename)
+    above_threshold_tfidf_oligo_words_var = above_threshold_tfidf_words(oligo_sentences, oligo_vocab)
+    oligo_words = above_threshold_tfidf_oligo_words_var.keys()
+    with open(oligo_BOW_filename, 'w') as f1:
+        f1.write(str(oligo_words))
 
-# above_threshold_tfidf_oligo_words_var = above_threshold_tfidf_words(oligo_sentences, oligo_vocab)
-# with open('oligo_words_with_tfidf.txt', 'w') as f3:
-#     f3.write(str(above_threshold_tfidf_oligo_words_var))
-# ###
-# oligo_words = above_threshold_tfidf_oligo_words_var.keys()
-# with open('oligo_words.txt', 'w') as f1:
-#     f1.write(str(oligo_words))
-
-# above_threshold_tfidf_nonoligo_words_var = above_threshold_tfidf_words(non_oligo_sentences, non_oligo_vocab)
-# with open('non_oligo_words_with_tfidf.txt', 'w') as f4:
-#     f4.write(str(above_threshold_tfidf_nonoligo_words_var))
-# ###
-# non_oligo_words = above_threshold_tfidf_nonoligo_words_var.keys()
-# with open('non_oligo_words.txt', 'w') as f2:
-#     f2.write(str(non_oligo_words))
+    # uncomment if you want to view tf-idf score corresponding to each word
+    # with open('oligo_words_with_tfidf.txt', 'w') as f3:
+    #     f3.write(str(above_threshold_tfidf_oligo_words_var))
 
 
+
+    above_threshold_tfidf_nonoligo_words_var = above_threshold_tfidf_words(non_oligo_sentences, non_oligo_vocab)
+    non_oligo_words = above_threshold_tfidf_nonoligo_words_var.keys()
+    with open(non_oligo_BOW_filename, 'w') as f2:
+        f2.write(str(non_oligo_words))
+
+    # uncomment if you want to view tf-idf score corresponding to each word
+    # with open('non_oligo_words_with_tfidf.txt', 'w') as f4:
+    #     f4.write(str(above_threshold_tfidf_nonoligo_words_var))
