@@ -90,53 +90,53 @@ def find_Oligos(config, paper_ids, skip_TP_FP):
     return pd.DataFrame(final)
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    config, paper_ids, output_CSVname, _, _ = setConfiguration()
+#     config, paper_ids, output_CSVname, _, _ = setConfiguration()
 
-#     paper_ids = ["WBPaper00003663", "WBPaper00003632", "WBPaper00003021", "WBPaper00005504", "WBPaper00030754", "WBPaper00005177", "WBPaper00004282", "WBPaper00003566", "WBPaper00001366", "WBPaper00004943", "WBPaper00002207", "WBPaper00001691", "WBPaper00003989", "WBPaper00003632", "WBPaper00044537", "WBPaper00050743", "WBPaper00001872", "WBPaper00005135", "WBPaper00000779", "WBPaper00025193", "WBPaper00005533", "WBPaper00001366", "WBPaper00002207", "WBPaper00001691",
-# "WBPaper00050123",
-# "WBPaper00002034",
-# "WBPaper00000779",
-# "WBPaper00006439",
-# "WBPaper00025193",
-# "WBPaper00005533",
-# "WBPaper00003989",
-# "WBPaper00002034",
-# "WBPaper00001677",
-# "WBPaper00005504",
-# "WBPaper00004503",
-# "WBPaper00001835",
-# "WBPaper00004282",
-# "WBPaper00003663",
-# "WBPaper00002207",
-# "WBPaper00001691",
-# "WBPaper00003632",
-# "WBPaper00051175",
-# "WBPaper00004275",
-# "WBPaper00002034",
-# "WBPaper00000779",
-# "WBPaper00030754",
-# "WBPaper00005504",
-# "WBPaper00001835"]
+# #     paper_ids = ["WBPaper00003663", "WBPaper00003632", "WBPaper00003021", "WBPaper00005504", "WBPaper00030754", "WBPaper00005177", "WBPaper00004282", "WBPaper00003566", "WBPaper00001366", "WBPaper00004943", "WBPaper00002207", "WBPaper00001691", "WBPaper00003989", "WBPaper00003632", "WBPaper00044537", "WBPaper00050743", "WBPaper00001872", "WBPaper00005135", "WBPaper00000779", "WBPaper00025193", "WBPaper00005533", "WBPaper00001366", "WBPaper00002207", "WBPaper00001691",
+# # "WBPaper00050123",
+# # "WBPaper00002034",
+# # "WBPaper00000779",
+# # "WBPaper00006439",
+# # "WBPaper00025193",
+# # "WBPaper00005533",
+# # "WBPaper00003989",
+# # "WBPaper00002034",
+# # "WBPaper00001677",
+# # "WBPaper00005504",
+# # "WBPaper00004503",
+# # "WBPaper00001835",
+# # "WBPaper00004282",
+# # "WBPaper00003663",
+# # "WBPaper00002207",
+# # "WBPaper00001691",
+# # "WBPaper00003632",
+# # "WBPaper00051175",
+# # "WBPaper00004275",
+# # "WBPaper00002034",
+# # "WBPaper00000779",
+# # "WBPaper00030754",
+# # "WBPaper00005504",
+# # "WBPaper00001835"]
 
-    # if CSV files exists, then create a new BOW using that CSV, and just do auto TP_FP tagging using BOW
-    skip_TP_FP = "True" # by default dont create BOW
-    file_exists = exists(output_CSVname)
-    print(file_exists)
-    if file_exists:
-        # here BOW will be empty if 'TP or FP Oligo (manual)' column will be empty (i.e curator has not done manual tagging).
-        # thus for the first cycle BOW will be only created if curator has done manual tagging (because BOW is formed by curator's manual tagging only)
-        main_fn() 
-        skip_TP_FP = "False"
-    elif not file_exists:
-        skip_TP_FP = "True"
+#     # if CSV files exists, then create a new BOW using that CSV, and just do auto TP_FP tagging using BOW
+#     skip_TP_FP = "True" # by default dont create BOW
+#     file_exists = exists(output_CSVname)
+#     print(file_exists)
+#     if file_exists:
+#         # here BOW will be empty if 'TP or FP Oligo (manual)' column will be empty (i.e curator has not done manual tagging).
+#         # thus for the first cycle BOW will be only created if curator has done manual tagging (because BOW is formed by curator's manual tagging only)
+#         main_fn() 
+#         skip_TP_FP = "False"
+#     elif not file_exists:
+#         skip_TP_FP = "True"
 
-    df = find_Oligos(config, paper_ids, skip_TP_FP)
+#     df = find_Oligos(config, paper_ids, skip_TP_FP)
 
-    # try:
-    #     output_filename = sys.argv[1] # ex: oligos.csv
-    # except:
-    #     output_filename = "oligos.csv"
+#     # try:
+#     #     output_filename = sys.argv[1] # ex: oligos.csv
+#     # except:
+#     #     output_filename = "oligos.csv"
 
-    df.to_csv(output_CSVname, index=False)
+#     df.to_csv(output_CSVname, index=False)
