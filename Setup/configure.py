@@ -4,7 +4,8 @@ import configparser
 def setConfiguration():
     
     db_config = configparser.ConfigParser()
-    db_config.read('Setup/all_config.cfg')
+    credential_file = 'Setup/all_config.cfg' # don't change this parameter unless required
+    db_config.read(credential_file)
     
     paper_ids = ["WBPaper00003663",
                 "WBPaper00003632", 
