@@ -1,6 +1,6 @@
 import re
 from TP_FP_oligo.sentence_processor import sentence_processor
-from Setup.configure import setConfiguration
+from configure import setConfiguration
 
 
 _, _, _, oligo_BOW_filename, non_oligo_BOW_filename = setConfiguration()
