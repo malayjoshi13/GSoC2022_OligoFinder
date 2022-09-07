@@ -148,7 +148,7 @@ folder->file->rule (explain each regex rule)
 
 ## Part 2 - Getting text from research paper(s)
 
-- `RawText` - stores `textpresso.py` and `get_paper_content.py` that extract content from research papers preesent in Wormbase database corresponding to their id mentioned in `paper_ids` parameter of `configure.py` file.
+- `RawText` - stores `textpresso.py` and `get_paper_content.py` files that extract content from research papers present in Wormbase database corresponding to their id mentioned in `paper_ids` parameter of `configure.py` file and returns a pair of paperid-sentence.
 
 
 ## 5) Usage
