@@ -3,7 +3,7 @@ import numpy as np
 import re 
 import enchant
 from nltk.stem import PorterStemmer
-from regex_extraction import word_processor
+from RegexRules.combine_rules import word_processor
 
 dict = enchant.Dict("en_US")
 ps = PorterStemmer()
