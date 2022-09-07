@@ -133,9 +133,13 @@ GSoC2022_OligoFinder/
 └── README.md
 ```
 folder->file->rule (explain each regex rule)
-``` Classification ``` stores files for classification model
 
-``` Model-Store ``` common model store for all three types Object detection, classification and segmentation
+`Setup` - stores `config_readme.md` file that contains credentials to access research papers from Wormbase database via Textpresso and `requirements.txt` file for setting up of development environment.
+
+`configure.py` - comprises of parameters 
+  -`paper_ids`: from this parameter user can add research paper ids (present in Wormbase) from which they want to extract oligonuclotide mentions,      
+  -`output_CSVname`: from this parameter user can change location of CSV containing extracted oligonucleotide mention along with other related objects. This file is output by `oligo_extract.py` and is input for `TfIdf_BOW_creator.py`
+  -`oligo_BOW_filename` and `non_oligo_BOW_filename`: from this parameter user can change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` and input for `TfIdf_BOW_TpFp.py` file
 
 ``` ObjectDetection ``` contains files for developement and testing of object detection network
 
