@@ -23,7 +23,7 @@ def create_vocab(filename):
     # values to empty list
     for col in file:
         current_sentence.append(col['Current Sentence'])
-        is_oligo.append(col['Is this an oligo?'])
+        is_oligo.append(col['TP or FP Oligo (manual)'])
 
     non_oligo_sentences = list()
     oligo_sentences = list()
@@ -144,7 +144,7 @@ def above_threshold_tfidf_words(sentences, vocab):
 
 
 
-if __name__ == "__main__":
+def main_fn():
 
     _, _, output_CSVname, oligo_BOW_filename, non_oligo_BOW_filename = setConfiguration()
 
