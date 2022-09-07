@@ -106,8 +106,8 @@ GSoC2022_OligoFinder/
 │
 │
 ├── RawText/
-│   ├── get_paper_content.py
-│   └── textpresso.py.py
+│   ├── textpresso.py
+│   └── get_paper_content.py 
 │
 │
 ├── RegexRules/
@@ -134,19 +134,21 @@ GSoC2022_OligoFinder/
 ```
 folder->file->rule (explain each regex rule)
 
+## Part 1 - Initiating project setup
+
 - `Setup` - stores `config_readme.md` file that contains credentials to access research papers from Wormbase database via Textpresso and `requirements.txt` file for setting up of development environment.
 
 - `configure.py` - comprises of parameters 
   
-  - `paper_ids`: from this parameter user can add research paper ids (present in Wormbase) from which they want to extract oligonuclotide mentions,      
+  - `paper_ids` - from this parameter user can add research paper ids (present in Wormbase) from which they want to extract oligonuclotide mentions,     
   
-  - `output_CSVname`: from this parameter user can change location of CSV containing extracted oligonucleotide mention along with other related objects. This file is output by `oligo_extract.py` and is input for `TfIdf_BOW_creator.py`
+  - `output_CSVname` - from this parameter user can change location of CSV containing extracted oligonucleotide mention along with other related objects. This file is output by `oligo_extract.py` and is input for `TfIdf_BOW_creator.py`
   
-  - `oligo_BOW_filename` and `non_oligo_BOW_filename`: from this parameter user can change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` and input for `TfIdf_BOW_TpFp.py` file
+  - `oligo_BOW_filename` and `non_oligo_BOW_filename` - from this parameter user can change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` and input for `TfIdf_BOW_TpFp.py` file
 
-``` ObjectDetection ``` contains files for developement and testing of object detection network
+## Part 2 - Getting text from research paper(s)
 
-``` SemanticSegmentation ``` contains files for developement and testing of Semantic Segmentation networ
+- `RawText` - stores `textpresso.py` and `get_paper_content.py` that extract content from research papers preesent in Wormbase database corresponding to their id mentioned in `paper_ids` parameter of `configure.py` file.
 
 
 ## 5) Usage
