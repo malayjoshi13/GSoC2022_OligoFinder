@@ -144,7 +144,7 @@ def above_threshold_tfidf_words(sentences, vocab):
 
 
 
-def main_fn():
+def create_BOW():
 
     _, _, output_CSVname, oligo_BOW_filename, non_oligo_BOW_filename = setConfiguration()
 
