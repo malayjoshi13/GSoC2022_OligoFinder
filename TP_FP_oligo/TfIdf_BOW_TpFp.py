@@ -1,5 +1,5 @@
 import re
-import sentence_processor
+from TP_FP_oligo.sentence_processor import sentence_processor
 from Setup.configure import setConfiguration
 
 
