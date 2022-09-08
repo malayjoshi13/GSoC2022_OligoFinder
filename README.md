@@ -192,73 +192,73 @@ Extract oligonucleotides from research papers and use as well as enhance BOWs:
 ## 5) Data Flow Diagram
 paste image
 
-Currently this system is divided into majorly two halves. First half, finds and extract sequences that have conventional Oligonucleotides' structure into a CSV file. Another half first uses manual curations by curator (who tags the sequences present in the CSV file to be really an Oligonucleotide [True positive] or not actually an Oligonucleotide but has same structure which an Oligonucleotide has [False positive]) to generate Bag of Words (aka BOW) corresponding to words related to oligo sequences and non-oligo sequences in sentences. 
+Currently, this system is divided into majorly two halves. The first half, find and extract sequences that have conventional Oligonucleotides' structure into a CSV file. Another half first uses manual curations by the curator (who tags the sequences present in the CSV file to be an Oligonucleotide [True positive] or not an Oligonucleotide but has the same structure that an Oligonucleotide has [False positive]) to generate a Bag of Words (aka BOW) corresponding to words related to oligo sequences and non-oligo sequences in sentences. 
 
-These BOWs are then used in next/upcoming cycle to auto-label oligo sequences to be true positive or false positive (idea behind using BOWs to auto-curate is that the pattern/words which are actually present in sentences with oligos or non-oligos will be first taken out and then used in future for auto-labelling as presence of unique words from BOWs directly points towards an sequence to be an oligo or not).  
+These BOWs are then used in the next/upcoming cycle to auto-label oligo sequences to be true positive or false positive (the idea behind using BOWs to auto-curate is that the pattern/words which are present in sentences with oligos or non-oligos will be first taken out and then used in future for auto-labelling as the presence of unique words from BOWs directly points towards a sequence to be an oligo or not).  
 
-Therefore, oligo extraction script runs on more and more research papers and therefore finds more sequences which for the first time needs to be fully manually curated and then later on auto-curation by use of BOW reduce this fully manual curation to semi-manual curation work. These curated sentences and oligo sentences improvise the existing BOWs by adding more words, thus widening scope to include every possible word that could be related to an oligo/non-oligo sequence. Again this improvised BOW will more reduce the need of manual curation and will be able to differentiate better between oligo and non-oligo sequences, thus increasing True Positive and reducing False Positive oligo sequences.
+Therefore, the oligo extraction script runs on more and more research papers and therefore finds more sequences which, for the first time, need to be fully manually curated and then auto-curation by use of BOW reduce this fully manually curation to semi-manual curation work. These curated sentences and oligo sentences improvise the existing BOWs by adding more words, thus widening the scope to include every possible word related to an oligo/non-oligo sequence. Again this improvised BOW will reduce the need for manual curation and will be able to differentiate better between oligo and non-oligo sequences, thus increasing True Positive and reducing False Positive oligo sequences.
 
-Thus, at the end oligo extraction script and BOWs will become so much smart and we will have a large corpus of True positive oligos, that in future BOW along with RegEx (what we are currently using) and BioBERT (trained on large oligo corpus mentioned above) based oligo extraction script will generate high True positives out of any given research paper. 
+Thus, in the end, oligo extraction script and BOWs will become so much smart to produce a large corpus of True positive oligos that, in future will be used along with RegEx (what we are currently using) and BioBERT (trained on large oligo corpus mentioned above) based oligo extraction script to generate high True positives out of any given research paper.  
 
 ### Scenario 1 (User for first time is using this project i.e. there is no CSV and BOWs with him/her as of now) 
-- When user runs command `python extract_BOW.py`, then as initially no CSV (containing extracted oligo sequences and curations) is present, then it means BOWs (corresponding to oligos and non-oligos sequences) cannot be created as of now (because BOWs are created using the manual curations by the curator in the CSV). 
-- Absence of BOWs further indicates that auto labelling of sequences (to be True positive oligo or False positive oligo) also needs to be skipped as of now. 
-- Therefore, as a result only `find_Oligos` function of `oligo_extract.py` file will be used to extract oligonucleotides and return them in a CSV format along with other informations like paper id, empty auto & manual true positive/false positive tags' columns, previous, current (from which oligo sequences are extracted) & future sentences.
+- When the user runs the command `python extract_BOW.py`, then as initially no CSV (containing extracted oligo sequences and curations) is present, it means BOWs (corresponding to oligos and non-oligos sequences) cannot be created as of now (because BOWs are created using the manual curations by the curator in the CSV). 
+- Absence of BOWs further indicates that auto labelling of sequences (True positive oligo or False positive oligo) also needs to be skipped. 
+- Therefore, as a result, only the `find_Oligos` function of the `oligo_extract.py` file will be used to extract oligonucleotides and return them in a CSV format along with other pieces of information like paper id, empty auto & manual true positive/false positive tags' columns, previous, current (from which oligo sequences are extracted) & future sentences.
 
 ### Scenario 2 (User has already once used this project over few papers i.e. there is a CSV with him/her and BOWs if that CSV has been curated else no BOWs [because BOW is created using manual curation in the CSV, which is empty right now] and now again using it on new research papers)
-- For the first sub-scenario where BOWs are empty (as CSV is still not curated), there will be no TP-FP auto curation available, thus even after first time, the curator has to manually curate everytime). So, lets ignore this case as curator anyhow at some point of time has to curate the CSV if he/she wants auto-curation.
-- Focusing on second sub-scenario where BOWs are not empty (as curator did the initial manual curation on the CSV generated using `find_Oligos` function of `oligo_extract.py` called when user runs command `python extract_BOW.py` in the CMD), there in the second cycle, using the manual curations of CSV, BOWs are created via `create_BOW` function of `TfIdf_BOW_creator.py` when user runs runs command `python extract_BOW.py`. Note that BOWs are created before oligos got extracted via `oligo_extract.py` script. And for each round as we assume the system to be running on new research papers alongwith currently listed papers, therefore in each cycle there will be new oligo sequences alongwith already existing sequences. 
-  - Now these BOWs in the second round, will auto-curate the new oligo sequences in the output CSV (as in second round only non-empty BOW has came into existence) via `TfIdf_BOW_TpFp.py` file called when user runs command `python extract_BOW.py`. Note that this auto-curation will happen after oligo extraction and BOWs creation happens. Although, this auto-curation in starting stages will not be that efficient but act as a good help for reducing even some manual curation work. These BOWs have a scope to be improvised in near future.
-  - Now curator uses the above generated auto-curation (auto-curation which he/she feels to be correct) alongwith his/her manual curation to curate and label newly generated oligo sequences as true positive or false positive. In addition to this, he/she uses old tags for already present sequenes (from previous old papers).
-  - These manual curations + old verified tag + new curator verified auto-tags (all present in 'TP or FP Oligo (manual)' column of CSV), will improvise the existing BOWs. 
-  - The process continues and again new oligo sequences will be extracted, auto-tagged by improvised BOWs (from previous cycle), manually curated by curator + use of auto-tags verified by curator and again these tags will improvise the existing BOWs. 
+- For the first sub-scenario where BOWs are empty (as CSV is still not curated), there will be no TP-FP auto curation available; thus, even after the first time, the curator has to curate every time manually). So, let us ignore this case as the curator, anyhow, at some point in time has to curate the CSV if he/she wants auto-curation.
+- Focusing on the second sub-scenario where BOWs are not empty (as the curator did the initial manual curation on the CSV generated using the `find_Oligos` function of `oligo_extract.py` called when the user runs command `python extract_BOW.py` in the CMD), there in the second cycle, using the manual curations of CSV, BOWs are created via `create_BOW` function of `TfIdf_BOW_creator.py` when the user runs runs command `python extract_BOW.py`. Note that BOWs are created before oligos get extracted via the `oligo_extract.py` script. Furthermore, for each round, as we assume the system is running on new research papers along with currently listed papers, there will be new oligo sequences and already existing sequences in each cycle. 
+  - Now, these BOWs in the second round will auto-curate the new oligo sequences in the output CSV (as in the second round, only non-empty BOW has come into existence) via the `TfIdf_BOW_TpFp.py` file called when user runs command `python extract_BOW.py`. Note that this auto-curation will happen after oligo extraction and BOWs creation happens. However, this auto-curation in starting stages will not be that efficient but will act as a good help for reducing even some manual curation work. These BOWs have a scope to be improvised in the near future.
+  - Now curator uses the above-generated auto-curation (auto-curation which he/she feels to be correct) along with his/her manual curation to curate and label newly generated oligo sequences as true positive or false positive. In addition, he/she uses old tags for already present sequences (from previous papers).
+  - These manual curations + old verified tag + new curator verified auto-tags (all present in the 'TP or FP Oligo (manual)' column of CSV) would improvise the existing BOWs. 
+  - The process continues, and new oligo sequences will be extracted, auto-tagged by improvised BOWs (from the previous cycle), manually curated by the curator + use of auto-tags verified by the curator and again, these tags will improvise the existing BOWs. 
 
 - Thus, in short 
-  - manual curation + curator verified auto-tags improvise BOWs to be used in next cycle, 
-  - comparison between auto-tags and manual-tags in each cycle tells how smart BOW has become because larger number of auto-taggings BOW can do, shows its higher performance, 
-  - analysis of manual-tags of each cycle tells how many True positive have increased due to better BOWs and better oligo extraction script. It also tells where oligo extraction script can be further improvised.
+  - manual curation + curator verified auto-tags improvise BOWs to be used in the next cycle, 
+  - comparison between auto-tags and manual tags in each cycle tells how smart BOW has become because the larger number of auto-taggings BOW can do, shows its higher performance, 
+  - analysis of each cycle's manual-tags tells how many True positives have increased due to better BOWs and oligo extraction script. It also tells where the oligo extraction script can be further improvised.
 
 ## 6) Work overview
 
-Please note that many modificatiions made in the features of this system were directly commited to the main branch as they are well tested and holds simpler logic and code blocks. Develpoments and modifications made in the major features of this system were commited in form of Pull Requests (PRs) whcih you can view below.
+Please note that many modifications made in the features of this system were directly committed to the main branch as they are well tested and hold more straightforward logic and code blocks. Developments and modifications made in the significant features of this system were committed in the form of Pull Requests (PRs), which you can view below.
 
 ### 6.1) Implementation of pipeline to extract text from research papers
   - Directly commited to the main branch
   - Overview -
-    - Created `get_paper_content.py` script which via `textpresso.py` script extracts content from research paper(s) in Wormbase corresponding to id(s) present in the `configure.py` file.
+    - Created `get_paper_content.py` script, which via `textpresso.py` script extracts content from a research paper(s) in Wormbase corresponding to id(s) present in the `configure.py` file.
 
 #### 6.2) Implementation of RegEx rules (present inside `RegexRules`) folder for extracting sequences following structure of Oligonucletides
 
   - Link to the PR - [#4](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/4), [#5](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/5), [#6](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/6/files)
   - Overview -
     - Created Regex rules `bw_brackets.py`, `check_alpha_num_specialchk.py`, `combine_oligo_parts.py`, `combine_rules.py` (earlier named as regex_extraction.py) 
-    - Created `oligo_extract.py` script which gets text from research paper(s), extracts sequences similar in structure to Oligonucleotide and returns data in a CSV format.
+    - Created `oligo_extract.py` script, which gets a text from a research paper(s), extracts sequences similar in structure to Oligonucleotide and returns data in a CSV format.
 
 #### 6.3) Optimizing RegEx rules (present inside `RegexRules`) folder that extracts sequences following structure of Oligonucletides
 
   - Link to the PR - [#8](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/8/files), [#11](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/11/files)
   - Overview -
-    - Optimized the logic used in `combine_oligo_parts.py` and `combine_rules.py` (earlier named as regex_extraction.py) scripts to resolve issue of incomplete extracted sequences.
-    - Optimized the logic used in `combine_oligo_parts.py` `combine_rules.py` (earlier named as regex_extraction.py) scripts to bring down False Positive sequences by not considering too short sequences which often turns to be mutations, gene expression, etc. 
+    - Optimized the logic used in `combine_oligo_parts.py` and `combine_rules.py` (earlier named regex_extraction.py) scripts to resolve the issue of incomplete extracted sequences.
+    - Optimized the logic used in `combine_oligo_parts.py` `combine_rules.py` (earlier named regex_extraction.py) scripts to bring down False Positive sequences by not considering too short sequences, which often turn to be mutations, gene expression, etc. 
 
 #### 6.4) Implementation of script to create BOWs
 
   - Link to the PR - [#10](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/10/files), [#13](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/13/files)
   - Overview -
-    - Created `TfIdf_BOW_creator.py` script (formely known as csv_reader.py) that uses manual curations made in the CSV (output by `oligo_extract.py` file) to generate two BOWs using TF-IDF technique. One comprising of words corresponding to oligo sequences and another comprising of words corresponding to non-oligo sequences. 
+    - Created `TfIdf_BOW_creator.py` script (formerly known as csv_reader.py) that uses manual curations made in the CSV (output by `oligo_extract.py` file) to generate two BOWs using the TF-IDF technique. One comprises words corresponding to oligo sequences, and another comprises words corresponding to non-oligo sequences. 
 
 #### 6.5) Implementation of script to use BOWs for auto-labelling/curating sentences as True positive or False positive oligonucleotide sequences
 
   - Link to the PR - [#12](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/12/files), [#15](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/15/files)
   - Overview -
-    - Created `TfIdf_BOW_TpFp.py` script that works alongwith `oligo_extract.py` script. `TfIdf_BOW_TpFp.py` script gets each sentence (of the extracted text) as an input from `oligo_extract.py` script and use BOWs (generated by `TfIdf_BOW_creator.py` script) for auto-labelling/curating sentences as True positive or False positive oligonucleotide sequences.  
+    - Created the `TfIdf_BOW_TpFp.py` script that works along with the `oligo_extract.py` script. `TfIdf_BOW_TpFp.py` script gets each sentence (of the extracted text) as an input from the `oligo_extract.py` script and uses BOWs (generated by the `TfIdf_BOW_creator.py` script) for auto-labelling/curating sentences as True positive or False positive oligonucleotide sequences.  
     
 #### 6.6) Optimizing system's code to get input from user at a single place 
 
   - Link to the PR - [#16](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/16/files)
   - Overview -
-    - Created `configure.py` script so that user just need to input all arguments/variables at a single place and just for a single time unless needed to be changed. This reduce extra hassle of passing inputs in the command line while running some file, which most of the times gets skipped from user's mind. 
-    - Made corresponding changes in files like `oligo_extract.py` (it needs ids of papers in the Wormbase databse from which user wants to churn out oligo sequences and related data and then it outputs this extracted data in form of a CSV file in location defined in `configure.py` file. It also needs credentials present in `all_config.cfg` to access these papers from Wormbase), `TfIdf_BOW_creator.py` (it needs path of the CSV output by `oligo_extract.py` as an input to output two BOWs in locations defined in `configure.py` file) and `TfIdf_BOW_TpFp.py` (it needs paths of the two BOWs output by `TfIdf_BOW_creator.py` as an input to auto-curate the CSV).
+     - Created `configure.py` script so that the user needs to input all arguments/variables at a single place and just for a single time unless needed to be changed. This reduces the extra hassle of passing inputs in the command line while running some file, which often gets skipped from the user's mind. 
+     - Made corresponding changes in files like `oligo_extract.py` (it needs ids of papers in the Wormbase database from which the user wants to churn out oligo sequences and related data, and then it outputs this extracted data in the form of a CSV file in the location defined in `configure.py` file. It also needs credentials present in `all_config.cfg` to access these papers from Wormbase), `TfIdf_BOW_creator.py` (it needs the path of the CSV output by `oligo_extract.py` as an input to output two BOWs in locations defined in `configure.py` file) and `TfIdf_BOW_TpFp.py` (it needs paths of the two BOWs output by `TfIdf_BOW_creator.py` as an input to auto-curate the CSV).
     
 #### 6.7) Implementation of script to automate BOW expansion 
 
