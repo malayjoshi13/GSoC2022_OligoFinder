@@ -225,7 +225,9 @@ Please note that many modificatiions made in the features of this system were di
 pipeline for BOW to update continously (changes oligo_extract.py, Tfidfcreator)
 
 ### 6.1) Implementation of pipeline to extract text from research papers
-- Directly commited to the main branch.
+  - Directly commited to the main branch
+  - Overview -
+    - Created `get_paper_content.py` script which via `textpresso.py` script extracts content from research paper(s) in Wormbase corresponding to id(s) present in the `configure.py` file.
 
 #### 6.2) Implementation of RegEx rules (present inside `RegexRules`) folder for extracting sequences following structure of Oligonucletides
 
@@ -268,7 +270,7 @@ pipeline for BOW to update continously (changes oligo_extract.py, Tfidfcreator)
     - How this cyclic pipeline works? First of all curator manually labels the sentences by using BOWs to be True positive oligo sequence or False positive oligo sequence. This curation is turned into BOWs (one comprising words related to True positive oligo sequence and another comprising words related to False positive oligo sequence) which then in second round of running `extract&BOW.py` script auto-tags the sentences in a column seperate to the one in which curator marked in the first round. Then in this very same second round, curator again manually marks newer sequences as true positive or false positive and also takes refrence from the auto-tags (done by BOWs) for curating these newer sequences. Once curation is done, `extract&BOW.py` script is run for third time where again BOWs (which got updated from curations of round 2) firstly auto-tags sequnences and then curator manually tags and also take reference from sequences which BOWs has auto-tagged. 
     - This is how this cyclic pieline controlled by running of `extract&BOW.py` script after every manual curation, helps to improvise BOWs to be used in next cycle, tells how smart BOW has become and tells how many True positive have increased in the final corpus.
 
-## 6) Results
+## 7) Results
 
 ![WhatsApp Image 2022-09-05 at 11 46 47 AM](https://user-images.githubusercontent.com/71775151/188710228-77a5f4e2-5533-4904-b7a6-dc356b399065.jpeg)
 
@@ -281,7 +283,7 @@ TP: 807, FP: 170
 Precision: 82.59%
 Not all FP are FP. After manual verification of the final output, some were noticed to be true positive which were originally missed during the manual curation.
 
-## 7) Future work
+## 8) Future work
 
 A lot has been achieved during this GSoC period, yet there is still plenty of work ahead in this ambitious project. Among the features that are still to be implemented and tasks to be performed there are:
 
@@ -294,7 +296,7 @@ A lot has been achieved during this GSoC period, yet there is still plenty of wo
 - try automatic REgEX writing methods
 - to train BioBERT on corpus we will make in future using self learning
 
-## 8) Contributing
+## 9) Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
 
@@ -304,12 +306,12 @@ Contributions are what make the open source community such an amazing place to b
 - Push to the Branch (git push origin feature/AmazingFeature)
 - Open a Pull Request
 
-## 9) License
+## 10) License
 
 Distributed under the MIT License. See ```LICENSE``` for more information.
 
-## 10) Acknowledgements
+## 11) Acknowledgements
 
 I thank Google Summer of Code and the Genome Assembly and Annotation section of EMBL-EBI for granting me this opportunity. I am grateful to my mentors Magdalena Zarowiecki, Andrés Becerra Sandoval and Valerio Arnaboldi for their continuous guidance and encouragement. Without them this project would not have been possible. I thank them for their constant guidance, code reviews, timely feedback, and most importantly, for their encouragement throughout GSoC. 
 
-A big thanks and lots of love to my dearest mama/maternal uncle Dr Nikhil Joshi for always believing in me and helping bring out the best of me right from the day of writing the proposal to this significant day of final submission. I would also like to thank my parents and my sister for supporting and encouraging me this summer. It was great summer working on this project and I would definitely love to contribute more in the future to the EMBL-EBI.
+I want to pay humble gratitude to my dearest mama (aka maternal uncle), Dr Nikhil Joshi, my parents and my sister for always believing in me and helping bring out the best of me right from the day of writing the proposal to this significant day of final submission. I am fortunate enough to get their support and encouragement throughout this summer. It was great summer working on this project, and I would definitely love to contribute more in the future to the EMBL-EBI.
