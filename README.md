@@ -220,20 +220,35 @@ Thus, at the end oligo extraction script and BOWs will become so much smart and 
 
 ## 6) Work overview
 
+Please note that many modificatiions made in the features of this system were directly commited to the main branch as they are well tested and holds simpler logic and code blocks. Develpoments and modifications made in the major features of this system were commited in form of Pull Requests (PRs) whcih you can view below.
+
 passing arguments in configure file (made changes in configure.py, oligo_extract.py, tfidfbowcreator.py, tfidfbowTpFp.py, added sentenceprocessor.py)
 
 pipeline for BOW to update continously (changes oligo_extract.py, Tfidfcreator)
 
-#### 6.1) Implementation of RegEx rules (present inside `RegexRules`) folder to extract sequences following structure of Oligonucletides
+### 6.1) Implementation of pipeline to extract text from research papers
+- Directly commited to the main branch.
 
-  - Link to the PR - [#4](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/4), [#5](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/5),
+#### 6.2) Implementation of RegEx rules (present inside `RegexRules`) folder for extracting sequences following structure of Oligonucletides
+
+  - Link to the PR - [#4](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/4), [#5](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/5), [#6](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/6/files)
   - Overview -
-    - Created Regex rules bw_brackets.py, check_alpha_num_specialchk.py, combine_oligo_parts.py, combine_rules.py.
-    - Created a class for representing an order polytope.
-    - Implemented membership, boundary and reflection oracles. Also implemented their optimized versions for accelerated billiard walks which rely on preprocessing to speed up the oracles.
-    - Added unit tests and examples for both the classes.
-- add pictures and ss
+    - Created Regex rules `bw_brackets.py`, `check_alpha_num_specialchk.py`, `combine_oligo_parts.py`, `combine_rules.py` (earlier named as regex_extraction.py) 
+    - Created `oligo_extract.py` script which gets text from research paper(s), extracts sequences similar in structure to Oligonucleotide and returns data in a CSV format.
 
+#### 6.3) Optimizing RegEx rules (present inside `RegexRules`) folder that extracts sequences following structure of Oligonucletides
+
+  - Link to the PR - [#8](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/8/files), [#11](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/11/files)
+  - Overview -
+    - Optimized the logic used in `combine_oligo_parts.py` and `combine_rules.py` (earlier named as regex_extraction.py) scripts to resolve issue of incomplete extracted sequences.
+    - Optimized the logic used in `combine_oligo_parts.py` `combine_rules.py` (earlier named as regex_extraction.py) scripts to bring down False Positive sequences by not considering too short sequences which often turns to be mutations, gene expression, etc. 
+
+#### 6.4) Implementation of script to create BOWs
+
+  - Link to the PR - [#10](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/10/files)
+  - Overview -
+    - Created `TfIdf_BOW_creator.py` script (formely known as csv_reader.py) that uses manual curations made in the CSV (output by `oligo_extract.py` file) to generate two BOWs. One comprising of words corresponding to oligo sequences and another comprising of words corresponding to non-oligo sequences. 
+    
 More examples for overview
 
 Input pipeline
