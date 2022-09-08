@@ -287,7 +287,7 @@ A lot has been achieved during this GSoC period in terms of development and impl
 - optimizing RegEx rules to resolve over-joint sequences issue.
 - creating matrix to analyse at what rate True positive oligonucleotide sequences are increasing in comaparison to total and False positive extracted oligonucleotide sequences. Such analysis indicates that how much smarter oligo extraction script and BOWs have become after multiple round of running  `extract&BOW.py` script alongwith manual + auto curation.
 - to train BioBERT model on corpus of True positive oligonucleotides by using self-training method. Using trained BioeBERT along with Regex rules, will extract more True positive oligo mentions from research papers.
-- creating pipeline to find and ouput oligonucleotide names in the same CSV which is currently getting output from `oligo_extract.py` script.
+- creating pipeline to find and ouput oligonucleotide names in a seperate new column of the same CSV which is currently getting output from `oligo_extract.py` script.
 
 ## 9) Contributing
 
