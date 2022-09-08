@@ -283,15 +283,11 @@ Not all FP are FP. After manual verification of the final output, some were noti
 
 ## 8) Future work
 
-A lot has been achieved during this GSoC period in terms of achieving what we have planned during the starting of this summer of 2022. Continuing ahead I along with mentors of this project have proposed few more features and pipelines to be developed and added to this ambitious project to improvised it further. These are as follows:
-- Instead of using "present sentence" column of CSV to create BOW, use all three sentences. This will increase words in BOWs of a particular category, thus reduce cases where BOW cannot decide to tag as oligo or non-oligo.
-- create matrix to see how many TF are increasing (happening as oligo extraction becoming modified to ignore seq that don't match even basic criteria to be oligo + auto lebeling of bow is becoming smarter to remove FP)
-- removing repeating sequences and sentences
-- remove extra 'a' from end
-- find oligo names
-- over joint sequences issue
-- try automatic REgEX writing methods
-- to train BioBERT on corpus we will make in future using self learning
+A lot has been achieved during this GSoC period in terms of development and implementation of what we have planned during the starting of this years's GSoC coding period. Continuing ahead I along with mentors of this project have proposed few more features and pipelines to be added to this ambitious project to further improvise this project. These proposed plans are as follows:
+- optimizing RegEx rules to resolve over-joint sequences issue.
+- creating matrix to analyse at what rate True positive oligonucleotide sequences are increasing in comaparison to total and False positive extracted oligonucleotide sequences. Such analysis indicates that how much smarter oligo extraction script and BOWs have become after multiple round of running  `extract&BOW.py` script alongwith manual + auto curation.
+- to train BioBERT model on corpus of True positive oligonucleotides by using self-training method. Using trained BioeBERT along with Regex rules, will extract more True positive oligo mentions from research papers.
+- creating pipeline to find and ouput oligonucleotide names in the same CSV which is currently getting output from `oligo_extract.py` script.
 
 ## 9) Contributing
 
