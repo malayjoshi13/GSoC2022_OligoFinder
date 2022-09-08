@@ -95,7 +95,7 @@ GSoC2022_OligoFinder/
 │   └── sentence_processor.py
 │ 
 │
-├── extract&BOW.py
+├── extract_BOW.py
 │ 
 │
 ├── LICENSE
@@ -149,7 +149,7 @@ GSoC2022_OligoFinder/
 - `sentence_processor.py` - process the words and adds only english dictionary words in the BOWs.  
 
 ### 3.5) Part of system that builds a cyclic pipeline between Oligo extraction script and BOWs creation & usage script
-- `extract&BOW.py` - script that will run BOW creator script, Oligo extraction script and True positive/False positive auto marking script one after another in a continous manner till the time Oligo extraction script and BOW becomes so smart that number of True positive oligo sequences is high as a pre-defined number.
+- `extract_BOW.py` - script that will run BOW creator script, Oligo extraction script and True positive/False positive auto marking script one after another in a continous manner till the time Oligo extraction script and BOW becomes so smart that number of True positive oligo sequences is high as a pre-defined number.
 
 ## 4) Usage
 
@@ -187,7 +187,7 @@ Extract oligonucleotides from research papers and use as well as enhance BOWs:
 
 `cd ..`
 
-`python extract&BOW.py`
+`python extract_BOW.py`
 
 ## 5) Data Flow Diagram
 paste image
@@ -201,14 +201,14 @@ Therefore, oligo extraction script runs on more and more research papers and the
 Thus, at the end oligo extraction script and BOWs will become so much smart and we will have a large corpus of True positive oligos, that in future BOW along with RegEx (what we are currently using) and BioBERT (trained on large oligo corpus mentioned above) based oligo extraction script will generate high True positives out of any given research paper. 
 
 ### Scenario 1 (User for first time is using this project i.e. there is no CSV and BOWs with him/her as of now) 
-- When user runs command `python extract&BOW.py`, then as initially no CSV (containing extracted oligo sequences and curations) is present, then it means BOWs (corresponding to oligos and non-oligos sequences) cannot be created as of now (because BOWs are created using the manual curations by the curator in the CSV). 
+- When user runs command `python extract_BOW.py`, then as initially no CSV (containing extracted oligo sequences and curations) is present, then it means BOWs (corresponding to oligos and non-oligos sequences) cannot be created as of now (because BOWs are created using the manual curations by the curator in the CSV). 
 - Absence of BOWs further indicates that auto labelling of sequences (to be True positive oligo or False positive oligo) also needs to be skipped as of now. 
 - Therefore, as a result only `find_Oligos` function of `oligo_extract.py` file will be used to extract oligonucleotides and return them in a CSV format along with other informations like paper id, empty auto & manual true positive/false positive tags' columns, previous, current (from which oligo sequences are extracted) & future sentences.
 
 ### Scenario 2 (User has already once used this project over few papers i.e. there is a CSV with him/her and BOWs if that CSV has been curated else no BOWs [because BOW is created using manual curation in the CSV, which is empty right now] and now again using it on new research papers)
 - For sub-scenario where BOWs are empty (as CSV is still not curated), there will be no TP-FP auto curation available, thus even after first time, the curator has to manually curate everytime). So, lets ignore this case as curator anyhow at some point of time has to curate the CSV if he/she wants auto-curation.
-- Focusing on second sub-scenario where BOWs are not empty (as curator did the initial manual curation on the CSV generated using `find_Oligos` function of `oligo_extract.py` called when user runs command `python extract&BOW.py` in the CMD), there in the second cycle, using the manual curations of CSV, BOWs are created via `create_BOW` function of `TfIdf_BOW_creator.py` when user runs runs command `python extract&BOW.py`. Note that BOWs are created before oligos got extracted via `oligo_extract.py` script. And for each round as we assume the system to be running on new research papers alongwith currently listed papers, therefore in each cycle there will be new oligo sequences alongwith already existing sequences. 
-  - Now these BOWs in the second round, will auto-curate the new oligo sequences in the output CSV (as in second round only non-empty BOW has came into existence) via `TfIdf_BOW_TpFp.py` file called when user runs command `python extract&BOW.py`. Note that this auto-curation will happen after oligo extraction and BOWs creation happens. Although, this auto-curation in starting stages will not be that efficient but act as a good help for reducing even some manual curation work. These BOWs have a scope to be improvised in near future.
+- Focusing on second sub-scenario where BOWs are not empty (as curator did the initial manual curation on the CSV generated using `find_Oligos` function of `oligo_extract.py` called when user runs command `python extract_BOW.py` in the CMD), there in the second cycle, using the manual curations of CSV, BOWs are created via `create_BOW` function of `TfIdf_BOW_creator.py` when user runs runs command `python extract_BOW.py`. Note that BOWs are created before oligos got extracted via `oligo_extract.py` script. And for each round as we assume the system to be running on new research papers alongwith currently listed papers, therefore in each cycle there will be new oligo sequences alongwith already existing sequences. 
+  - Now these BOWs in the second round, will auto-curate the new oligo sequences in the output CSV (as in second round only non-empty BOW has came into existence) via `TfIdf_BOW_TpFp.py` file called when user runs command `python extract_BOW.py`. Note that this auto-curation will happen after oligo extraction and BOWs creation happens. Although, this auto-curation in starting stages will not be that efficient but act as a good help for reducing even some manual curation work. These BOWs have a scope to be improvised in near future.
   - Now curator uses the above generated auto-curation (auto-curation which he/she feels to be correct) alongwith his/her manual curation to curate and label newly generated oligo sequences as true positive or false positive. In addition to this, he/she uses old tags for already present sequenes (from previous old papers).
   - These manual curations + old verified tag + new curator verified auto-tags (all present in 'TP or FP Oligo (manual)' column of CSV), will improvise the existing BOWs. 
   - The process continues and again new oligo sequences will be extracted, auto-tagged by improvised BOWs (from previous cycle), manually curated by curator + use of auto-tags verified by curator and again these tags will improvise the existing BOWs. 
@@ -262,11 +262,11 @@ Please note that many modificatiions made in the features of this system were di
     
 #### 6.7) Implementation of script to automate BOW expansion 
 
-  - Link to the PR - [#17](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/17/files)
+  - Link to the PR - [#18](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/18)
   - Overview -
-    - Created `extract&BOW.py` script that will run BOW creator script, Oligo extraction script and True positive/False positive auto marking script one after another in a continous manner till the time Oligo extraction script and BOW becomes so smart that number of True positive oligo sequences is much higher than number of False positive oligo sequences.
-    - How this cyclic pipeline works? First of all curator manually labels the sentences by using BOWs to be True positive oligo sequence or False positive oligo sequence. This curation is turned into BOWs (one comprising words related to True positive oligo sequence and another comprising words related to False positive oligo sequence) which then in second round of running `extract&BOW.py` script auto-tags the sentences in a column seperate to the one in which curator marked in the first round. Then in this very same second round, curator again manually marks newer sequences as true positive or false positive and also takes refrence from the auto-tags (done by BOWs) for curating these newer sequences. Once curation is done, `extract&BOW.py` script is run for third time where again BOWs (which got updated from curations of round 2) firstly auto-tags sequnences and then curator manually tags and also take reference from sequences which BOWs has auto-tagged. 
-    - This is how this cyclic pieline controlled by running of `extract&BOW.py` script after every manual curation, helps to improvise BOWs to be used in next cycle, tells how smart BOW has become and tells how many True positive have increased in the final corpus.
+    - Created `extract_BOW.py` script that will run BOW creator script, Oligo extraction script and True positive/False positive auto marking script one after another in a continous manner till the time Oligo extraction script and BOW becomes so smart that number of True positive oligo sequences is much higher than number of False positive oligo sequences.
+    - How this cyclic pipeline works? First of all curator manually labels the sentences by using BOWs to be True positive oligo sequence or False positive oligo sequence. This curation is turned into BOWs (one comprising words related to True positive oligo sequence and another comprising words related to False positive oligo sequence) which then in second round of running `extract_BOW.py` script auto-tags the sentences in a column seperate to the one in which curator marked in the first round. Then in this very same second round, curator again manually marks newer sequences as true positive or false positive and also takes refrence from the auto-tags (done by BOWs) for curating these newer sequences. Once curation is done, `extract_BOW.py` script is run for third time where again BOWs (which got updated from curations of round 2) firstly auto-tags sequnences and then curator manually tags and also take reference from sequences which BOWs has auto-tagged. 
+    - This is how this cyclic pieline controlled by running of `extract_BOW.py` script after every manual curation, helps to improvise BOWs to be used in next cycle, tells how smart BOW has become and tells how many True positive have increased in the final corpus.
 
 ## 7) Results
 
@@ -285,7 +285,7 @@ Not all FP are FP. After manual verification of the final output, some were noti
 
 A lot has been achieved during this GSoC period in terms of development and implementation of what we have planned during the starting of this years's GSoC coding period. Continuing ahead I along with mentors of this project have proposed few more features and pipelines to be added to this ambitious project to further improvise this project. These proposed plans are as follows:
 - optimizing RegEx rules to resolve over-joint sequences issue.
-- creating matrix to analyse at what rate True positive oligonucleotide sequences are increasing in comaparison to total and False positive extracted oligonucleotide sequences. Such analysis indicates that how much smarter oligo extraction script and BOWs have become after multiple round of running  `extract&BOW.py` script alongwith manual + auto curation.
+- creating matrix to analyse at what rate True positive oligonucleotide sequences are increasing in comaparison to total and False positive extracted oligonucleotide sequences. Such analysis indicates that how much smarter oligo extraction script and BOWs have become after multiple round of running  `extract_BOW.py` script alongwith manual + auto curation.
 - to train BioBERT model on corpus of True positive oligonucleotides by using self-training method. Using trained BioeBERT along with Regex rules, will extract more True positive oligo mentions from research papers.
 - creating pipeline to find and ouput oligonucleotide names in a seperate new column of the same CSV which is currently getting output from `oligo_extract.py` script.
 
