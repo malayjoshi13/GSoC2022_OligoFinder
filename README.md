@@ -283,8 +283,7 @@ Not all FP are FP. After manual verification of the final output, some were noti
 
 ## 8) Future work
 
-A lot has been achieved during this GSoC period, yet there is still plenty of work ahead in this ambitious project. Among the features that are still to be implemented and tasks to be performed there are:
-
+A lot has been achieved during this GSoC period in terms of achieving what we have planned during the starting of this summer of 2022. Continuing ahead I along with mentors of this project have proposed few more features and pipelines to be developed and added to this ambitious project to improvised it further. These are as follows:
 - Instead of using "present sentence" column of CSV to create BOW, use all three sentences. This will increase words in BOWs of a particular category, thus reduce cases where BOW cannot decide to tag as oligo or non-oligo.
 - create matrix to see how many TF are increasing (happening as oligo extraction becoming modified to ignore seq that don't match even basic criteria to be oligo + auto lebeling of bow is becoming smarter to remove FP)
 - removing repeating sequences and sentences
