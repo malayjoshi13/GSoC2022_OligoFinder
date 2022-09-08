@@ -222,8 +222,6 @@ Thus, at the end oligo extraction script and BOWs will become so much smart and 
 
 Please note that many modificatiions made in the features of this system were directly commited to the main branch as they are well tested and holds simpler logic and code blocks. Develpoments and modifications made in the major features of this system were commited in form of Pull Requests (PRs) whcih you can view below.
 
-pipeline for BOW to update continously (changes oligo_extract.py, Tfidfcreator)
-
 ### 6.1) Implementation of pipeline to extract text from research papers
   - Directly commited to the main branch
   - Overview -
