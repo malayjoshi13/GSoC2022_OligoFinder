@@ -50,7 +50,6 @@ A potential source of false positives for mutation extraction systems is mention
 The primary objective of the project was achieved within the specified time of GSoC, namely to establish that deep learning is capable of inferring the homology relationship of gene pairs with high accuracy. This was done using a set of convolutional neural networks, as detailed below, which were implemented using TensorFlow2.
 
 extract seq that use TP-FP differentiator, corpus generated using this pipeline, system to score 
-Flow diagram
 
 Explain this flow diagram which is basically an overview of this project's working
 extracts sequences
@@ -66,41 +65,7 @@ tells if TP or FP
 
 ![WhatsApp Image 2022-09-06 at 11 47 16 PM](https://user-images.githubusercontent.com/71775151/188709369-0c6156aa-31ec-41aa-a62d-f3664ed55068.jpeg)
 
-## 3) Work overview
-
-passing arguments in configure file (made changes in configure.py, oligo_extract.py, tfidfbowcreator.py, tfidfbowTpFp.py, added sentenceprocessor.py)
-
-pipeline for BOW to update continously (changes oligo_extract.py, Tfidfcreator)
-
-#### 3.1) Implementation of classes for representing Order Polytopes and Posets
-
-  - Link to the PR - [#165 - describe in short](https://github.com/GeomScale/volume_approximation/pull/165)
-  - Overview -
-    - Created a class for representing a poset.
-    - Created a class for representing an order polytope.
-    - Implemented membership, boundary and reflection oracles. Also implemented their optimized versions for accelerated billiard walks which rely on preprocessing to speed up the oracles.
-    - Added unit tests and examples for both the classes.
-- add pictures and ss
-
-More examples for overview
-
-Input pipeline
-
-Having an efficient input pipeline is a necessity for training on powerful hardware like TPUs. Thus, I spent a lot of time creating and optimizing the input pipeline. tf.data is a boon for such tasks and it took away most of the painpoints. However, the challenge was to augment the data as fast as possible. It all came down to the subtleties of the preprocessing functions. Which augmentation should be aaplied first? What parts can be added to the model itself? Is I/O the most time-consuming? The answers to all of these questions came with increased performance. It is noteworthy that tf.image and tfa made it a breeze to experiment with different setups.
-
-
-Model implementation
-
-RegNetY is originally implemented in PyTorch by Facebook AI Research in their repository pycls. It was crucial that the model was as close to the original implementation. This would greatly affect the accuracy of the models. Thus, we implemented the models with extreme care to ensure that the architecture was as close to the original one.
-
-
-Training
-
-Training and evaluation of the model was the most interesting part of the project. It included finding the perfect setup which suited the model and gave the best accuracy. During the training, we fixated on the hyperparameters which resulted in the best performance and started improving from there. Iteratively and progressively, we were able to get substantial gains. It was common to go back to the model implementation and input pipeline to check their correctness and improve them. We left no stone unturned. However, I was unable to obtain the accuracies mentioned by the authors, even after rigourous debugging. The following accuracies were obtained after substantial experimentation. I finally fixed upon using AdamW as the optimizer and keeping rest the same as the paper. This gave good performance boosts. I will continue to explore and try to improve the accuracy as far as possible.
-Validation accuracies of models:
-
-
-## 4) Folder Directory Structure
+## 3) Folder Directory Structure
 
 ```
 GSoC2022_OligoFinder/
@@ -139,7 +104,7 @@ GSoC2022_OligoFinder/
 └── README.md
 ```
 
-### Part 1 - Initiating project setup
+### 3.1) Part of system for setting up and initiating setup
 
 - `Setup` - stores `config_readme.md` file that contains credentials to access research papers from Wormbase database via Textpresso and `requirements.txt` file for setting up of development environment.
 
@@ -151,11 +116,11 @@ GSoC2022_OligoFinder/
   
   - `oligo_BOW_filename` and `non_oligo_BOW_filename` - from this parameter user can change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` and input for `TfIdf_BOW_TpFp.py` file
 
-### Part 2 - Getting text from research paper(s)
+### 3.2) Part of system for getting text from research paper(s)
 
 - `RawText` - stores `textpresso.py` and `get_paper_content.py` files that extract content from research papers present in Wormbase database corresponding to their id mentioned in `paper_ids` parameter of `configure.py` file and returns a pair of paperid-sentence.
 
-### Part 3 - RegEx rules to extract sequences that follow structure of Oligonucleotides
+### 3.3) Part of system having RegEx rules to extract sequences that follow structure of Oligonucleotides
 
 - `bw_brackets.py` - contain RegEx rule `pick_from_brackets` that extracts Oligonucleotide sequence if present inside brackets. Input: insert(TGAGACGTCAACAATATGG)hg, Output: TGAGACGTCAACAATATGG.
 
@@ -174,7 +139,7 @@ GSoC2022_OligoFinder/
 
 - `oligo_extract.py` - compiles extracted oligos (from research paper(s)), alongwith paper id, auto & manual true positive/false positive tags, previous, current (from which oligo sequence is extracted) & future sentences into a Pandas dataframe which is saved as a CSV file.
 
-### Part 4 - Creator and user of BOWs 
+### 3.4) Part of system for creation and usage of BOWs 
 - `TfIdf_BOW_creator.py` - uses 'TP or FP Oligo (manual)' column of CSV generated above (which has manual curations + auto curations which curator felt to be right) to generate two Bag of Words (BOW) having higher TF-IDF scores. 
 
   - First BOW has words related to sentences that have tag of containing "oligo" in the 'TP or FP Oligo (manual)' column. Second BOW has words related to sentences that have tag of containing "non-oligo", "other", "mutation", etc in the 'TP or FP Oligo (manual)' column of CSV genertaed.
@@ -183,12 +148,12 @@ GSoC2022_OligoFinder/
 
 - `sentence_processor.py` - process the words and adds only english dictionary words in the BOWs.  
 
-### Part 5 - A cyclic pipeline between Oligo extraction script and BOWs creation & usage script
+### 3.5) Part of system that vuilds a cyclic pipeline between Oligo extraction script and BOWs creation & usage script
 - `extract&BOW.py` - script that will run BOW creator script, Oligo extraction script and True positive/False positive auto marking script one after another in a continous manner till the time Oligo extraction script and BOW becomes so smart that number of True positive oligo sequences is high as a pre-defined number.
 
-## 5) Usage
+## 4) Usage
 
-### 5.1) Install
+### 4.1) Install
 
 - Create a virtual environment named "extractor" (only once):
 
@@ -204,7 +169,7 @@ GSoC2022_OligoFinder/
   
   `pip install -r requirements.txt`
   
-### 5.2) Configure credentials and set parameters
+### 4.2) Configure credentials and set parameters
 
 Go to `Setup` folder (in your cloned GitHub repository) and there create `all_config.cfg` file as per the instructions mentioned in the README.md of `utils` folder. 
 
@@ -216,7 +181,7 @@ b) `output_CSVname` - change location of CSV containing extracted oligonucleotid
 
 c) `oligo_BOW_filename` and `non_oligo_BOW_filename` - change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` and input for `TfIdf_BOW_TpFp.py` file  
 
-### 5.3) Execution
+### 4.3) Execution
 
 Extract oligonucleotides from research papers and use as well as enhance BOWs:
 
@@ -224,7 +189,7 @@ Extract oligonucleotides from research papers and use as well as enhance BOWs:
 
 `python extract&BOW.py`
 
-## 6) Data Flow Diagram
+## 5) Data Flow Diagram
 paste image
 
 Currently this system is divided into majorly two halves. First half, finds and extract sequences that have conventional Oligonucleotides' structure into a CSV file. Another half first uses manual curations by curator (who tags the sequences present in the CSV file to be really an Oligonucleotide [True positive] or not actually an Oligonucleotide but has same structure which an Oligonucleotide has [False positive]) to generate Bag of Words (aka BOW) corresponding to words related to oligo sequences and non-oligo sequences in sentences. 
@@ -252,6 +217,39 @@ Thus, at the end oligo extraction script and BOWs will become so much smart and 
   - manual curation + curator verified auto-tags improvise BOWs to be used in next cycle, 
   - comparison between auto-tags and manual-tags in each cycle tells how smart BOW has become because larger number of auto-taggings BOW can do, shows its higher performance, 
   - analysis of manual-tags of each cycle tells how many True positive have increased due to better BOWs and better oligo extraction script. It also tells where oligo extraction script can be further improvised.
+
+## 6) Work overview
+
+passing arguments in configure file (made changes in configure.py, oligo_extract.py, tfidfbowcreator.py, tfidfbowTpFp.py, added sentenceprocessor.py)
+
+pipeline for BOW to update continously (changes oligo_extract.py, Tfidfcreator)
+
+#### 6.1) Implementation of RegEx rules (present inside `RegexRules`) folder to extract sequences following structure of Oligonucletides
+
+  - Link to the PR - [#4](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/4), [#5](https://github.com/malayjoshi13/GSoC2022_OligoFinder/pull/5),
+  - Overview -
+    - Created Regex rules bw_brackets.py, check_alpha_num_specialchk.py, combine_oligo_parts.py, combine_rules.py.
+    - Created a class for representing an order polytope.
+    - Implemented membership, boundary and reflection oracles. Also implemented their optimized versions for accelerated billiard walks which rely on preprocessing to speed up the oracles.
+    - Added unit tests and examples for both the classes.
+- add pictures and ss
+
+More examples for overview
+
+Input pipeline
+
+Having an efficient input pipeline is a necessity for training on powerful hardware like TPUs. Thus, I spent a lot of time creating and optimizing the input pipeline. tf.data is a boon for such tasks and it took away most of the painpoints. However, the challenge was to augment the data as fast as possible. It all came down to the subtleties of the preprocessing functions. Which augmentation should be aaplied first? What parts can be added to the model itself? Is I/O the most time-consuming? The answers to all of these questions came with increased performance. It is noteworthy that tf.image and tfa made it a breeze to experiment with different setups.
+
+
+Model implementation
+
+RegNetY is originally implemented in PyTorch by Facebook AI Research in their repository pycls. It was crucial that the model was as close to the original implementation. This would greatly affect the accuracy of the models. Thus, we implemented the models with extreme care to ensure that the architecture was as close to the original one.
+
+
+Training
+
+Training and evaluation of the model was the most interesting part of the project. It included finding the perfect setup which suited the model and gave the best accuracy. During the training, we fixated on the hyperparameters which resulted in the best performance and started improving from there. Iteratively and progressively, we were able to get substantial gains. It was common to go back to the model implementation and input pipeline to check their correctness and improve them. We left no stone unturned. However, I was unable to obtain the accuracies mentioned by the authors, even after rigourous debugging. The following accuracies were obtained after substantial experimentation. I finally fixed upon using AdamW as the optimizer and keeping rest the same as the paper. This gave good performance boosts. I will continue to explore and try to improve the accuracy as far as possible.
+Validation accuracies of models:
 
 ## 6) Results
 
