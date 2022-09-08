@@ -173,13 +173,13 @@ GSoC2022_OligoFinder/
 
 Go to `Setup` folder (in your cloned GitHub repository) and there create `all_config.cfg` file as per the instructions mentioned in the README.md of `utils` folder. 
 
-Now within `Setup` folder, go to `configure.py` and there change paramaters like:
+Now within `Setup` folder, go to `configure.py` and there user can perform following actions:
+1
+a) `paper_ids` - can add research paper ids present in Wormbase from which you wanr to extract oligonuclotide mentions. By default Wormbase ids of a set of `100 research papers` are taken for extracting oligonucleotides from them.
 
-a) `paper_ids` - add research paper ids present in Wormbase from which you wanr to extract oligonuclotide mentions
+b) `output_CSVname` - can change location of CSV containing extracted oligonucleotide mentions along with other related objects. This file is output by `oligo_extract.py` and is input for `TfIdf_BOW_creator.py`. By default CSV of name `oligo_test.csv` will be created and accessed from the base directory location.
 
-b) `output_CSVname` - change location of CSV containing extracted oligonucleotide mention along with other related objects. This file is output by `oligo_extract.py` and is input for `TfIdf_BOW_creator.py`
-
-c) `oligo_BOW_filename` and `non_oligo_BOW_filename` - change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` and input for `TfIdf_BOW_TpFp.py` file  
+c) `oligo_BOW_filename` and `non_oligo_BOW_filename` - can change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` file and input for `TfIdf_BOW_TpFp.py` file. By default BOWs named `oligo_BOW.txt` and `non_oligo_BOW.txt` will be created and accessed from the base directory location.
 
 ### 4.3) Execution
 
