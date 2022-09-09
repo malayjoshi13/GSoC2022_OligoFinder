@@ -155,7 +155,7 @@ GSoC2022_OligoFinder/
 └── README.md
 ```
 
-### 4.1) Part of system for setting up and initiating setup
+#### 4.1) Part of system for setting up and initiating setup
 
 - `Setup` - stores the` config_readme.md` file containing credentials to access research papers from the Wormbase database via Textpresso and the `requirements.txt` file for setting up the development environment.
 
@@ -166,11 +166,11 @@ GSoC2022_OligoFinder/
   
   - `oligo_BOW_filename` and `non_oligo_BOW_filename` - from this parameter user can change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` and input for `TfIdf_BOW_TpFp.py` file
 
-### 4.2) Part of system for getting text from research paper(s)
+#### 4.2) Part of system for getting text from research paper(s)
 
 - `RawText` - stores `textpresso.py` and `get_paper_content.py` files that extract content from research papers in the Wormbase database corresponding to their id mentioned in the `paper_ids` parameter of the `configure.py` file and returns a pair of paper id-sentence.
 
-### 4.3) Part of system having RegEx rules to extract sequences that follow structure of Oligonucleotides
+#### 4.3) Part of system having RegEx rules to extract sequences that follow structure of Oligonucleotides
 
 - `bw_brackets.py` - contain RegEx rule `pick_from_brackets` that extracts Oligonucleotide sequence if present inside brackets. Input: insert(TGAGACGTCAACAATATGG)hg, Output: TGAGACGTCAACAATATGG.
 
@@ -189,7 +189,7 @@ GSoC2022_OligoFinder/
 
 - `oligo_extract.py` - compiles extracted oligos (from research paper(s)), along with paper id, auto & manual true positive/false positive tags, previous, current (from which oligo sequence is extracted) & future sentences into a Pandas data frame which is saved as a CSV file.
 
-### 4.4) Part of system for creation and usage of BOWs 
+#### 4.4) Part of system for creation and usage of BOWs 
 - `TfIdf_BOW_creator.py` - uses 'TP or FP Oligo (manual)' column of CSV generated above (which has manual curations + auto curations which curator felt to be right) to generate two Bag of Words (BOW) having higher TF-IDF scores. 
 
   - First BOW has words related to sentences that have tag of containing "oligo" in the 'TP or FP Oligo (manual)' column. Second BOW has words related to sentences that have tag of containing "non-oligo", "other", "mutation", etc in the 'TP or FP Oligo (manual)' column of CSV genertaed.
@@ -198,7 +198,7 @@ GSoC2022_OligoFinder/
 
 - `sentence_processor.py` - process the words and adds only english dictionary words in the BOWs.  
 
-### 4.5) Part of system that builds a cyclic pipeline between Oligo extraction script and BOWs creation & usage script
+#### 4.5) Part of system that builds a cyclic pipeline between Oligo extraction script and BOWs creation & usage script
 - `extract_BOW.py` - script that will run BOW creator script, Oligo extraction script and True positive/False positive auto marking script one after another in a continous manner till the time Oligo extraction script and BOW becomes so smart that number of True positive oligo sequences is high as a pre-defined number.
 
 ## 5) Usage
