@@ -23,13 +23,13 @@
 
 ## 1) Background
 
-Our genetic information is stored in a repeating sequence of nucleotides, abbreviated by the letters A, C, G, T in DNA, and A, C, G, U in RNA. Oligonucleotides are short DNA or RNA oligomers between 20 and 60 units in length. However, they rarely exceed 200 nucleotides. They can be synthesized or found naturally as single stranded (ss) or double stranded (ds) fragments of DNA or RNA. Oligonucleotides (or oligos) have many uses from research to disease diagnosis and recently therapeutics.
+Our genetic information is stored in a repeating sequence of nucleotides, abbreviated by the letters A, C, G, T in DNA, and A, C, G, U in RNA. Oligonucleotides are short DNA or RNA oligomers between 20 and 60 units in length. However, they rarely exceed 200 nucleotides. They can be synthesized or found naturally as single-stranded (ss) or double-stranded (ds) fragments of DNA or RNA. Oligonucleotides (or oligos) have many uses, from research to disease diagnosis and, recently therapeutics.
 
-The last few decades have witnessed an explosion of knowledge in the field of molecular biology. It is increasingly evident that evolution has generated an astonishingly complex set of interconnected processes through which gene expression can be regulated. One such process which has evolved due to wide availability of inexpensive synthetic single-stranded DNA and RNA is for routine DNA amplification by PCR primers. It has revolutionized the study of gene expression and disease processes via a range of processes including RNAi, target degradation by RNase H-mediated cleavage, splicing modulation, non-coding RNA inhibition, gene activation and programmed gene editing. In addition to use of Oligonucleotides as PCR primers, they are also used as probes, in microarray, in situ hybridization, and antisense analyses, and even as drug carriers.
+The last few decades have witnessed an explosion of knowledge in molecular biology. It is increasingly evident that evolution has generated an astonishingly complex set of interconnected processes through which gene expression can be regulated. One such process that has evolved due to wide availability of inexpensive synthetic single-stranded DNA and RNA is routine DNA amplification by PCR primers. It has revolutionized the study of gene expression and disease processes via a range of processes, including RNAi, target degradation by RNase H-mediated cleavage, splicing modulation, non-coding RNA inhibition, gene activation and programmed gene editing. In addition to the use of Oligonucleotides as PCR primers, they are also used as probes, in microarray, in situ hybridization, antisense analyses, and even as drug carriers.
 
-Such new findings about varied applications of Oligonucleotides typically first appear in the scientific literature and is then later manually curated into biomedical databases, such as [WormBase](https://wormbase.org//#012-34-5) where the information is presented in a standardized, queryable format. This process of manual curation by identification and extraction of Oligonucleotides is expensive, time-consuming, captures a small part of the relevant literature and therefore is a significant challenge in the advancement of precision medicine and gene expression.
+Such new findings about varied applications of Oligonucleotides typically first appear in the scientific literature and is then later manually curated into biomedical databases, such as [WormBase](https://wormbase.org//#012-34-5) where the information is presented in a standardized, queryable format. This process of manual curation by identifying and extracting Oligonucleotides is expensive, time-consuming, captures a small part of the relevant literature and therefore is a significant challenge in advancing precision medicine and gene expression.
 
-Another way for curation is of automated information extraction which uses text mining and biomedical natural language processing (aka BioNLP) techniques that can assist in the acquisition and management of this knowledge but it is found that previous efforts/developments in the biomedical automated text mining have focused primarily upon named entity recognition of well-defined molecular objects such as genetic variations and mutations, but less work has been performed to identify entities like Oligonucleotides which in recent years have gained status of being very crucial entities in the biomedical research field and practical applications. Another limitation with this method is its inability to efficiently scale to minimize manual efforts and still curate a constantly expanding corpus of literature with high accuracy.
+Another curation method is automated information extraction, which uses text mining and biomedical natural language processing (aka BioNLP) techniques to assist in acquiring and managing this knowledge. However, it is found that previous efforts/developments in biomedical automated text mining have focused primarily upon named entity recognition of well-defined molecular objects such as genetic variations and mutations. Less work has been performed to identify entities like oligonucleotides, which in recent years have become crucial in biomedical research and practical applications. Another limitation of this method is its inability to efficiently scale to minimize manual efforts and still curate a constantly expanding corpus of literature with high accuracy.
 
 ## 2) Objective
 
@@ -157,38 +157,37 @@ GSoC2022_OligoFinder/
 
 ### 4.1) Part of system for setting up and initiating setup
 
-- `Setup` - stores `config_readme.md` file that contains credentials to access research papers from Wormbase database via Textpresso and `requirements.txt` file for setting up of development environment.
+- `Setup` - stores the` config_readme.md` file containing credentials to access research papers from the Wormbase database via Textpresso and the `requirements.txt` file for setting up the development environment.
 
 - `configure.py` - comprise of following parameters:-
   
-  - `paper_ids` - from this parameter user can add research paper ids (present in Wormbase) from which they want to extract oligonuclotide mentions,     
-  
-  - `output_CSVname` - from this parameter user can change location of CSV containing extracted oligonucleotide mention along with other related objects. This file is output by `oligo_extract.py` and is input for `TfIdf_BOW_creator.py`
+  - `paper_ids` - from this parameter, user can add research paper ids (present in Wormbase) from which they want to extract oligonucleotide mentions,     
+  - `output_CSVname` - from this parameter, the user can change the location of the CSV containing extracted oligonucleotide mention along with other related objects. This file is output by `oligo_extract.py` and is input for `TfIdf_BOW_creator.py`,
   
   - `oligo_BOW_filename` and `non_oligo_BOW_filename` - from this parameter user can change location of txt files containing BOW related to oligonucleotide and non-oligonucleotide mentions respectively. These files are output by `TfIdf_BOW_creator.py` and input for `TfIdf_BOW_TpFp.py` file
 
 ### 4.2) Part of system for getting text from research paper(s)
 
-- `RawText` - stores `textpresso.py` and `get_paper_content.py` files that extract content from research papers present in Wormbase database corresponding to their id mentioned in `paper_ids` parameter of `configure.py` file and returns a pair of paperid-sentence.
+- `RawText` - stores `textpresso.py` and `get_paper_content.py` files that extract content from research papers in the Wormbase database corresponding to their id mentioned in the `paper_ids` parameter of the `configure.py` file and returns a pair of paper id-sentence.
 
 ### 4.3) Part of system having RegEx rules to extract sequences that follow structure of Oligonucleotides
 
 - `bw_brackets.py` - contain RegEx rule `pick_from_brackets` that extracts Oligonucleotide sequence if present inside brackets. Input: insert(TGAGACGTCAACAATATGG)hg, Output: TGAGACGTCAACAATATGG.
 
 - `check_alpha_num_specialchk.py` - contain three RegEx rules: 
-  - `has_acgt` - this RegEx rule checks if input word follows structure of an Oligonucleotide or not. If input word contains only alphabetic characters like A,a,C,c,G,g,T and T, then that word follows structure of an Oligonucleotide, otherwise not. Input1: TGAGACGTCAACAATATGG, Output1: TGAGACGTCAACAATATGG and Input2: TXxvFDECAAOpJHTGG, Outpu2: None.
-  -  `has_35` - this RegEx rule checks if input word follows structure of an Oligonucleotide or not. If input word contains only numeric characters like 3 and 5, or don't has any numeric characters at all, then that word follows structure of an Oligonucleotide, otherwise not. Input1: 3'-TGAGACGTCAACAATATGG-5', Output1: 3'-TGAGACGTCAACAATATGG-5' and Input2: TGAGACGTCAACAATATGG, Outpu2: TGAGACGTCAACAATATGG and Input3: 3'-TGAGA2CGT3CAACAATATG675G-5', Output3: None. 
-  -  `remove_special_characters` - except alphabetic characters ranging from A to Z and a to z, remove every other character from the input word like numeric values (3,5,etc), special characters (,./?"':}{][, etc) and extra spacings.
+  - `has_acgt` - this RegEx rule checks if the input word follows the structure of an Oligonucleotide or not. If the input word contains only alphabetic characters like A, a, C, c, G, g, T and T, then that word follows the structure of an Oligonucleotide; otherwise not. Input1: TGAGACGTCAACAATATGG, Output1: TGAGACGTCAACAATATGG and Input2: TXxvFDECAAOpJHTGG, Outpu2: None.
+  -  `has_35` - this RegEx rule checks if the input word follows the structure of an Oligonucleotide or not. If the input word contains only numeric characters like 3 and 5 or does not have any numeric characters, then that word follows the structure of an Oligonucleotide; otherwise not. Input1: 3'-TGAGACGTCAACAATATGG-5', Output1: 3'-TGAGACGTCAACAATATGG-5' and Input2: TGAGACGTCAACAATATGG, Outpu2: TGAGACGTCAACAATATGG and Input3: 3'-TGAGA2CGT3CAACAATATG675G-5', Output3: None. 
+  -  `remove_special_characters` - except alphabetic characters ranging from A to Z and a to z, remove every other character from the input word like numeric values (3, 5, etc.), special characters (,./?"':}{][, etc) and extra spacings.
 
 - `combine_oligo_parts.py` - contain two RegEx rules:
-  - `is_part` - this RegEx rule combines back Oligonucleotide sequences which are actually part of a single oligo sequence but due to spaces, newline, etc are treated like individual oligo sequences. Input: TT GCA ATG CGAAAATAC, Output: TTGCAATGCGAAAATAC.
-  - `only_regex` - outputs list of words which satisfies all structural rules of an Oligonucleotide and thus are called as 'sequences' from now onwards.
+  - `is_part` - this RegEx rule combines back Oligonucleotide sequences that are actually part of a single oligo sequence but are treated like individual oligo sequences due to spaces, newline, etc. Input: TT GCA ATG CGAAAATAC, Output: TTGCAATGCGAAAATAC.
+  - `only_regex` - outputs a list of words that satisfies all structural rules of an Oligonucleotide and thus are called 'sequences' from now onwards.
   
 - `combine_rules.py` - contain two RegEx rules:
   - `word_processor` - pass input word through four RegEx rules namely `pick_from_brackets`, `has_acgt`, `has_35`and `remove_special_characters` (all four mentioned above), and returns the ouput processed word.
-  - `oligo_seq_regex` - output of `word_processor` rule becomes input for this which is passed to two RegEx rules namely `is_part` and `only_regex`. The output from this is a sequence which follow structural composition of an Oligonucleotide.
+  - `oligo_seq_regex` - output of `word_processor` rule becomes input for this which is passed to two RegEx rules namely `is_part` and `only_regex`. The output from this is a sequence that follows an Oligonucleotide's structural composition.
 
-- `oligo_extract.py` - compiles extracted oligos (from research paper(s)), alongwith paper id, auto & manual true positive/false positive tags, previous, current (from which oligo sequence is extracted) & future sentences into a Pandas dataframe which is saved as a CSV file.
+- `oligo_extract.py` - compiles extracted oligos (from research paper(s)), along with paper id, auto & manual true positive/false positive tags, previous, current (from which oligo sequence is extracted) & future sentences into a Pandas data frame which is saved as a CSV file.
 
 ### 4.4) Part of system for creation and usage of BOWs 
 - `TfIdf_BOW_creator.py` - uses 'TP or FP Oligo (manual)' column of CSV generated above (which has manual curations + auto curations which curator felt to be right) to generate two Bag of Words (BOW) having higher TF-IDF scores. 
@@ -243,11 +242,11 @@ Extract oligonucleotides from research papers and use as well as enhance BOWs:
 ## 6) Data Flow Diagram
 paste image
 
-Currently, this system is divided into majorly two halves. The first half, find and extract sequences that have conventional Oligonucleotides' structure into a CSV file. Another half first uses manual curations by the curator (who tags the sequences present in the CSV file to be an Oligonucleotide [True positive] or not an Oligonucleotide but has the same structure that an Oligonucleotide has [False positive]) to generate a Bag of Words (aka BOW) corresponding to words related to oligo sequences and non-oligo sequences in sentences. These BOWs are then used in the next/upcoming cycle to auto-label oligo sequences to be true positive or false positive (the idea behind using BOWs to auto-curate is that the pattern/words which are present in sentences with oligos or non-oligos will be first taken out and then used in future for auto-labelling as the presence of unique words from BOWs directly points towards a sequence to be an oligo or not).  
+Currently, this system is divided into majorly two halves. In the first half, find and extract sequences that have conventional Oligonucleotides' structure into a CSV file. Another half first uses manual curations by the curator (who tags the sequences present in the CSV file to be an Oligonucleotide [True positive] or not an Oligonucleotide but has the same structure that an Oligonucleotide has [False positive]) to generate a Bag of Words (aka BOW) corresponding to words related to oligo sequences and non-oligo sequences in sentences. These BOWs are then used in the next/upcoming cycle to auto-label oligo sequences to be true positive or false positive (the idea behind using BOWs to auto-curate is that the pattern/words which are present in sentences with oligos or non-oligos will be first taken out and then used in future for auto-labelling as the presence of unique words from BOWs directly points towards a sequence to be an oligo or not).  
 
-When the oligo extraction script runs on more and more research papers, it finds more sequences which for the first time need to be fully manually curated and then auto-curation by use of BOW (which reduce this fully manually curation to semi-manual curation work). These curated sentences and oligo sentences furthure improvise the existing BOWs by adding more words, thus widening the scope to include every possible word related to an oligo/non-oligo sequence. Again this improvised BOW will reduce the need for manual curation and will be able to differentiate better between oligo and non-oligo sequences, thus increasing True Positive and reducing False Positive oligo sequences.
+When the oligo extraction script runs on more and more research papers, it finds more sequences that need to be manually curated for the first time and then auto-curation by use of BOW (which reduces this manually curation to semi-manual curation work). These curated sentences and oligo sentences further improvise the existing BOWs by adding more words, thus widening the scope to include every possible word related to an oligo/non-oligo sequence. Again this improvised BOW will reduce the need for manual curation and will be able to differentiate better between oligo and non-oligo sequences, thus increasing True Positive and reducing False Positive oligo sequences.
 
-This cycling pipeline cmprising of processes of extraction of oligonucleotide mentions from papers, auto-curation by BOWs, manual curation by curator and creation/extension of BOWs is run multiple times so that in the end, oligo extraction script and BOWs will become so much smart to produce a large corpus of True positive oligos that, in future will be used along with RegEx (what we are currently using) and BioBERT (trained on large oligo corpus mentioned above) based oligo extraction script to generate high True positives out of any given research paper.  
+This cycling pipeline comprising of processes of extraction of oligonucleotide mentions from papers, auto-curation by BOWs, manual curation by curator and creation/extension of BOWs is run multiple times so that in the end, oligo extraction script and BOWs will become so much smart to produce a large corpus of True positive oligos that, in future will be used along with RegEx (what we are currently using) and BioBERT (trained on large oligo corpus mentioned above) based oligo extraction script to generate high True positives out of any given research paper. 
 
 ### Case 1 (User for first time is using this project i.e. there is no CSV and BOWs with him/her as of now) 
 - When the user runs the command `python extract_BOW.py`, then as initially no CSV (containing extracted oligo sequences and curations) is present, it means BOWs (corresponding to oligos and non-oligos sequences) cannot be created as of now (because BOWs are created using the manual curations by the curator in the CSV). 
@@ -265,7 +264,7 @@ This cycling pipeline cmprising of processes of extraction of oligonucleotide me
 - Thus, in short 
   - manual curation + curator verified auto-tags improvise BOWs to be used in the next cycle, 
   - comparison between auto-tags and manual tags in each cycle tells how smart BOW has become because the larger number of auto-taggings BOW can do, shows its higher performance, 
-  - analysis of each cycle's manual-tags tells how many True positives have increased due to better BOWs and oligo extraction script. It also tells where the oligo extraction script can be further improvised.
+  - analysis of each cycle's manual tags tells how many True positives have increased due to better BOWs and oligo extraction script. It also tells where the oligo extraction script can be further improvised.
 
 ## 7) Future work
 
@@ -277,13 +276,15 @@ Lots of development and implementation, planned before the start of the GSoC'22 
 
 ## 8) Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
-
+Contributions make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 - Fork the Project
-- Create your Feature Branch (git checkout -b feature/AmazingFeature)
-- Commit your Changes (git commit -m 'Add some AmazingFeature')
-- Push to the Branch (git push origin feature/AmazingFeature)
+- Create a branch for your feature (git checkout -b feature/AmazingFeature)
+- Commit your changes (git commit -m 'Add some AmazingFeature')
+- Push changes to the branch (git push origin feature/AmazingFeature)
 - Open a Pull Request
+- Wait for us to validate before accepting it in our code base
+- That is it. Wohooo, you made a valuable commit to this project!!
+
 
 ## 9) Acknowledgements
 
