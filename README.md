@@ -268,28 +268,9 @@ Please note that many modifications made in the features of this system were dir
     - How does this cyclic pipeline work? Firstly, the curator manually labels the sentences using BOWs as True positive oligo sequences or False positive oligo sequences. This curation is turned into BOWs which then, in the second round of running the `extract_BOW.py` script, auto-tags the sentences in a column separate from the one which the curator marked in the first round. Then in this second round, the curator again manually marks newer sequences as true positive or false positive and also takes reference from the auto-tags (done by BOWs) for curating these newer sequences. Once curation is done, the `extract_BOW.py` script is run for the third time where again, BOWs (which got updated from curations of round 2) firstly auto-tags sequences and then curator manually tags and also take reference from sequences which BOWs have auto-tagged. 
     - This is how this cyclic pipeline controlled by running of `extract_BOW.py` script after every manual curation, helps to improvise BOWs to be used in the next cycle, tells how smart BOW has become and tells how many True positives have increased in the final corpus.
 
-## 7) Results
+names in a separate new column of the same CSV, which is currently getting output from the `oligo_extract.py` script.
 
-![WhatsApp Image 2022-09-05 at 11 46 47 AM](https://user-images.githubusercontent.com/71775151/188710228-77a5f4e2-5533-4904-b7a6-dc356b399065.jpeg)
-
-In 100 papers tested (93 were in the manually curated ground truth file), gene-mutation matches were found in 53 papers.
-Total 2433 matches were present in those 53 papers. And 977 matches were found using this developed pipeline.
-TP: 472, FP: 505
-Precision: 48.3%
-After manually checking the false positives and updating the ground truth file -
-TP: 807, FP: 170
-Precision: 82.59%
-Not all FP are FP. After manual verification of the final output, some were noticed to be true positive which were originally missed during the manual curation.
-
-## 8) Future work
-
-Lots of development and implementation, planned before the start of the GSoC'22 coding period, have been achieved. Continuing ahead, I and mentors of this project have proposed a few more features and pipelines to be added to this ambitious project to improvise it further. These proposed plans are as follows:
-- optimizing RegEx rules to resolve over-joint sequences issue.
-- creating a matrix to analyze at what rate True positive oligonucleotide sequences are increasing compared to total and False positive extracted oligonucleotide sequences. Such analysis indicates how much smarter oligo extraction script and BOWs have become after multiple rounds of running the `extract_BOW.py` script along with manual + auto curation.
-- to train the BioBERT model on a corpus of True positive oligonucleotides by using the self-training method. Using trained BioeBERT along with Regex rules will extract more True positive oligo mentions from research papers.
-- creating a pipeline to find and output oligonucleotide names in a separate new column of the same CSV, which is currently getting output from the `oligo_extract.py` script.
-
-## 9) Contributing
+## 7) Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
 
@@ -299,12 +280,12 @@ Contributions are what make the open source community such an amazing place to b
 - Push to the Branch (git push origin feature/AmazingFeature)
 - Open a Pull Request
 
-## 10) License
-
-Distributed under the MIT License. See ```LICENSE``` for more information.
-
-## 11) Acknowledgements
+## 8) Acknowledgements
 
 I thank Google Summer of Code and the Genome Assembly and Annotation section of EMBL-EBI for granting me this opportunity. I am grateful to my mentors, Magdalena Zarowiecki, Andrés Becerra Sandoval and Valerio Arnaboldi, for their continuous guidance and encouragement. Without them, this project would not have been possible. I thank them for their constant guidance, code reviews, timely feedback, and, most importantly, for their encouragement throughout GSoC.
 
 I want to pay humble gratitude to my dearest mama (aka maternal uncle), Dr Nikhil Joshi, my parents and my sister for always believing in me and helping bring out the best of me right from the day of writing the proposal to this significant day of final submission. I am fortunate enough to get their support and encouragement throughout this summer. It was a great summer working on this project, and I would love to contribute more in the future to the EMBL-EBI.
+
+## 9) License
+
+Distributed under the MIT License. See ```LICENSE``` for more information.
