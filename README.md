@@ -31,32 +31,17 @@ Such new findings about varied applications of Oligonucleotides typically first 
 
 Another curation method is automated information extraction, which uses text mining and biomedical natural language processing (aka BioNLP) techniques to assist in acquiring and managing this knowledge. However, it is found that previous efforts/developments in biomedical automated text mining have focused primarily upon named entity recognition of well-defined molecular objects such as genetic variations and mutations. Less work has been performed to identify entities like oligonucleotides, which in recent years have become crucial in biomedical research and practical applications. Another limitation of this method is its inability to efficiently scale to minimize manual efforts and still curate a constantly expanding corpus of literature with high accuracy.
 
-## 2) Objective
+## 2) Objective of OligoFinder
 
-Thus having an accurate, efficient, scalable and fully/semi-automated curation system for identification and extraction of Oligonucleotide mentions along with related data is much needed by Biomedical researchers. Such a system will be used to develop a high-quality gold standard dataset of Oligonucleotide mentions across various Biomedical research papers.
+To solve the above-stated problem, we present an accurate, efficient, scalable and fully/semi-automated curation system called **OligoFinder** for identifying and extracting Oligonucleotide mentions along with related data. Such a system will be used by Biomedical researchers to understand from a research paper the type of experiment in which a particular oligonucleotide sequence is used, to understand the target used in that experiment along with that particular oligonucleotide and to study the structure of that particular oligonucleotide. 
 
-Give script for oligo-extraction and other details and placing them on CSV, as many seq not TP thus a script to auto-tag using BOW, script to automatically update and advance BOW, system built upon a CSV file to allow easy manual curation by taking in account previous tags and relevant auto-tags (helps in easy data curation for training BioBERT, analyse performance of BOW and oligo extraction by giving matrix between TP vs FP, to provide corpus by use of RegEx + BioBERT to extract sequences and BOW to differentiate TP from FP
-
-We present MutationFinder, an open-source, rule-based system for recognizing descriptions of point mutations in conjunction with the mutation data from text and extracting them into consistent and unambiguous representations. It will help to create large, high-quality gold standard data set for judging and comparing the performance of oligonucleotide extraction systems. Like the earlier mutation recognition systems,8–10 MutationFinder applies a set of regular expressions to identify mutation mentions in input texts. Our currently top-performing collection of regular expressions results in a precision of 98.4% and a recall of 81.9% when extracting mutation mentions from completely blind test data
-
-Accurately identifying gene and protein names in text is an open area of research, and classifying extracted names as referring to genes or proteins is a task which human experts only do with around 80% agreement. We view mutation extraction, gene/protein named-entity recognition and gene/protein mutation disambiguation as separate language processing problems, which may collectively be solved by combining independent systems. MutationFinder provides reliable extraction of mutation data, and its modular nature and open-source availability in multiple languages facilitate its incorporation into more complex systems. Combining the output of MutationFinder with the output of an independent gene/protein name extraction system would provide a basis for assigning mutations to their gene/protein source, and the ability to distinguish gene and protein names would provide the requisite information to disambiguate mutation types.
-
-Production of a simplified output file. a script for judging the performance of mutation mention extraction systems. The simplified file only reports one entry for each unique residue or mutation mention in the article, rather than including each mention as a separate entry, and is thus easy to read quickly and to use for scoring the performance of the program. The fact that a residue is mentioned in an article provides a good reason to read the article, so as a default we report full statistics for unique mentions only. However, we retain as an option the ability to report all instances of a particular mention in each document, as a user choice.
-
-![WhatsApp Image 2022-09-05 at 1 09 06 PM](https://user-images.githubusercontent.com/71775151/188703543-bd992456-1982-4dde-b30b-24f7f26705f5.jpeg)
-
-extracts sequences
-![WhatsApp Image 2022-09-05 at 11 43 52 AM](https://user-images.githubusercontent.com/71775151/188707465-d11274a5-97e4-4d8c-85a5-a126bb5cd99a.jpeg)
-
-tells if TP or FP
-![WhatsApp Image 2022-09-05 at 11 44 24 AM](https://user-images.githubusercontent.com/71775151/188707581-ee70f829-d1b1-43b4-9ca9-e788a9d82302.jpeg)
-
-![WhatsApp Image 2022-09-05 at 11 45 26 AM](https://user-images.githubusercontent.com/71775151/188708306-c7e426af-fe4b-4ac4-af2a-c4e85fc7fe67.jpeg)
-
-![WhatsApp Image 2022-09-05 at 11 45 53 AM](https://user-images.githubusercontent.com/71775151/188708135-ae4ce587-f049-417b-bbd2-fdc1a1c50d70.jpeg)
-
-![WhatsApp Image 2022-09-06 at 11 47 16 PM](https://user-images.githubusercontent.com/71775151/188709369-0c6156aa-31ec-41aa-a62d-f3664ed55068.jpeg)
-
+The objectives for this system are:-
+- designing **pipeline for identifying and extracting oligonucleotide mentions** from research papers along with related data like **oligonucleotide names** and placing all this data in a CSV format file.
+- building a **pipeline to auto-curate extracted sequences to be True positive oligonucleotide mentions or False positive** by use of BOWs. Its need arose as many extracted sequences follow structural patterns that of an oligonucleotide but were actually gene expressions, mutations, variations, etc. Thus to reduce efforts to manual curate and tag sequences as TP or FP, we need such type of auto curating pipeline.
+- engineering a **pipeline for automatic advancement/improvisation of BOWs** based on manual curations in CSV containing oligonucleotide and other related data. 
+- developing **CSV-based system to allow easy manual curation** of a dataset by taking into account previous manually curated tags and relevant auto-tags of sequences being TP or FP.
+- preparing a **high-quality gold standard dataset of oligonucleotide mentions** across various biomedical research papers for researchers to take reference for experiments and to validate the performance of oligonucleotide extraction systems that will come up in the near future.
+- coding a **matrix for judging the performance of the oligonucleotide extraction system and Bag of Words for auto-curating the sentences.***
 
 ## 3) Work overview
 
