@@ -10,18 +10,16 @@
 
 ## Table of Contents
 
-- [Motivation](#1-motivation)
+- [Background](#1-background)
 - [Objective](#2-objective)
 - [Work overview](#3-work-overview) 
-  * [Prerequisites](##prerequisites)
-  * [Installation](#installation)
-* [Dataset](#dataset)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
-* [Special Thanks](#special-thanks)
-
+- [Folder Directory Structure](#4-folder-directory-structure)
+- [Usage](#5-usage)
+- [Data Flow Diagram](#6-data-flow-diagram)
+- [Future work](#7-future-work)
+- [Contributing](#8-contributing)
+- [Acknowledgements](#9-acknowledgements)
+- [License](#10-license)
 
 ## 1) Background
 
