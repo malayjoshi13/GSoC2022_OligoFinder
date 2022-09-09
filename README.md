@@ -23,7 +23,7 @@
 * [Special Thanks](#special-thanks)
 
 
-## 1) Motivation
+## 1) Background
 
 Tell about the project, what are oligonucleotides, tell about recent work by EMBL-EBI, limitations of existing works that raise need for such product
 
