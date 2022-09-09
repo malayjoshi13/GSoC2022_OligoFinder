@@ -11,7 +11,7 @@
 ## Table of Contents
 
 - [Background](#1-background)
-- [Objective](#2-objective)
+- [Objective](#2-objective-of-oligoFinder)
 - [Work overview](#3-work-overview) 
 - [Folder Directory Structure](#4-folder-directory-structure)
 - [Usage](#5-usage)
@@ -41,7 +41,7 @@ The objectives for this system are:-
 - engineering a **pipeline for automatic advancement/improvisation of BOWs** based on manual curations in CSV containing oligonucleotide and other related data. 
 - developing **CSV-based system to allow easy manual curation** of a dataset by taking into account previous manually curated tags and relevant auto-tags of sequences being TP or FP.
 - preparing a **high-quality gold standard dataset of oligonucleotide mentions** across various biomedical research papers for researchers to take reference for experiments and to validate the performance of oligonucleotide extraction systems that will come up in the near future.
-- coding a **matrix for judging the performance of the oligonucleotide extraction system and Bag of Words for auto-curating the sentences.***
+- coding a **matrix for judging the performance of the oligonucleotide extraction system and Bag of Words for auto-curating the sentences.**
 
 ## 3) Work overview
 
