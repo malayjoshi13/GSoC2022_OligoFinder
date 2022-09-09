@@ -70,7 +70,7 @@ tells if TP or FP
 
 Please note that many modifications made in the features of this system were directly committed to the main branch as they are well tested and hold more straightforward logic and code blocks. Developments and modifications made in the significant features of this system were committed in the form of Pull Requests (PRs), which you can view below.
 
-### 3.1) Implementation of pipeline to extract text from research papers
+#### 3.1) Implementation of pipeline to extract text from research papers
   - Directly commited to the main branch
   - Overview -
     - Created `get_paper_content.py` script, which via `textpresso.py` script extracts content from a research paper(s) in Wormbase corresponding to id(s) present in the `configure.py` file.
