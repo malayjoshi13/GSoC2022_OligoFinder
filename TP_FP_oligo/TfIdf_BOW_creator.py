@@ -7,20 +7,20 @@ from configure import setConfiguration
 
 # this part generate tf-idf BOW
 
-# Create vocab
+# create vocab
 def create_vocab(filename):
     # open the file in read mode
     read_file = open(filename, 'r')
     
-    # creating dictreader object
+    # create dictreader object
     file = csv.DictReader(read_file)
     
-    # creating empty lists
+    # create empty lists
     current_sentence = list()
     is_oligo = list()
     
-    # iterating over each row and append
-    # values to empty list
+    # iterate over each row of CSV and append values corresponding to "Current Sentence"
+    # and "TP or FP Oligo (manual)" columns to empty lists
     for col in file:
         current_sentence.append(col['Current Sentence'])
         is_oligo.append(col['TP or FP Oligo (manual)'])
@@ -30,39 +30,36 @@ def create_vocab(filename):
     non_oligo_vocab = list()
     oligo_vocab = list()
 
-    for i in range(len(current_sentence)):
-        if is_oligo[i]=="Oligo" and current_sentence[i] not in oligo_sentences: #appends unique sentences only
+    for i in range(len(current_sentence)): # pick ith sentence of CSV
+        if is_oligo[i]!="" and is_oligo[i]!=None: # pick ith manual-tagging and check if it's not empty (i.e there must be tag of TP or FP)
+            # to create BOW, we want sentences to have words that are pre-processed & be present in engish dictionary 
             processed_sentence = sentence_processor(current_sentence[i])
-            # oligo_sentences.append(current_sentence[i])
-            oligo_sentences.append(processed_sentence)
+            # if manual-tag is "Oligo" and the corresponding sentence is not already appended (keeps check for unique sentences)
+            if is_oligo[i]=="Oligo":
+                if processed_sentence not in oligo_sentences: 
+                    oligo_sentences.append(processed_sentence)
 
-            for word in processed_sentence.split():
-                if word not in oligo_vocab:
-                    processed_word = word_processor(word)
-                    if not processed_word: #if not oligo then append that in vocab coz we want that are linked
-                        # with oligo in a sentence, but are themselves not an oligo
-                        oligo_vocab.append(word)
-                        # processed_bow_word = bow_processor(word)
-                        # if not processed_bow_word:
-                        #     oligo_vocab.append(processed_bow_word) 
+                    for word in processed_sentence.split():
+                        if word not in oligo_vocab:
+                            processed_word = word_processor(word)
+                            if not processed_word: #if structure of word is not like oligo, then append that in vocab 
+                                # because we want words that are linked with oligo in a sentence, but are themselves not an oligo
+                                oligo_vocab.append(word)
 
+            elif is_oligo[i]!="Oligo":
+                if processed_sentence not in non_oligo_sentences:
+                    non_oligo_sentences.append(processed_sentence)
 
-        elif is_oligo[i]!="Oligo" and current_sentence[i] not in non_oligo_sentences:
-            processed_sentence = sentence_processor(current_sentence[i])
-            # oligo_sentences.append(current_sentence[i])
-            non_oligo_sentences.append(processed_sentence)
-
-            for word in processed_sentence.split():
-                if word not in non_oligo_vocab:
-                    processed_word = word_processor(word)
-                    if not processed_word: #if not oligo looking sequence then append that in vocab coz 
-                        # we want that are linked with oligo in a sentence, but are themselves not an oligo
-                        non_oligo_vocab.append(word)
+                    for word in processed_sentence.split():
+                        if word not in non_oligo_vocab:
+                            processed_word = word_processor(word)
+                            if not processed_word: 
+                                non_oligo_vocab.append(word)
 
     return non_oligo_sentences, oligo_sentences, non_oligo_vocab, oligo_vocab
 
 
-# Creating an index for each word in our vocab.
+# create an index for each word in our vocab.
 def vocab_elements(vocab):
     index_dict = {} 
     i = 0
@@ -72,7 +69,7 @@ def vocab_elements(vocab):
     return index_dict
 
 
-# Create a count dictionary to keep the count of the number of documents containing the given word
+# create a count dictionary to keep the count of the number of documents containing the given word
 def count_dict(sentences, vocab):
     word_count = {}
     for word in vocab:
@@ -83,7 +80,7 @@ def count_dict(sentences, vocab):
     return word_count
 
 
-# Term Frequency
+# term frequency
 def termfreq(sentence, word):
     N = len(sentence.split())
     occurance = 0
@@ -94,7 +91,7 @@ def termfreq(sentence, word):
     #multiple sentences==multiple documents
 
 
-#Inverse Document Frequency
+# inverse document frequency
 def inverse_doc_freq(word, document_len, word_count):
     try:
         word_occurance = word_count[word] + 1
@@ -103,7 +100,7 @@ def inverse_doc_freq(word, document_len, word_count):
     return np.log(document_len/word_occurance) #np.log(total number of sentences in oligo passage/occurence of a word in oligo passage)
 
 
-#Combining the TF-IDF functions
+# combining the TF-IDF functions
 def tf_idf(sentences, vocab, sentence):
     word_count = count_dict(sentences, vocab)
     document_len = len(sentences)
@@ -124,6 +121,7 @@ def tf_idf(sentences, vocab, sentence):
     return tf_idf_vec
 
 
+# make list of all words with tf_idf score above a certain threshold decided by "tf_idf" function (present above)
 def above_threshold_tfidf_words(sentences, vocab):
     tf_idf_vec_final = {}
     for sentence in sentences:
@@ -132,18 +130,13 @@ def above_threshold_tfidf_words(sentences, vocab):
 
     for i in tf_idf_vec_final:
         sum = 0
-        # print(str(i)+": "+str(tf_idf_vec_final[i])) #before
-
         for j in tf_idf_vec_final[i]:
             sum += j
         tf_idf_vec_final[i] = sum/len(tf_idf_vec_final[i]) #if three tfidf are added then divide by 3
-        
-        # print(str(i)+": "+str(tf_idf_vec_final[i])) #after
-
     return tf_idf_vec_final
 
 
-
+# main driver code block that create BOWs corresponding to oligos and non-oligos mentions
 def create_BOW():
 
     _, _, output_CSVname, oligo_BOW_filename, non_oligo_BOW_filename = setConfiguration()
@@ -159,7 +152,6 @@ def create_BOW():
     # uncomment if you want to view tf-idf score corresponding to each word
     # with open('oligo_words_with_tfidf.txt', 'w') as f3:
     #     f3.write(str(above_threshold_tfidf_oligo_words_var))
-
 
 
     above_threshold_tfidf_nonoligo_words_var = above_threshold_tfidf_words(non_oligo_sentences, non_oligo_vocab)
