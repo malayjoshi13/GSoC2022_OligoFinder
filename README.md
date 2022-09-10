@@ -35,7 +35,7 @@ Another curation method is automated information extraction, which uses text min
 
 To solve the above-stated problem, we present an accurate, efficient, scalable and fully/semi-automated curation system called **OligoFinder** for identifying and extracting Oligonucleotide mentions along with related data. Such a system will be used by Biomedical researchers to understand from a research paper the type of experiment in which a particular oligonucleotide sequence is used, to understand the target used in that experiment along with that particular oligonucleotide and to study the structure of that particular oligonucleotide. 
 
-![Untitled](https://user-images.githubusercontent.com/71775151/189495875-7ed0a78e-7bc8-4011-b824-d0ac26da12cd.jpg)
+![Untitled (1)](https://user-images.githubusercontent.com/71775151/189495916-6b35c1ba-a43f-430a-895d-798d8f4c62f1.jpg)
 
 The objectives for this system are:-
 - designing **pipeline for identifying and extracting oligonucleotide mentions** from research papers along with related data like **oligonucleotide names** and placing all this data in a CSV format file.
