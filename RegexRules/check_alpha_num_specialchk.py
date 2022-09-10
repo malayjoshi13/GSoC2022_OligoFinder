@@ -66,7 +66,7 @@ def has_35(word):
 
 #-------------------------------------------
 
-# excpet " ' ", as it can come in oligo name like:- 3'-AGTTG-5'
+# excpet "A,a,C,c,G,g,T,t", remove every other character from extracted word
 def remove_special_characters(word):
     """
     Functionality:
