@@ -41,7 +41,3 @@ def check_true_positive_oligo_sentence(sentence):
         result = "non-oligo"
 
     return result
-
-# if __name__ == "__main__":
-#     sentence = "mutation followed genetic crosses PCR using primers rabx5-F (5 -ATTCCCCCAGATTGTGTATG-3) rabx5- R (5 -CCGGTGACGTGGAAGTTGGT-3 )."
-#     print(check_true_positive_oligo_sentence(sentence))
