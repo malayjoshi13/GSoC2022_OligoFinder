@@ -259,7 +259,7 @@ Contributions make the open source community such an amazing place to learn, ins
 - Push changes to the branch (git push origin feature/AmazingFeature)
 - Open a Pull Request
 - Wait for us to validate before accepting it in our code base
-- That is it. Wohooo, you made a valuable commit to this project!!
+- That is it. Wohooo🥳🥳🥳, you made a valuable commit to this project!!
 
 
 ## 9) Acknowledgements
