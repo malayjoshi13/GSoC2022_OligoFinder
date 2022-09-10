@@ -217,7 +217,6 @@ Extract oligonucleotides from research papers and use as well as enhance BOWs:
 `python extract_BOW.py`
 
 ## 6) Data Flow Diagram
-paste image
 
 Currently, this system is divided into majorly two halves. In the first half, find and extract sequences that have conventional Oligonucleotides' structure into a CSV file. Another half first uses manual curations by the curator (who tags the sequences present in the CSV file to be an Oligonucleotide [True positive] or not an Oligonucleotide but has the same structure that an Oligonucleotide has [False positive]) to generate a Bag of Words (aka BOW) corresponding to words related to oligo sequences and non-oligo sequences in sentences. These BOWs are then used in the next/upcoming cycle to auto-label oligo sequences to be true positive or false positive (the idea behind using BOWs to auto-curate is that the pattern/words which are present in sentences with oligos or non-oligos will be first taken out and then used in future for auto-labelling as the presence of unique words from BOWs directly points towards a sequence to be an oligo or not).  
 
