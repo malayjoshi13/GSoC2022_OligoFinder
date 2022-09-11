@@ -55,13 +55,13 @@ The objectives for this system are:-
 - designing a **matrix for analysing the performance of regex based pipeline for extracting oligonucleotide mentions and Bag of Words based false positive filtering system** in each cycle/round of training these both systems over multiple training research papers.
 
 ### Expected Results
-By end of Phase 1 we will train **regex based pipeline for extracting oligonucleotide mentions** and **pipeline for filtering out false positive oligonucleotide mentions**. Then we will use these pipelines to prepare training data to train BioBERT model in Phase 2.
+By end of Phase 1, training of **regex based pipeline for extracting oligonucleotide mentions** and **pipeline for filtering out false positive oligonucleotide mentions** will be completed. Then we will use these pipelines to prepare training data to train BioBERT model in Phase 2.
 
 ### Phase 2
 - training BioBERT model on dataset of oligonucleotide mentions prepared by use of **regex based pipeline for extracting oligonucleotide mentions** and **pipeline for filtering out false positive oligonucleotide mentions**. OligoFinder system in addition to regex-based oligonucleotide mentions extraction pipeline, also needs BioBERT based extraction pipeline to cover wider range of sequences which don't follow a particular fixed patter to be captured by regex rules of OligoFinder.
 
 ### Expected Results
-By end of Phase 2 we will train **BioBERT based pipeline for extracting oligonucleotide mentions**. This pipeline alng with above two pipelines will be the three pillars of **OligoFinder system**.
+By end of Phase 2, training of **BioBERT based pipeline for extracting oligonucleotide mentions** will be completed. This pipeline alng with above two pipelines will be the three pillars of **OligoFinder system**.
 
 ### Phase 3
 - preparing a **high-quality golden standard dataset of oligonucleotide mentions** using:-
@@ -70,7 +70,7 @@ By end of Phase 2 we will train **BioBERT based pipeline for extracting oligonuc
    -  **BioBERT based pipeline for extracting oligonucleotide mentions**
    
 ### Expected Results 
-By end of Phase 3 we will prepare dataset which will be stored in databases like WormBase and then used by Biomedical researchers to take reference for use of specific oligonucleotide in experiments and to validate the performance of future developments of oligonucleotide extraction systems.
+By end of Phase 3, standard dataset containing oligonucleotide mentions will be prepared and stored in databases like WormBase. Then it will be used by Biomedical researchers to take reference for use of specific oligonucleotide in experiments and to validate the performance of future developments of oligonucleotide extraction systems.
 
 ## 3) Work overview
 
