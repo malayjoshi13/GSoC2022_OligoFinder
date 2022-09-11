@@ -247,7 +247,7 @@ Extract oligonucleotides from research papers and use as well as enhance BOWs:
 
 `python extraction_and_BOW.py`
 
-## 6) Data Flow Diagram
+## 6) Working of OligoFinder system
 
 **Step 1)** After cloning this GitHub repository, as the user for the first time runs the command `python extraction_and_BOW.py` (by following steps in section 5 of `Usage`), a CSV file gets created. This file comprises data like WormBase ID, the previous sentence, the present sentence from which oligonucleotide sequences are extracted, the next sentence, and extracted oligonucleotide sequences. Along with these columns having the extracted data, one empty column of 'TP or FP Oligo (manual)' will also be created (this column will be used in step 2).
 
