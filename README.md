@@ -274,7 +274,7 @@ This supervision of manual curation will be helpful in following ways:-
 
 **Therefore**, this cyclic pipeline comprising of processes of extraction of oligonucleotide mentions from training research papers, then manual curation by curator and creation/extension of BOWs, followed by auto-curation by BOWs, is run multiple times. As a result, in the end, oligo extraction script and BOWs will become smart enough to produce a large corpus of True positive oligos for training BioBERT in the near future.
 
-This trained BioBERT along with RegEx (which we are currently using) based oligo extraction script to extract high true positive oligonucleotide mentions out of any given inference research paper.
+This trained BioBERT along with RegEx (which we are currently using) based oligo extraction script, will be used to extract high true positive oligonucleotide mentions out of any given inference research paper.
 
 ## 7) Future work
 
