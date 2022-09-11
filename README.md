@@ -224,7 +224,7 @@ Extract oligonucleotides from research papers and use as well as enhance BOWs:
 
 This data is extracted from research paper(s) by using the `oligo_extract.py` script. This script firstly extracts the whole text of the research paper(s) corresponding to WormBase ID(s) (input by the user), using `textpresso.py`. This text is broken down into multiple pairs of formats `WormBase ID of paper + each sentence of extracted text from paper`.
 
-Then in the second step, the `oligo_extract.py` script uses the `combine_rules.py` script. This script directs the pairs formed in the above step to get input into the `oligo_extract.py` script, which uses `bw_brackets.py`, `check_alpha_num_specialchk.py` and `combine_oligo_parts.py` scripts extracts oligonucleotide sequences and other related data. 
+Then in the second step, the `oligo_extract.py` script uses the `combine_rules.py` script. This script directs the pairs formed in the above step to get input into the `bw_brackets.py` script, followed by `check_alpha_num_specialchk.py` script and then `combine_oligo_parts.py` script to extract oligonucleotide sequences and other related data. 
 
 **Step 2)** Once CSV is created, the manual curator curates each row by labelling it as a `true positive` or `false positive` oligonucleotide sequence. 
 
@@ -232,11 +232,11 @@ This step is needed because regex rules present in our OligoFinder system can ex
 
 **Step 3)** This manually curated CSV generates two BOWs, one corresponding to words related to oligo sequences and the other corresponding to non-oligo sequences in sentences, by using the `TfIdf_BOW_creator.py` script.
 
-**Step 4)** Now, when the user re-runs the command `python extraction_and_BOW.py` for the second time on some new research papers, then in the CSV file (which was created above), a new column of ` TP or FP Oligo (auto)` will also be created comprising of auto labels of `true positive` or `false positive` oligonucleotide sequence.  
+**Step 4)** Now, when the user re-runs the command `python extraction_and_BOW.py` for the second time on some new research papers, then in the CSV file (which was created above), a new column of `TP or FP Oligo (auto)` will also be created comprising of auto labels of `true positive` or `false positive` oligonucleotide sequence.  
 
 The `TfIdf_BOW_TpFp.py` script generates these auto labels by using two BOWs created above. The idea behind using BOWs to auto-label rows of CSV is that the pattern/words present in sentences containing oligos or non-oligos sequences will automatically differentiate between the actual oligonucleotide and pseudo oligonucleotide sequences. Therefore manual curation work reduces to semi-manual curation work by using BOWs. It happens by first taking them out and then using them for auto-labelling newly extracted sequences, as the presence of these unique words from BOWs directly points to whether a sequence is an oligo or not.
 
-**Step 5)** Again curator will manually label extracted sequences as True positive or not. However, this time curator can take help from auto-labels to label new extracted sequences. Also, note that the curator needs to only curate/label just new extracted sequences, not already labelled ones, as old labels will remain the same.
+**Step 5)** Again curator will manually label extracted sequences as true positive or not. However, this time curator can take help from auto-labels to label new extracted sequences. Also, note that the curator needs to only curate/label just new extracted sequences, not already labelled ones, as old labels will remain the same.
 
 This supervision of manual curation will be helpful in following ways:-
 - manual curation + curator-verified auto-tags, by adding more words to the existing two BOWs will widen the scope to include every possible word related to an oligo/non-oligo sequence, thus will improvise BOWs to be used in the next cycle,
