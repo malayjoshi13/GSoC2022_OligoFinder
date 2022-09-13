@@ -206,7 +206,7 @@ Extract oligonucleotides from research papers and use as well as enhance BOWs:
 **Step 1) Extracting text from research papers** 
 
 
-After cloning the official GitHub repository kf OligoFinder, as the user for the first time runs the extraction_and_BOW.py file, whole text gets extracted from research paper(s) by using textpresso.py and get_paper_content.py scripts, into multiple pairs of format WormBase ID of paper + each sentence of extracted text from paper.
+After cloning the official GitHub repository of OligoFinder, as the user for the first time runs the extraction_and_BOW.py file, whole text gets extracted from research paper(s) by using textpresso.py and get_paper_content.py scripts, into multiple pairs of format WormBase ID of paper + each sentence of extracted text from paper.
 
 
 **Step 2) Extracting sequences following structure like of an Oligonucleotide using RegEx rules**
@@ -215,28 +215,28 @@ After cloning the official GitHub repository kf OligoFinder, as the user for the
 Once text from research paper get extracted in paper id and sentence pairs, combine_rules.py file passes these pairs through regex rules stated below and the final output after passing through these rules is a sequence that follows an Oligonucleotide's structural composition.
 
 
-bw_brackets.py - contain RegEx rule pick_from_brackets that extracts Oligonucleotide sequence if present inside brackets. Input: insert(TGAGACGTCAACAATATGG)hg, Output: TGAGACGTCAACAATATGG.
+- bw_brackets.py - contain RegEx rule pick_from_brackets that extracts Oligonucleotide sequence if present inside brackets. Input: insert(TGAGACGTCAACAATATGG)hg, Output: TGAGACGTCAACAATATGG.
 
 
-check_alpha_num_specialchk.py - contain three RegEx rules:
+- check_alpha_num_specialchk.py - contain three RegEx rules:
 
 
-has_acgt - this RegEx rule checks if the input word follows the structure of an Oligonucleotide or not. If the input word contains only alphabetic characters like A, a, C, c, G, g, T and T, then that word follows the structure of an Oligonucleotide; otherwise not. Input1: TGAGACGTCAACAATATGG, Output1: TGAGACGTCAACAATATGG and Input2: TXxvFDECAAOpJHTGG, Outpu2: None.
+  - has_acgt - this RegEx rule checks if the input word follows the structure of an Oligonucleotide or not. If the input word contains only alphabetic characters like A, a, C, c, G, g, T and T, then that word follows the structure of an Oligonucleotide; otherwise not. Input1: TGAGACGTCAACAATATGG, Output1: TGAGACGTCAACAATATGG and Input2: TXxvFDECAAOpJHTGG, Outpu2: None.
 
 
-has_35 - this RegEx rule checks if the input word follows the structure of an Oligonucleotide or not. If the input word contains only numeric characters like 3 and 5 or does not have any numeric characters, then that word follows the structure of an Oligonucleotide; otherwise not. Input1: 3'-TGAGACGTCAACAATATGG-5', Output1: 3'-TGAGACGTCAACAATATGG-5' and Input2: TGAGACGTCAACAATATGG, Outpu2: TGAGACGTCAACAATATGG and Input3: 3'-TGAGA2CGT3CAACAATATG675G-5', Output3: None.
+  - has_35 - this RegEx rule checks if the input word follows the structure of an Oligonucleotide or not. If the input word contains only numeric characters like 3 and 5 or does not have any numeric characters, then that word follows the structure of an Oligonucleotide; otherwise not. Input1: 3'-TGAGACGTCAACAATATGG-5', Output1: 3'-TGAGACGTCAACAATATGG-5' and Input2: TGAGACGTCAACAATATGG, Outpu2: TGAGACGTCAACAATATGG and Input3: 3'-TGAGA2CGT3CAACAATATG675G-5', Output3: None.
 
 
-remove_special_characters - except alphabetic characters ranging from A to Z and a to z, remove every other character from the input word like numeric values (3, 5, etc.), special characters (,./?"':}{][, etc) and extra spacings.
+  - remove_special_characters - except alphabetic characters ranging from A to Z and a to z, remove every other character from the input word like numeric values (3, 5, etc.), special characters (,./?"':}{][, etc) and extra spacings.
 
 
-combine_oligo_parts.py - contain two RegEx rules:
+- combine_oligo_parts.py - contain two RegEx rules:
 
 
-is_part - this RegEx rule combines back Oligonucleotide sequences that are actually part of a single oligo sequence but are treated like individual oligo sequences due to spaces, newline, etc. Input: TT GCA ATG CGAAAATAC, Output: TTGCAATGCGAAAATAC.
+  - is_part - this RegEx rule combines back Oligonucleotide sequences that are actually part of a single oligo sequence but are treated like individual oligo sequences due to spaces, newline, etc. Input: TT GCA ATG CGAAAATAC, Output: TTGCAATGCGAAAATAC.
 
 
-only_regex - outputs a list of words that satisfies all structural rules of an Oligonucleotide and thus are called 'sequences' from now onwards.
+  - only_regex - outputs a list of words that satisfies all structural rules of an Oligonucleotide and thus are called 'sequences' from now onwards.
 
 
 **Step 3) Storing extracted data into a CSV file**
@@ -278,13 +278,13 @@ Again curator will manually label extracted sequences as true positive or not. H
 This supervision of manual curation will be helpful in following ways:-
 
 
-manual curation + curator-verified auto-tags, by adding more words to the existing two BOWs will widen the scope to include every possible word related to an oligo/non-oligo sequence, thus will improvise BOWs to be used in the next cycle,
+- manual curation + curator-verified auto-tags, by adding more words to the existing two BOWs will widen the scope to include every possible word related to an oligo/non-oligo sequence, thus will improvise BOWs to be used in the next cycle,
 
 
-comparison between auto-tags and manual tags in each cycle tells how smart BOW has become because the larger number of auto-taggings BOW can do, shows its improved performance,
+- comparison between auto-tags and manual tags in each cycle tells how smart BOW has become because the larger number of auto-taggings BOW can do, shows its improved performance,
 
 
-analysis of each cycle's manual tags tells how many True positives have increased due to better BOWs and oligo extraction script. It also tells where the oligo extraction script can be further improvised.
+- analysis of each cycle's manual tags tells how many True positives have increased due to better BOWs and oligo extraction script. It also tells where the oligo extraction script can be further improvised.
 
 
 **Step 8) Cyclic process for improvising oligonucleotide extraction script and BOWs based TP/FP sequence differentiator**
