@@ -15,7 +15,7 @@
 - [Work overview](#3-work-overview) 
 - [Folder Directory Structure](#4-folder-directory-structure)
 - [Usage](#5-usage)
-- [Data Flow Diagram](#6-data-flow-diagram)
+- [Data Flow Diagram](#6-working-of-oligofinder-system)
 - [Future work](#7-future-work)
 - [Contributing](#8-contributing)
 - [Acknowledgements](#9-acknowledgements)
