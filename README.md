@@ -319,7 +319,7 @@ Contributions make the open source community such an amazing place to learn, ins
 
 ## 9) Acknowledgements
 
-I thank Google Summer of Code and the Genome Assembly and Annotation section of EMBL-EBI for granting me this opportunity. I am grateful to my mentors, Magdalena Zarowiecki, Andrés Becerra Sandoval and Valerio Arnaboldi, for their continuous guidance and encouragement. Without them, this project would not have been possible. I thank them for their constant guidance, code reviews, timely feedback, and, most importantly, for their encouragement throughout GSoC.
+I thank Google Summer of Code and the Genome Assembly and Annotation section of EMBL-EBI for granting me this opportunity. I am grateful to my mentors, Magdalena Zarowiecki, Andrés Becerra Sandoval and Valerio Arnaboldi, for their continuous guidance and encouragement. Without them, this project would not have been possible.
 
 I want to pay humble gratitude to my dearest mama (aka maternal uncle), Dr Nikhil Joshi, my parents and my sister for always believing in me and helping bring out the best of me right from the day of writing the proposal to this significant day of final submission. I am fortunate enough to get their support and encouragement throughout this summer. It was a great summer working on this project, and I would love to contribute more in the future to the EMBL-EBI.
 
